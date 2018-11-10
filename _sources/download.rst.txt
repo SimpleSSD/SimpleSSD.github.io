@@ -1,0 +1,113 @@
+*********
+Downloads
+*********
+
+
+Source Codes
+============
+
+* :xref:`simplessd_fullsystem`
+* :xref:`simplessd_standalone`
+
+
+.. _download_config_file:
+
+SSD Configuration Files
+=======================
+
+We modeled several real SSDs using SimpleSSD.
+
+.. warning::
+  **Disclaimer**
+
+  We performed several black-box tests on real SSDs.
+  All the values in the configuration files are derived from the test results and they may **DIFFERENT** with configurations of real SSDs.
+
+You can download configuration files from below sections.
+
+.. note::
+  **Testing environment**
+
+  For bandwidth and latency error calculation, we used ``SimpleSSD-FullSystem v2.0.1`` with ARM architecture.
+  On the user-level of gem5, we used :xref:`fio` to collect the performance of the SimpleSSD.
+  ``--bs`` option varies from ``4K`` to ``1M`` and ``--iodepth`` option varies from ``1`` to ``64``.
+  Error is calculated by ``|real - sim| / real``.
+
+
+NVMe SSD
+--------
+
+
+Intel 750 400GB
+^^^^^^^^^^^^^^^
+
+:download:`Download <../configs/intel750_400gb.cfg>`
+
+* Average bandwidth error: **20.0** % (Read: 34.0%, Write: 5.9%)
+* Average latency error: **13.9** % (Read: 21.9%, Write: 5.8%)
+
+
+Samsung Z-SSD prototype 800GB
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+:download:`Download <../configs/samsung_zssd_800gb.cfg>`
+
+* Average bandwidth error: **12.9** % (Read: 9.6%, Write: 16.2%)
+* Average latency error: **13.1** % (Read: 8.0%, Write: 18.1%)
+
+
+Samsung 983 DCT 1.92TB
+^^^^^^^^^^^^^^^^^^^^^^
+
+:download:`Download <../configs/samsung_983dct_1.92tb.cfg>`
+
+.. note::
+  We only modeled one namespace (480GB).
+
+* Average bandwidth error: **5.5** % (Read: 6.9%, Write: 4.2%)
+* Average latency error: **5.2** % (Read: 6.3%, Write: 4.1%)
+
+
+SATA SSD
+--------
+
+Currently (SimpleSSD v2.0.3), SATA interface is unstable and not validated well.
+Please keep in mind that current configuration files may inaccurate.
+
+
+Intel 535 240GB
+^^^^^^^^^^^^^^^
+
+:download:`Download <../configs/intel535_240gb.cfg>`
+
+* Not validated
+
+
+Samsung 850 PRO 256GB
+^^^^^^^^^^^^^^^^^^^^^
+
+:download:`Download <../configs/samsung_850pro_256gb.cfg>`
+
+* Average bandwidth error: **34.7** % (Read: 35.5%, Write: 33.9%)
+* Average latency error: **58.5** % (Read: 60.4%, Write: 56.6%)
+
+
+Software License
+================
+
+The SimpleSSD is distributed under the terms of the `GNU General Public License v3.0 <https://www.gnu.org/licenses/gpl-3.0.en.html>`_.
+
+In the SimpleSSD-FullSystem, we added new features to gem5.
+These files are distributed under the GPLv3 license.
+See ``README.md`` file of :xref:`simplessd_fullsystem` for more details.
+
+
+Libraries
+---------
+
+The SimpleSSD uses several external libraries.
+Each library has its own license.
+Here is the list of libraries that used by the SimpleSSD.
+
+- :xref:`inih`: Simple INI file parser written in C.
+- :xref:`McPAT`: Multicore Power Area and Timing calculator.

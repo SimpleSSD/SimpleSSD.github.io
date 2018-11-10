@@ -1,0 +1,43 @@
+.. role:: red
+
+*********
+SimpleSSD
+*********
+
+
+Open-Source Licensed Educational SSD Simulator
+==============================================
+
+.. figure:: ../images/index/logo.jpg
+    :width: 250px
+    :align: right
+    :figclass: align-center
+
+Welcome to the SimpleSSD website.
+SimpleSSD is a high-fidelity simulator that models all detailed characteristics of hardware and software, to build up a complete storage stack from scratch and simplify the nondescript features of storage internals.
+In contrast to existing SSD simulators, it can accommodate a complete storage stack and evaluate the performance of SSDs along with diverse memory technologies and micro-architectures by integrating into publicly-available full system simulator (:xref:`gem5`).
+Consequently, it allows system designers and architects to explore the full design space at different levels of system abstraction.
+The SimpleSSD simulation model has been validated with a real devices.
+
+You can download SimpleSSD from :doc:`./download`.
+If you'd like to use the SimpleSSD simulator in your research, please cite our paper.
+For convenience, here is the :doc:`./ack`.
+
+
+Demo Video
+==========
+
+Here is the demo video what we used for MICRO 51 presentation.
+This video includes NVMe and Open-Channel SSD interface demo.
+
+.. raw:: html
+
+  <iframe width="560" height="315" src="https://www.youtube.com/embed/KpsAhsXPSMo?rel=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+|
+
+
+Contents of SimpleSSD Website
+=============================
+
+.. include:: ./_sidemenu.rst

@@ -1,0 +1,29 @@
+***************
+Acknowledgement
+***************
+
+The SimpleSSD has been prepared under the supervision of :xref:`Professor Myoungsoo Jung, PhD <camelab>` with `his graduate students <http://camelab.org/pmwiki.php?n=Main.Members>`_.
+
+
+Citation
+========
+
+
+SimpleSSD version 2.x (Amber)
+-----------------------------
+
+Our paper entitled by "Amber:  Enabling Precise Full-System Simulation with Detailed Modeling of All SSD Resources" is accepted by IEEE/ACM International Symposium of Microarchitecture (MICRO).
+
+| Donghyun Gouk, Miryeong Kwon, Jie Zhang, Sungjoon Koh, Wonil Choi, Nam Sung Kim, Mahmut Kandemir and Myoungsoo Jung,
+| "Amber:  Enabling Precise Full-System Simulation with Detailed Modeling of All SSD Resources",
+| in the 51st IEEE/ACM International Symposium of Microarchitecture (MICRO 51), 2018
+
+
+SimpleSSD version 1.x
+---------------------
+
+Our paper entitled by "SimpleSSD: Modeling Solid State Drive for Holistic System Simulation" is accepted by IEEE Computer Architecture Letters [`IEEE Xplore <https://ieeexplore.ieee.org/document/8031080>`_].
+
+| Myoungsoo Jung, Jie Zhang, Ahmed Abulila, Miryeong Kwon, Narges Shahidi, John Shalf, Nam Sung Kim and Mahmut Kandemir,
+| "SimpleSSD: Modeling Solid State Drives for Holistic System Simulation",
+| in IEEE Computer Architecture Letters, vol. 17, issue 1, pp. 37-41, Sep. 2017

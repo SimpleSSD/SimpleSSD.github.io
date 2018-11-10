@@ -1,0 +1,39 @@
+*********************************
+Build User-Level Program for gem5
+*********************************
+
+In this page, we will explain how to compile user-level program for gem5.
+First, please download toolchain as shown in :ref:`tips_kernel_toolchain`.
+
+In the OS image we provide, :xref:`nvme` and :xref:`fio` are provided.
+
+
+ARM Architecture
+================
+
+If your program uses ``autoconf`` or supports cross compiling, configure build system to use ARM cross-compiler.
+If not, you can override environment variables as:
+
+.. code-block:: shell
+
+  export CROSS_COMPILE=aarch64-linux-gnu-   # or arm-linux-gnueabihf- if ARMv7
+  export CC=$CROSS_COMPILE"gcc"
+  export CXX=$CROSS_COMPILE"g++"
+  export AR=$CROSS_COMPILE"ar"
+  export LD=$CROSS_COMPILE"ld"
+  export RANLIB=$CROSS_COMPILE"ranlib"
+  export STRIP=$CROSS_COMPILE"strip"
+
+If your compiler is brand-new so the ``GLIBC`` inside the OS image (``linaro-aarch64-linux.img``) is out-dated, you should use static build.
+Also you should prepare all external libraries for ARM architecture.
+Static build is good choice if you don't want to copy all libraries into the OS image.
+
+
+X86 Architecture
+================
+
+If you are on X86 host machine, you can build program using host compiler.
+As ``x86root.img`` contains quite old GNU C/C++ compiler (4.4), C/C++ runtime library inside the image may not have new ``GLIBC``.
+So, use static build (e.g., ``gcc``'s ``-static`` flag or ``autoconf``'s ``build-static`` option), which all libraries are merged into an executable binary.
+
+If you are not want to use static build, and your source code does not use C++11 or newer, you can ``chroot`` to ``x86root.img`` and use GNU C/C++ compiler inside of it.

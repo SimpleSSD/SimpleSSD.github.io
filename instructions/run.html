@@ -1,0 +1,451 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Running Instructions &mdash; SimpleSSD 2.0.3 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/color.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/table.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/color.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Analyze Simulation Results" href="analyze.html" />
+    <link rel="prev" title="Getting Started" href="start.html" /> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> SimpleSSD
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                2.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">User Documentation</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="start.html">Getting Started</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Running Instructions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#execution-of-simplessd-fullsystem">Execution of SimpleSSD-FullSystem</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#options-for-gem5-executable">Options for gem5 executable</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#options-for-simulation-script">Options for simulation script</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#simplessd-configuration-file">SimpleSSD configuration file</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#execution-of-simplessd-standalone">Execution of SimpleSSD-Standalone</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#simulation-configuration">Simulation configuration</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="analyze.html">Analyze Simulation Results</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Tips</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tips/kernel.html">Build Linux Kernel for gem5</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tips/program.html">Build User-Level Program for gem5</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tips/disk.html">Create Disk Image for gem5</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Firmware Model Documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../v2.0/hil.html">Host Interface Layer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../v2.0/icl.html">Internal Cache Layer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../v2.0/ftl.html">Flash Translation Layer</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Hardware Model Documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../v2.0/cpu.html">Firmware Execution Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../v2.0/dram.html">DRAM Latency Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../v2.0/pal.html">Parallelism Abstraction Layer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../v2.0/power.html">Power and Energy Model</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Resources</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../download.html">Downloads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ack.html">Acknowledgement</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">SimpleSSD</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>Running Instructions</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="running-instructions">
+<h1>Running Instructions<a class="headerlink" href="#running-instructions" title="Permalink to this headline">¶</a></h1>
+<p>In this page, we will explain how to run and configure SimpleSSD.</p>
+<div class="section" id="execution-of-simplessd-fullsystem">
+<span id="tutorial-basic-fullsystem"></span><h2>Execution of SimpleSSD-FullSystem<a class="headerlink" href="#execution-of-simplessd-fullsystem" title="Permalink to this headline">¶</a></h2>
+<p>Build SimpleSSD-FullSystem using <a class="reference internal" href="start.html#start-fullsystem"><span class="std std-ref">instruction</span></a>.</p>
+<p>Now you can start simulation using following command (Assume ARM architecture):</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>./build/ARM/gem5.opt --debug-flag<span class="o">=</span>M5Print --debug-file<span class="o">=</span>debug.txt <span class="se">\</span>
+./configs/example/fs.py --kernel<span class="o">=</span>aarch64-linux-4.9.92 <span class="se">\</span>
+--dtb-file<span class="o">=</span>armv8_gem5_v1_4cpu.dtb --machine-type<span class="o">=</span>VExpress_GEM5_V1 <span class="se">\</span>
+--num-cpu<span class="o">=</span><span class="m">4</span> --cpu-clock<span class="o">=</span>2GHz --caches --l2cache --cpu-type<span class="o">=</span>AtomicSimpleCPU <span class="se">\</span>
+--mem-size<span class="o">=</span>4GB --mem-type<span class="o">=</span>DDR4_2400_8x8 <span class="se">\</span>
+--ssd-interface<span class="o">=</span>nvme --ssd-config<span class="o">=</span>./src/dev/storage/simplessd/config/sample.cfg
+</pre></div>
+</div>
+<p>Let’s check all the options used in above command line.
+Command line for executing gem5 has following format:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>./build/&lt;arch&gt;/gem5.&lt;build mode&gt; <span class="o">[</span>gem5 options<span class="o">]</span> &lt;simulation script&gt; <span class="o">[</span>script options<span class="o">]</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">&lt;arch&gt;</span></code> can be <code class="docutils literal notranslate"><span class="pre">ARM</span></code> or <code class="docutils literal notranslate"><span class="pre">X86</span></code>, because SimpleSSD only supports these two architectures.
+<code class="docutils literal notranslate"><span class="pre">&lt;build</span> <span class="pre">mode&gt;</span></code> can be <code class="docutils literal notranslate"><span class="pre">debug</span></code>, <code class="docutils literal notranslate"><span class="pre">opt</span></code>, <code class="docutils literal notranslate"><span class="pre">fast</span></code>, <code class="docutils literal notranslate"><span class="pre">prof</span></code>, and <code class="docutils literal notranslate"><span class="pre">perf</span></code>.
+For more details, check <a class="reference external" href="http://gem5.org/Build_System">gem5 build instruction</a>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">&lt;simulation</span> <span class="pre">script&gt;</span></code> defines simulation hardware and software system.
+gem5 provides example simulation scripts (in <code class="docutils literal notranslate"><span class="pre">./configs/example</span></code>).
+We modified default full system simulation script (<code class="docutils literal notranslate"><span class="pre">./configs/example/fs.py</span></code>) to enable SimpleSSD inside gem5.</p>
+<p>Following sections describes each options used in command line.</p>
+<div class="section" id="options-for-gem5-executable">
+<h3>Options for gem5 executable<a class="headerlink" href="#options-for-gem5-executable" title="Permalink to this headline">¶</a></h3>
+<p>In above example, <code class="docutils literal notranslate"><span class="pre">--debug-flag</span></code> and <code class="docutils literal notranslate"><span class="pre">--debug-file</span></code> options are used.
+Here is the description of each options, including commonly used other options.</p>
+<table border="1" class="colwidths-given docutils">
+<colgroup>
+<col width="29%" />
+<col width="71%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Options</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">--debug-flag</span></code></td>
+<td>Set comma-separated list of debug flags.
+This determine which debug log of hardware module will be printed.</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">--debug-file</span></code></td>
+<td>Set file to store debug log.</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">--outdir</span></code>, <code class="docutils literal notranslate"><span class="pre">-d</span></code></td>
+<td>Set directory to store all simulation outputs.</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">--redirect-stdout</span></code>, <code class="docutils literal notranslate"><span class="pre">-r</span></code></td>
+<td>Redirect stdout and stderr of gem5 to <code class="docutils literal notranslate"><span class="pre">simout</span></code> file.
+File name can be changed using <code class="docutils literal notranslate"><span class="pre">--stdout-file</span></code> option.</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">--redirect-stderr</span></code>, <code class="docutils literal notranslate"><span class="pre">-e</span></code></td>
+<td>Redirect stderr of gem5 to <code class="docutils literal notranslate"><span class="pre">simerr</span></code> file.
+File name can be changed using <code class="docutils literal notranslate"><span class="pre">--stderr-file</span></code> option.</td>
+</tr>
+</tbody>
+</table>
+<p>For more options, use <code class="docutils literal notranslate"><span class="pre">./build/ARM/gem5.opt</span> <span class="pre">--help</span></code> or check <a class="reference external" href="http://gem5.org/Running_gem5">here</a>.</p>
+</div>
+<div class="section" id="options-for-simulation-script">
+<h3>Options for simulation script<a class="headerlink" href="#options-for-simulation-script" title="Permalink to this headline">¶</a></h3>
+<p>For options for <code class="docutils literal notranslate"><span class="pre">./configs/example/fs.py</span></code>, check following table.</p>
+<table border="1" class="colwidths-given docutils">
+<colgroup>
+<col width="29%" />
+<col width="71%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Options</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">--kernel</span></code></td>
+<td>Set kernel image to use. This path is relative to <code class="docutils literal notranslate"><span class="pre">$M5_PATH/binaries</span></code></td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">--num-cpu</span></code></td>
+<td>Set # CPU of system to simulate.
+If you are using <code class="docutils literal notranslate"><span class="pre">ARM</span></code>, you should use same value defined in <code class="docutils literal notranslate"><span class="pre">dtb</span></code>
+file. If you are using <code class="docutils literal notranslate"><span class="pre">X86</span></code>, simulation may unstable when two or more
+CPUs exist in system.</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">--cpu-type</span></code></td>
+<td>Set CPU model to use. Default is <code class="docutils literal notranslate"><span class="pre">AtomicSimpleCPU</span></code>.
+Possible values can be checked using <code class="docutils literal notranslate"><span class="pre">--list-cpu-type</span></code> option.
+SimpleSSD support all CPU modes provided by gem5.
+If you are using <code class="docutils literal notranslate"><span class="pre">X86</span></code>, simulation may unstable when using other CPU
+models not <code class="docutils literal notranslate"><span class="pre">AtomicSimpleCPU</span></code>.</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">--cpu-clock</span></code></td>
+<td>Set clock speed (frequency) of CPU.</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">--caches</span></code></td>
+<td>Enable private L1I and L1D caches.
+You can change size and associativity using following options:
+<code class="docutils literal notranslate"><span class="pre">--l1i_size</span></code>, <code class="docutils literal notranslate"><span class="pre">--l1d_size</span></code>, <code class="docutils literal notranslate"><span class="pre">--l1i_assoc</span></code> and <code class="docutils literal notranslate"><span class="pre">--l1d_assoc</span></code>.</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">--l2cache</span></code></td>
+<td>Enable shared L2 cache.
+You can change size and associativity using following options:
+<code class="docutils literal notranslate"><span class="pre">--l2_size</span></code> and <code class="docutils literal notranslate"><span class="pre">--l2_assoc</span></code>.</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">--mem-size</span></code></td>
+<td>Set capacity of system memory (DRAM).</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">--mem-type</span></code></td>
+<td>Set memory model to use.
+Possible values can be checked using <code class="docutils literal notranslate"><span class="pre">--list-mem-type</span></code> option.</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">--script</span></code></td>
+<td>Set script file automatically executed after boot.</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">--root-device</span></code></td>
+<td>Set disk partition to mount as root (e.g., <code class="docutils literal notranslate"><span class="pre">/dev/sda1</span></code>).</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">--disk-image</span></code></td>
+<td>Set disk image to use as OS image. Default is <code class="docutils literal notranslate"><span class="pre">x86root.img</span></code> when using
+<code class="docutils literal notranslate"><span class="pre">X86</span></code> and <code class="docutils literal notranslate"><span class="pre">linux-aarch32-ael.img</span></code> or <code class="docutils literal notranslate"><span class="pre">linaro-minimal-aarch64.img</span></code>
+when using <code class="docutils literal notranslate"><span class="pre">ARM</span></code>. This path is relative to <code class="docutils literal notranslate"><span class="pre">$M5_PATH/disks</span></code></td>
+</tr>
+</tbody>
+</table>
+<p>Following options are <code class="docutils literal notranslate"><span class="pre">ARM</span></code> architecture specific, so you don’t need to specify when using <code class="docutils literal notranslate"><span class="pre">X86</span></code> architecture.</p>
+<table border="1" class="colwidths-given docutils">
+<colgroup>
+<col width="29%" />
+<col width="71%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Options</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">--dtb-file</span></code></td>
+<td>Set compiled DeviceTree (<code class="docutils literal notranslate"><span class="pre">dtb</span></code>) file.</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">--machine-type</span></code></td>
+<td>Set hardware platform to simulate.
+You can check possible values using <code class="docutils literal notranslate"><span class="pre">--list-machine-type</span></code>,
+but SimpleSSD only supports <code class="docutils literal notranslate"><span class="pre">VExpress_GEM5_V1</span></code>.</td>
+</tr>
+</tbody>
+</table>
+<p>Following options are added by SimpleSSD.</p>
+<table border="1" class="colwidths-given docutils">
+<colgroup>
+<col width="29%" />
+<col width="71%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Options</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">--ssd-interface</span></code></td>
+<td>Set host interface protocol/hardware to use. Default is <code class="docutils literal notranslate"><span class="pre">nvme</span></code>.
+Possible values: <code class="docutils literal notranslate"><span class="pre">nvme</span></code>, <code class="docutils literal notranslate"><span class="pre">ocssd1</span></code>, <code class="docutils literal notranslate"><span class="pre">ocssd2</span></code>, <code class="docutils literal notranslate"><span class="pre">sata</span></code> and <code class="docutils literal notranslate"><span class="pre">ufs</span></code>.
+<code class="docutils literal notranslate"><span class="pre">ufs</span></code> only works on <code class="docutils literal notranslate"><span class="pre">ARM</span></code> architecture.</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">--ssd-config</span></code></td>
+<td>Set SimpleSSD configuration file. This path is relative to current working
+directory.</td>
+</tr>
+</tbody>
+</table>
+<p>For more options, use <code class="docutils literal notranslate"><span class="pre">./build/ARM/gem5.opt</span> <span class="pre">./configs/example/fs.py</span> <span class="pre">--help</span></code> or check <a class="reference external" href="http://gem5.org/Running_gem5">here</a>.
+For supported Linux Kernel versions, see <a class="reference internal" href="../tips/kernel.html"><span class="doc">Build Linux Kernel for gem5</span></a>.</p>
+</div>
+<div class="section" id="simplessd-configuration-file">
+<span id="tutorial-simplessd-config"></span><h3>SimpleSSD configuration file<a class="headerlink" href="#simplessd-configuration-file" title="Permalink to this headline">¶</a></h3>
+<p>Sample configuration file is provided with source code.
+See <code class="docutils literal notranslate"><span class="pre">src/dev/storage/simplessd/config/sample.cfg</span></code> file.
+You can also download configuration files which are used in validation process from <a class="reference internal" href="../download.html#download-config-file"><span class="std std-ref">here</span></a>.</p>
+<p>Each option is explained in configuration file.</p>
+</div>
+</div>
+<div class="section" id="execution-of-simplessd-standalone">
+<span id="tutorial-basic-standalone"></span><h2>Execution of SimpleSSD-Standalone<a class="headerlink" href="#execution-of-simplessd-standalone" title="Permalink to this headline">¶</a></h2>
+<p>Build SimpleSSD-Standalone using <a class="reference internal" href="start.html#start-standalone"><span class="std std-ref">instruction</span></a>.</p>
+<p>Now you can start simulation using following command.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>./simplessd-standalone ./config/sample.cfg ./simplessd/config/sample.cfg
+</pre></div>
+</div>
+<p>Execution of SimpleSSD-Standalone is quite simple because all simulation options are defined in a separated file.
+First file (<code class="docutils literal notranslate"><span class="pre">./config/sample.cfg</span></code>) defines simulation configuration.
+Second file (<code class="docutils literal notranslate"><span class="pre">./simplessd/config/sample.cfg</span></code>) defines SSD configuration.
+For SSD configuration, see <a class="reference internal" href="#tutorial-simplessd-config"><span class="std std-ref">above section</span></a>.</p>
+<div class="section" id="simulation-configuration">
+<h3>Simulation configuration<a class="headerlink" href="#simulation-configuration" title="Permalink to this headline">¶</a></h3>
+<p>Sample simulation file is provided with source code.
+See <code class="docutils literal notranslate"><span class="pre">config/sample.cfg</span></code> file for options and explanations.</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="analyze.html" class="btn btn-neutral float-right" title="Analyze Simulation Results" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="start.html" class="btn btn-neutral" title="Getting Started" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018 CAMELab All rights reserved
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+
+  
+
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

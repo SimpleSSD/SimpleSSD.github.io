@@ -1,0 +1,26 @@
+******************
+DRAM Latency Model
+******************
+
+In this page, we will explain how we design and implement DRAM latency model (embedded DRAM).
+
+DRAM model provides abstract class, so you can implement your own DRAM latency model by inherit the class.
+By default, we provide ``SimpleDRAM``, similar to ``DRAMCtrl`` of gem5.
+
+
+AbstractClass
+=============
+
+``AbstractDRAM`` class is defined in ``dram/abstrat_dram.hh``.
+It defines four virtual functions (+ three virtual functions derived from ``StatObject``).
+
+You can handle DRAM read/write access request at ``read`` and ``write`` function.
+``setScheduling`` and ``isScheduling`` function defined for ICL, to avoid DRAM conflict when latency calculation.
+
+
+SimpleDRAM
+==========
+
+``SimpleDRAM`` uses two latency parameters of DRAM - ``tRP`` and ``tRAS``.
+DDR bus bandwidth is calculated by several parameters.
+See ``SimpleSSD::DRAM::SimpleDRAM::SimpleDRAM`` for more details.

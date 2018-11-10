@@ -1,0 +1,190 @@
+********************
+Running Instructions
+********************
+
+In this page, we will explain how to run and configure SimpleSSD.
+
+
+.. _tutorial_basic_fullsystem:
+
+Execution of SimpleSSD-FullSystem
+=================================
+
+Build SimpleSSD-FullSystem using :ref:`instruction <start_fullsystem>`.
+
+Now you can start simulation using following command (Assume ARM architecture):
+
+.. code-block:: shell
+
+  ./build/ARM/gem5.opt --debug-flag=M5Print --debug-file=debug.txt \
+  ./configs/example/fs.py --kernel=aarch64-linux-4.9.92 \
+  --dtb-file=armv8_gem5_v1_4cpu.dtb --machine-type=VExpress_GEM5_V1 \
+  --num-cpu=4 --cpu-clock=2GHz --caches --l2cache --cpu-type=AtomicSimpleCPU \
+  --mem-size=4GB --mem-type=DDR4_2400_8x8 \
+  --ssd-interface=nvme --ssd-config=./src/dev/storage/simplessd/config/sample.cfg
+
+Let's check all the options used in above command line.
+Command line for executing gem5 has following format:
+
+.. code-block:: shell
+
+  ./build/<arch>/gem5.<build mode> [gem5 options] <simulation script> [script options]
+
+``<arch>`` can be ``ARM`` or ``X86``, because SimpleSSD only supports these two architectures.
+``<build mode>`` can be ``debug``, ``opt``, ``fast``, ``prof``, and ``perf``.
+For more details, check :xref:`gem5_build`.
+
+``<simulation script>`` defines simulation hardware and software system.
+gem5 provides example simulation scripts (in ``./configs/example``).
+We modified default full system simulation script (``./configs/example/fs.py``) to enable SimpleSSD inside gem5.
+
+Following sections describes each options used in command line.
+
+
+Options for gem5 executable
+---------------------------
+
+In above example, ``--debug-flag`` and ``--debug-file`` options are used.
+Here is the description of each options, including commonly used other options.
+
+.. table::
+  :widths: grid
+
+  +-------------------------------+----------------------------------------------------------------------------+
+  | Options                       | Description                                                                |
+  +===============================+============================================================================+
+  | ``--debug-flag``              | Set comma-separated list of debug flags.                                   |
+  |                               | This determine which debug log of hardware module will be printed.         |
+  +-------------------------------+----------------------------------------------------------------------------+
+  | ``--debug-file``              | Set file to store debug log.                                               |
+  +-------------------------------+----------------------------------------------------------------------------+
+  | ``--outdir``, ``-d``          | Set directory to store all simulation outputs.                             |
+  +-------------------------------+----------------------------------------------------------------------------+
+  | ``--redirect-stdout``, ``-r`` | Redirect stdout and stderr of gem5 to ``simout`` file.                     |
+  |                               | File name can be changed using ``--stdout-file`` option.                   |
+  +-------------------------------+----------------------------------------------------------------------------+
+  | ``--redirect-stderr``, ``-e`` | Redirect stderr of gem5 to ``simerr`` file.                                |
+  |                               | File name can be changed using ``--stderr-file`` option.                   |
+  +-------------------------------+----------------------------------------------------------------------------+
+
+For more options, use ``./build/ARM/gem5.opt --help`` or check :xref:`here <gem5_run>`.
+
+
+Options for simulation script
+-----------------------------
+
+For options for ``./configs/example/fs.py``, check following table.
+
+.. table::
+  :widths: grid
+
+  +-------------------------------+----------------------------------------------------------------------------+
+  | Options                       | Description                                                                |
+  +===============================+============================================================================+
+  | ``--kernel``                  | Set kernel image to use. This path is relative to ``$M5_PATH/binaries``    |
+  +-------------------------------+----------------------------------------------------------------------------+
+  | ``--num-cpu``                 | Set # CPU of system to simulate.                                           |
+  |                               | If you are using ``ARM``, you should use same value defined in ``dtb``     |
+  |                               | file. If you are using ``X86``, simulation may unstable when two or more   |
+  |                               | CPUs exist in system.                                                      |
+  +-------------------------------+----------------------------------------------------------------------------+
+  | ``--cpu-type``                | Set CPU model to use. Default is ``AtomicSimpleCPU``.                      |
+  |                               | Possible values can be checked using ``--list-cpu-type`` option.           |
+  |                               | SimpleSSD support all CPU modes provided by gem5.                          |
+  |                               | If you are using ``X86``, simulation may unstable when using other CPU     |
+  |                               | models not ``AtomicSimpleCPU``.                                            |
+  +-------------------------------+----------------------------------------------------------------------------+
+  | ``--cpu-clock``               | Set clock speed (frequency) of CPU.                                        |
+  +-------------------------------+----------------------------------------------------------------------------+
+  | ``--caches``                  | Enable private L1I and L1D caches.                                         |
+  |                               | You can change size and associativity using following options:             |
+  |                               | ``--l1i_size``, ``--l1d_size``, ``--l1i_assoc`` and ``--l1d_assoc``.       |
+  +-------------------------------+----------------------------------------------------------------------------+
+  | ``--l2cache``                 | Enable shared L2 cache.                                                    |
+  |                               | You can change size and associativity using following options:             |
+  |                               | ``--l2_size`` and ``--l2_assoc``.                                          |
+  +-------------------------------+----------------------------------------------------------------------------+
+  | ``--mem-size``                | Set capacity of system memory (DRAM).                                      |
+  +-------------------------------+----------------------------------------------------------------------------+
+  | ``--mem-type``                | Set memory model to use.                                                   |
+  |                               | Possible values can be checked using ``--list-mem-type`` option.           |
+  +-------------------------------+----------------------------------------------------------------------------+
+  | ``--script``                  | Set script file automatically executed after boot.                         |
+  +-------------------------------+----------------------------------------------------------------------------+
+  | ``--root-device``             | Set disk partition to mount as root (e.g., ``/dev/sda1``).                 |
+  +-------------------------------+----------------------------------------------------------------------------+
+  | ``--disk-image``              | Set disk image to use as OS image. Default is ``x86root.img`` when using   |
+  |                               | ``X86`` and ``linux-aarch32-ael.img`` or ``linaro-minimal-aarch64.img``    |
+  |                               | when using ``ARM``. This path is relative to ``$M5_PATH/disks``            |
+  +-------------------------------+----------------------------------------------------------------------------+
+
+Following options are ``ARM`` architecture specific, so you don't need to specify when using ``X86`` architecture.
+
+.. table::
+  :widths: grid
+
+  +-------------------------------+----------------------------------------------------------------------------+
+  | Options                       | Description                                                                |
+  +===============================+============================================================================+
+  | ``--dtb-file``                | Set compiled DeviceTree (``dtb``) file.                                    |
+  +-------------------------------+----------------------------------------------------------------------------+
+  | ``--machine-type``            | Set hardware platform to simulate.                                         |
+  |                               | You can check possible values using ``--list-machine-type``,               |
+  |                               | but SimpleSSD only supports ``VExpress_GEM5_V1``.                          |
+  +-------------------------------+----------------------------------------------------------------------------+
+
+Following options are added by SimpleSSD.
+
+.. table::
+  :widths: grid
+
+  +-------------------------------+----------------------------------------------------------------------------+
+  | Options                       | Description                                                                |
+  +===============================+============================================================================+
+  | ``--ssd-interface``           | Set host interface protocol/hardware to use. Default is ``nvme``.          |
+  |                               | Possible values: ``nvme``, ``ocssd1``, ``ocssd2``, ``sata`` and ``ufs``.   |
+  |                               | ``ufs`` only works on ``ARM`` architecture.                                |
+  +-------------------------------+----------------------------------------------------------------------------+
+  | ``--ssd-config``              | Set SimpleSSD configuration file. This path is relative to current working |
+  |                               | directory.                                                                 |
+  +-------------------------------+----------------------------------------------------------------------------+
+
+For more options, use ``./build/ARM/gem5.opt ./configs/example/fs.py --help`` or check :xref:`here <gem5_run>`.
+For supported Linux Kernel versions, see :doc:`../tips/kernel`.
+
+
+.. _tutorial_simplessd_config:
+
+SimpleSSD configuration file
+----------------------------
+
+Sample configuration file is provided with source code.
+See ``src/dev/storage/simplessd/config/sample.cfg`` file.
+You can also download configuration files which are used in validation process from :ref:`here <download_config_file>`.
+
+Each option is explained in configuration file.
+
+
+.. _tutorial_basic_standalone:
+
+Execution of SimpleSSD-Standalone
+=================================
+
+Build SimpleSSD-Standalone using :ref:`instruction <start_standalone>`.
+
+Now you can start simulation using following command.
+
+.. code-block:: shell
+
+  ./simplessd-standalone ./config/sample.cfg ./simplessd/config/sample.cfg
+
+Execution of SimpleSSD-Standalone is quite simple because all simulation options are defined in a separated file.
+First file (``./config/sample.cfg``) defines simulation configuration.
+Second file (``./simplessd/config/sample.cfg``) defines SSD configuration.
+For SSD configuration, see :ref:`above section <tutorial_simplessd_config>`.
+
+Simulation configuration
+------------------------
+
+Sample simulation file is provided with source code.
+See ``config/sample.cfg`` file for options and explanations.

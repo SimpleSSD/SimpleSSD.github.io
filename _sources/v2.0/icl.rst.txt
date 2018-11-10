@@ -1,0 +1,49 @@
+********************
+Internal Cache Layer
+********************
+
+In this page, we will explain how we design and implement I/O buffer model (data cache), named Internal Cache Layer - ICL.
+
+ICL provides abstract class, so you can implement your own data buffer model by inherit the class.
+By default, we provide ``GenericCache``, which implements set-associative cache.
+
+.. figure:: ../../images/firmware/icl.jpg
+  :width: 400px
+  :align: center
+  :figclass: align-center
+  :figwidth: 100%
+
+  Components of Internal Cache Layer
+
+
+Abstract Class
+==============
+
+``AbstractCache`` class is defined in ``icl/abstract_cache.hh``.
+It defines five virtual functions (+ three virtual functions derived from ``StatObject``).
+
+ICL get I/O requests from each virtual function and buffer I/O with own algorithm.
+Pass I/O to FTL when data eviction needed or flush request arrived.
+
+Data buffer in SSD is very important for hiding slow NAND I/O performance.
+Small changes to the buffer algorithm introduces big performance changes.
+
+
+Set-Associative Cache
+=====================
+
+We provides set-associative cache, which defined as ``SimpleSSD::ICL::GenericCache`` in ``icl/generic_cache.hh``.
+Following parameters are customizable.
+For more detailed description, check sample configuration file.
+
+* ``CacheSize``: Buffer capacity.
+* ``CacheWaySize``: Set associativity of cache. Set size will automatically calculated.
+* ``EnableReadCache``: Enable read data caching.
+* ``EnableReadPrefetch``: Enable read-ahead and prefetch.
+* ``ReadPrefetchMode``: Specify how many data should be read-ahead/prefetch.
+* ``ReadPrefetchCount``: Threshold for read-ahead/prefetch (# of sequential I/O).
+* ``ReadPrefetchRatio``: Threshold for read-ahead/prefetch (data size of sequential I/O).
+* ``EnableWriteCache``: enable write data caching.
+* ``EvictPolicy``: Specify which algorithm to use to select victim cache line.
+* ``EvictMode``: Specify how many data should be evicted when cache is full.
+* ``CacheLatency``: Set cache metadata access latency.

@@ -1,0 +1,91 @@
+**************************
+Create Disk Image for gem5
+**************************
+
+In this page, we will explain how to prepare custom disk image for gem5.
+You can create your own OS image, or prepare data for user-level application running inside of gem5.
+
+
+Create empty file
+=================
+
+Create empty file to store raw disk data.
+
+.. code-block:: shell
+
+  dd if=/dev/zeros of=disk.img oflag=direct bs=1M count=1024
+
+Above command line will create ``disk.img`` file with ``1GB = 1M * 1024`` size.
+
+
+Mount file as loop device
+=========================
+
+Map created file as loop device.
+You may need administrator privileges.
+
+.. code-block:: shell
+
+  # Create loop device
+  losetup -f --partscan disk.img
+
+  # Check device number
+  losetup -l
+
+To detach loop device, use following command:
+
+.. code-block:: shell
+
+  # Detach using loop device file
+  losetup -d /dev/loop0
+
+
+Create partition
+================
+
+Create partition table and format.
+Here, we used ``fdisk``, but you can use your favorite utility such as ``parted``.
+
+.. code-block:: shell
+
+  # Run fdisk
+  fdisk /dev/loop0
+
+Use ``n`` command to create partition, ``p`` to print current partition table and ``w`` to save changes.
+
+Some Linux Kernel may have problem when updating partition table.
+Please use ``partprobe`` or ``kpartx`` to solve the issue.
+Or you can re-map disk image using ``losetup``.
+
+Format created partition using ``mkfs``.
+
+.. code-block:: shell
+
+  # Format first partition as ext4
+  mkfs -t ext4 /dev/loop0p1
+
+
+Mount/Unmount partition
+=======================
+
+Mount formatted partition.
+
+.. code-block:: shell
+
+  mkdir mnt
+  mount /dev/loop0p1 mnt
+
+After use, unmount using:
+
+.. code-block:: shell
+
+  umount /dev/loop0p1
+
+Don't forget to detach loop device.
+
+
+Use in gem5 and SimpleSSD
+=========================
+
+If you created new OS image, you can specify using ``--disk-image`` option of gem5.
+If you want simulate SSD to have contents of disk image, modify SimpleSSD configuration file to enable disk image feature and specify disk image path.

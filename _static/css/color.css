@@ -1,0 +1,16 @@
+.red {
+  color:red;
+}
+
+.gray {
+  color:gray;
+}
+
+.wy-menu-vertical p.caption {
+  font-size: 90% !important;
+  padding: 0.4em 1.1em !important;
+}
+
+.wy-nav-side {
+  color: #2980B9 !important;
+}
