@@ -14,3 +14,12 @@
 .wy-nav-side {
   color: #2980B9 !important;
 }
+
+span.ack a,
+span.ack a:visited,
+span.ack a:hover,
+span.ack a:active {
+    color: #d9d9d9;
+    text-decoration: underline !important;
+    border-bottom: 0 !important;
+}

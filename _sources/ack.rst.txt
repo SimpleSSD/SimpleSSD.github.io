@@ -2,7 +2,12 @@
 Acknowledgement
 ***************
 
-The SimpleSSD has been prepared under the supervision of :xref:`Professor Myoungsoo Jung, PhD <camelab>` with `his graduate students <http://camelab.org/pmwiki.php?n=Main.Members>`_.
+.. figure:: ../images/index/camelab.png
+  :width: 280px
+  :align: right
+  :figclass: align-center
+
+The SimpleSSD is designed, developed and maintained by `Computer Architecture and Memory Systems Laboratory (CAMELab) <http://camelab.org>`_.
 
 
 Citation
