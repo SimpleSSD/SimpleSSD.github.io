@@ -5,7 +5,7 @@ SimpleSSD
 *********
 
 
-Open-Source Licensed Educational SSD Simulator
+Open-Source Licensed Full-system SSD Simulator
 ==============================================
 
 .. figure:: ../images/index/logo.jpg
