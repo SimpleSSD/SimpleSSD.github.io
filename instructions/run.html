@@ -217,6 +217,18 @@
 --ssd-interface<span class="o">=</span>nvme --ssd-config<span class="o">=</span>./src/dev/storage/simplessd/config/sample.cfg
 </pre></div>
 </div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">If you want to use disk image provided by CAMELab (Assume ARM architecture),
+append <code class="docutils literal notranslate"><span class="pre">--disk-image=linaro-aarch64-linux.img</span></code> to the end of the above command.</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">If you want to use SATA or UFS interface as SimpleSSD interface,
+you need to append <code class="docutils literal notranslate"><span class="pre">--root-device=/dev/sdb1</span></code> to the end of the above command.
+This is because gem5’s IDE controller is initialized AFTER the SATA or UFS controller.
+You can ignore this note if you try to boot gem5 using SimpleSSD, not default IDE controller.</p>
+</div>
 <p>Let’s check all the options used in above command line.
 Command line for executing gem5 has following format:</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>./build/&lt;arch&gt;/gem5.&lt;build mode&gt; <span class="o">[</span>gem5 options<span class="o">]</span> &lt;simulation script&gt; <span class="o">[</span>script options<span class="o">]</span>
