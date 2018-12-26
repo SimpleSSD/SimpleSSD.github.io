@@ -226,8 +226,8 @@ append <code class="docutils literal notranslate"><span class="pre">--disk-image
 <p class="first admonition-title">Note</p>
 <p class="last">If you want to use SATA or UFS interface as SimpleSSD interface,
 you need to append <code class="docutils literal notranslate"><span class="pre">--root-device=/dev/sdb1</span></code> to the end of the above command.
-This is because gem5’s IDE controller is initialized AFTER the SATA or UFS controller.
-You can ignore this note if you try to boot gem5 using SimpleSSD, not default IDE controller.</p>
+This is because gem5’s IDE controller is initialized <strong>after</strong> the SATA or UFS controller.
+You can ignore this note if you try to boot gem5 using SimpleSSD, not using the IDE controller.</p>
 </div>
 <p>Let’s check all the options used in above command line.
 Command line for executing gem5 has following format:</p>
