@@ -17,7 +17,7 @@ Now you can start simulation using following command (Assume ARM architecture):
 .. code-block:: shell
 
   ./build/ARM/gem5.opt --debug-flag=M5Print --debug-file=debug.txt \
-  ./configs/example/fs.py --kernel=aarch64-linux-4.9.92 \
+  ./configs/example/fs.py --kernel=aarch64-vmlinux-4.9.92 \
   --dtb-file=armv8_gem5_v1_4cpu.dtb --machine-type=VExpress_GEM5_V1 \
   --num-cpu=4 --cpu-clock=2GHz --caches --l2cache --cpu-type=AtomicSimpleCPU \
   --mem-size=4GB --mem-type=DDR4_2400_8x8 \
