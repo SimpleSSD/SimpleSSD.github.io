@@ -20,8 +20,8 @@ As gem5 only supports Linux system, SimpleSSD-FullSystem does not supports other
 .. code-block:: shell
 
   # For Debian based Linux
-  apt install build-essentials
-  apt install scons python-dev zlib1-dev m4 cmake
+  apt install build-essential
+  apt install scons python-dev zlib1g-dev m4 cmake
   apt install libprotobuf-dev protobuf-compiler
   apt install libgoogle-perftools-dev
 

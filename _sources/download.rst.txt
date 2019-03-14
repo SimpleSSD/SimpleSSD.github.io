@@ -10,6 +10,13 @@ Source Codes
 * :xref:`simplessd_standalone`
 
 
+Full-System Files
+=================
+
+* Recommanded: :xref:`camelab_files`
+* Original gem5 fullsystem files: :xref:`gem5_download`
+
+
 .. _download_config_file:
 
 SSD Configuration Files
