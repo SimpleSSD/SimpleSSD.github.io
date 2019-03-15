@@ -17,7 +17,7 @@ Citation
 SimpleSSD version 2.x (Amber)
 -----------------------------
 
-Our paper entitled by "Amber:  Enabling Precise Full-System Simulation with Detailed Modeling of All SSD Resources" is accepted by IEEE/ACM International Symposium of Microarchitecture (MICRO).
+Our paper entitled by "Amber:  Enabling Precise Full-System Simulation with Detailed Modeling of All SSD Resources" is accepted by IEEE/ACM International Symposium of Microarchitecture (MICRO) [`IEEE Xplore <https://ieeexplore.ieee.org/document/8574562>`_].
 
 | Donghyun Gouk, Miryeong Kwon, Jie Zhang, Sungjoon Koh, Wonil Choi, Nam Sung Kim, Mahmut Kandemir and Myoungsoo Jung,
 | "Amber:  Enabling Precise Full-System Simulation with Detailed Modeling of All SSD Resources",
