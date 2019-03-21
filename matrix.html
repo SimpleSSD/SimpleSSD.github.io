@@ -1,6 +1,5 @@
 
 
-
 <!DOCTYPE html>
 <!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
@@ -9,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Index &mdash; SimpleSSD 2.0.5 documentation</title>
+  <title>Status Matrix &mdash; SimpleSSD 2.0.5 documentation</title>
   
 
   
@@ -30,8 +29,10 @@
   <link rel="stylesheet" href="_static/css/color.css" type="text/css" />
   <link rel="stylesheet" href="_static/css/table.css" type="text/css" />
   <link rel="stylesheet" href="_static/css/readthedocs-doc-embed.css" type="text/css" />
-    <link rel="index" title="Index" href="#" />
-    <link rel="search" title="Search" href="search.html" /> 
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Acknowledgement" href="ack.html" />
+    <link rel="prev" title="Downloads" href="download.html" /> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -110,9 +111,13 @@
 <li class="toctree-l1"><a class="reference internal" href="v2.0/power.html">Power and Energy Model</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Resources</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="download.html">Downloads</a></li>
-<li class="toctree-l1"><a class="reference internal" href="matrix.html">Status Matrix</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Status Matrix</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#arm-architecture">ARM Architecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#x86-architecture">x86 Architecture</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="ack.html">Acknowledgement</a></li>
 </ul>
 
@@ -173,7 +178,7 @@
     
       <li><a href="index.html">Docs</a> &raquo;</li>
         
-      <li>Index</li>
+      <li>Status Matrix</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -190,11 +195,146 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-
-<h1 id="index">Index</h1>
-
-<div class="genindex-jumpbox">
- 
+  <div class="section" id="status-matrix">
+<h1>Status Matrix<a class="headerlink" href="#status-matrix" title="Permalink to this headline">¶</a></h1>
+<p>The following two tables describe the current state of component combinations in SimpleSSD-FullSystem.
+For the status matrix of gem5, check <a class="reference external" href="http://www.gem5.org/Status_Matrix">here</a>.</p>
+<p>Following tables are based on SimpleSSD-FullSystem version 2.0.5 with Linux kernel version 4.9.92.</p>
+<div class="section" id="arm-architecture">
+<h2>ARM Architecture<a class="headerlink" href="#arm-architecture" title="Permalink to this headline">¶</a></h2>
+<table border="1" class="docutils">
+<colgroup>
+<col width="26%" />
+<col width="20%" />
+<col width="24%" />
+<col width="30%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td rowspan="3"><blockquote class="first">
+<div>CPU model</div></blockquote>
+<blockquote class="last">
+<div>AtomicSimpleCPU</div></blockquote>
+</td>
+<td>Multi-core?</td>
+<td>Operation</td>
+<td>MSI/MSI-X supports</td>
+</tr>
+<tr class="row-even"><td>No</td>
+<td>Works</td>
+<td>Yes</td>
+</tr>
+<tr class="row-odd"><td>Yes</td>
+<td>Works</td>
+<td>Yes</td>
+</tr>
+<tr class="row-even"><td rowspan="2">TimingSimpleCPU</td>
+<td>No</td>
+<td>Works</td>
+<td>Yes</td>
+</tr>
+<tr class="row-odd"><td>Yes</td>
+<td>Works</td>
+<td>Yes</td>
+</tr>
+<tr class="row-even"><td rowspan="2">HPI <a href="#id12"><span class="problematic" id="id1">[1]_</span></a></td>
+<td>No</td>
+<td>Works</td>
+<td>Yes</td>
+</tr>
+<tr class="row-odd"><td>Yes</td>
+<td>Works</td>
+<td>Yes</td>
+</tr>
+<tr class="row-even"><td rowspan="2">DerivO3CPU</td>
+<td>No</td>
+<td>Not works <a href="#id13"><span class="problematic" id="id2">[2]_</span></a></td>
+<td>Yes</td>
+</tr>
+<tr class="row-odd"><td>Yes</td>
+<td>Not works <a class="footnote-reference" href="#id6" id="id3">[3]</a></td>
+<td>Unknown</td>
+</tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id4" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label">[1]</td><td>HPI stands for High Performance In-order CPU</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id5" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label">[2]</td><td>gem5 boots successfully but fio test failed</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id6" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id3">[3]</a></td><td>gem5 cannot boot with assertion error</td></tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="x86-architecture">
+<h2>x86 Architecture<a class="headerlink" href="#x86-architecture" title="Permalink to this headline">¶</a></h2>
+<table border="1" class="docutils">
+<colgroup>
+<col width="26%" />
+<col width="20%" />
+<col width="24%" />
+<col width="30%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td rowspan="3"><blockquote class="first">
+<div>CPU model</div></blockquote>
+<blockquote class="last">
+<div>AtomicSimpleCPU</div></blockquote>
+</td>
+<td>Multi-core?</td>
+<td>Operation</td>
+<td>MSI/MSI-X supports</td>
+</tr>
+<tr class="row-even"><td>No</td>
+<td>Works</td>
+<td>Yes</td>
+</tr>
+<tr class="row-odd"><td>Yes</td>
+<td>Works</td>
+<td>Yes</td>
+</tr>
+<tr class="row-even"><td rowspan="2">TimingSimpleCPU</td>
+<td>No</td>
+<td>Works</td>
+<td>Yes</td>
+</tr>
+<tr class="row-odd"><td>Yes</td>
+<td>Not works <a href="#id14"><span class="problematic" id="id7">[1]_</span></a></td>
+<td>Unknown</td>
+</tr>
+<tr class="row-even"><td rowspan="2">DerivO3CPU</td>
+<td>No</td>
+<td>Not works <a href="#id15"><span class="problematic" id="id8">[2]_</span></a></td>
+<td>Unknown</td>
+</tr>
+<tr class="row-odd"><td>Yes</td>
+<td>Not works <a href="#id16"><span class="problematic" id="id9">[2]_</span></a></td>
+<td>Unknown</td>
+</tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id10" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label">[1]</td><td>Stuck while in gem5 boot procedure</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id11" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label">[2]</td><td>gem5 cannot boot with assertion error</td></tr>
+</tbody>
+</table>
+</div>
 </div>
 
 
@@ -202,6 +342,15 @@
            
           </div>
           <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="ack.html" class="btn btn-neutral float-right" title="Acknowledgement" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="download.html" class="btn btn-neutral" title="Downloads" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
   
 
   <hr/>

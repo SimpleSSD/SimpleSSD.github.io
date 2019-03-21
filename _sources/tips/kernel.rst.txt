@@ -35,10 +35,10 @@ This table shows minimum Linux Kernel version supported by architectures and int
 
 .. [*] **OCSSD** stands for Open-Channel SSD.
 .. [1] NVMe driver is added to Linux Kernel from 3.3.
-.. [2] ARMv8 (aarch64) is supported from Linux Kernel 3.7 but PCI host controller used in gem5 is supported from 4.4.
+.. [2] ARMv8 (aarch64) is supported from Linux Kernel 3.7 but PCI host controller used by gem5 is supported from 4.4.
 .. [3] X86 architecture of gem5 is quite unstable. Linux Kernel 3.4.113 ~ 4.3 does not boot.
 .. [4] ``pblk`` driver of Open-Channel SSD is available from 4.12. ``rrpc`` is not supported by SimpleSSD.
-.. [5] Linux Kernel supports Open-Channel SSD 2.0 from 4.17. We recommend to use **4.18**.
+.. [5] Linux Kernel supports Open-Channel SSD 2.0 from 4.17. But, we recommend to use **4.18** or greater.
 .. [6] UFS driver that SimpleSSD uses is added to Linux Kernel from 4.8.
 
 

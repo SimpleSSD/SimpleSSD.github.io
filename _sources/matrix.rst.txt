@@ -1,0 +1,59 @@
+*************
+Status Matrix
+*************
+
+
+The following two tables describe the current state of component combinations in SimpleSSD-FullSystem.
+For the status matrix of gem5, check :xref:`here <gem5_status>`.
+
+Following tables are based on SimpleSSD-FullSystem version 2.0.5 with Linux kernel version 4.9.92.
+
+ARM Architecture
+================
+
++-----------------+-------------+----------------+--------------------+
+| CPU model       | Multi-core? | Operation      | MSI/MSI-X supports |
++=================+-------------+----------------+--------------------+
+| AtomicSimpleCPU | No          | Works          | Yes                |
+|                 +-------------+----------------+--------------------+
+|                 | Yes         | Works          | Yes                |
++-----------------+-------------+----------------+--------------------+
+| TimingSimpleCPU | No          | Works          | Yes                |
+|                 +-------------+----------------+--------------------+
+|                 | Yes         | Works          | Yes                |
++-----------------+-------------+----------------+--------------------+
+| HPI [1]_        | No          | Works          | Yes                |
+|                 +-------------+----------------+--------------------+
+|                 | Yes         | Works          | Yes                |
++-----------------+-------------+----------------+--------------------+
+| DerivO3CPU      | No          | Not works [2]_ | Yes                |
+|                 +-------------+----------------+--------------------+
+|                 | Yes         | Not works [3]_ | Unknown            |
++-----------------+-------------+----------------+--------------------+
+
+.. [1] HPI stands for High Performance In-order CPU
+.. [2] gem5 boots successfully but fio test failed
+.. [3] gem5 cannot boot with assertion error
+
+
+x86 Architecture
+================
+
++-----------------+-------------+----------------+--------------------+
+| CPU model       | Multi-core? | Operation      | MSI/MSI-X supports |
++=================+-------------+----------------+--------------------+
+| AtomicSimpleCPU | No          | Works          | Yes                |
+|                 +-------------+----------------+--------------------+
+|                 | Yes         | Works          | Yes                |
++-----------------+-------------+----------------+--------------------+
+| TimingSimpleCPU | No          | Works          | Yes                |
+|                 +-------------+----------------+--------------------+
+|                 | Yes         | Not works [1]_ | Unknown            |
++-----------------+-------------+----------------+--------------------+
+| DerivO3CPU      | No          | Not works [2]_ | Unknown            |
+|                 +-------------+----------------+--------------------+
+|                 | Yes         | Not works [2]_ | Unknown            |
++-----------------+-------------+----------------+--------------------+
+
+.. [1] Stuck while in gem5 boot procedure
+.. [2] gem5 cannot boot with assertion error

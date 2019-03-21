@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Getting Started &mdash; SimpleSSD 2.0.3 documentation</title>
+  <title>Getting Started &mdash; SimpleSSD 2.0.5 documentation</title>
   
 
   
@@ -129,6 +129,7 @@
 <p class="caption"><span class="caption-text">Resources</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../download.html">Downloads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../matrix.html">Status Matrix</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../ack.html">Acknowledgement</a></li>
 </ul>
 
@@ -234,7 +235,7 @@ yum install protobuf-devel google-perftools-devel
 <p>After installing libraries, clone GitHub repository and configure submodules.</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git clone git@github.com:simplessd/simplessd-fullsystem
 <span class="nb">cd</span> simplessd-fullsystem
-git checkout v2.0.1
+git checkout v2.0.5
 git submodule update --init --recursive
 </pre></div>
 </div>
@@ -280,7 +281,7 @@ If you only downloaded files we provided, a directory tree should looks like:</p
 </div>
 <div class="section" id="arm-specific-stuff">
 <h3>ARM specific stuff<a class="headerlink" href="#arm-specific-stuff" title="Permalink to this headline">¶</a></h3>
-<p>We need to compile <code class="docutils literal notranslate"><span class="pre">dtc</span></code> files to create <code class="docutils literal notranslate"><span class="pre">dtb</span></code> files.
+<p>We need to compile <code class="docutils literal notranslate"><span class="pre">dts</span></code> files to create <code class="docutils literal notranslate"><span class="pre">dtb</span></code> files.
 These file define hardware components (and its information) exist on current system.</p>
 <p>Install a DeviceTree Compiler.</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="c1"># For Debian based Linux</span>
@@ -290,7 +291,7 @@ apt install device-tree-compiler
 yum install dtc
 </pre></div>
 </div>
-<p>You can find <code class="docutils literal notranslate"><span class="pre">dtc</span></code> files in <code class="docutils literal notranslate"><span class="pre">system/arm/dt</span></code> of SimpleSSD-FullSystem repository.</p>
+<p>You can find <code class="docutils literal notranslate"><span class="pre">dts</span></code> files in <code class="docutils literal notranslate"><span class="pre">system/arm/dt</span></code> of SimpleSSD-FullSystem repository.</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> system/arm/dt
 make
 </pre></div>
@@ -298,7 +299,7 @@ make
 <p><code class="docutils literal notranslate"><span class="pre">make</span></code> will generates <code class="docutils literal notranslate"><span class="pre">dtb</span></code> files for <code class="docutils literal notranslate"><span class="pre">VExpress_GEM5_V1</span></code> system of gem5.
 Each file defines architecture (<code class="docutils literal notranslate"><span class="pre">armv7</span></code> or <code class="docutils literal notranslate"><span class="pre">armv8</span></code>) and the number of CPU in the system (1, 2, 4. 8 or 16).
 Copy or move produced <code class="docutils literal notranslate"><span class="pre">dtb</span></code> to <code class="docutils literal notranslate"><span class="pre">$M5_PATH/binaries</span></code>.</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>mv *.dtb <span class="nv">$HOME</span>/m5/binaries
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>mv *.dtb <span class="nv">$M5_PATH</span>/binaries
 </pre></div>
 </div>
 <p>Now you are ready to execute SimpleSSD-FullSystem.
@@ -314,7 +315,7 @@ If you are on Windows, <code class="docutils literal notranslate"><span class="p
 If you are on Linux system, <code class="docutils literal notranslate"><span class="pre">gcc/g++</span> <span class="pre">4.9</span></code> or newer will work.</p>
 <p>SimpleSSD-Standalone uses <code class="docutils literal notranslate"><span class="pre">cmake</span></code> for build system.
 If you prefer to use <code class="docutils literal notranslate"><span class="pre">LLVM</span></code> you may need to modify <code class="docutils literal notranslate"><span class="pre">CMakeList.txt</span></code> file.</p>
-<p>Install <code class="docutils literal notranslate"><span class="pre">cmake</span> <span class="pre">3.10</span></code> or newer. (&gt; 2.8 may work.)</p>
+<p>Install <code class="docutils literal notranslate"><span class="pre">cmake</span> <span class="pre">3.10</span></code> or newer.</p>
 </div>
 <div class="section" id="id2">
 <h3>Download source code<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>

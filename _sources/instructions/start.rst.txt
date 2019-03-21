@@ -41,7 +41,7 @@ After installing libraries, clone GitHub repository and configure submodules.
 
   git clone git@github.com:simplessd/simplessd-fullsystem
   cd simplessd-fullsystem
-  git checkout v2.0.1
+  git checkout v2.0.5
   git submodule update --init --recursive
 
 
@@ -97,7 +97,7 @@ If you only downloaded files we provided, a directory tree should looks like:
 ARM specific stuff
 ------------------
 
-We need to compile ``dtc`` files to create ``dtb`` files.
+We need to compile ``dts`` files to create ``dtb`` files.
 These file define hardware components (and its information) exist on current system.
 
 Install a DeviceTree Compiler.
@@ -110,7 +110,7 @@ Install a DeviceTree Compiler.
   # For Red Hat based Linux
   yum install dtc
 
-You can find ``dtc`` files in ``system/arm/dt`` of SimpleSSD-FullSystem repository.
+You can find ``dts`` files in ``system/arm/dt`` of SimpleSSD-FullSystem repository.
 
 .. code-block:: shell
 
@@ -123,7 +123,7 @@ Copy or move produced ``dtb`` to ``$M5_PATH/binaries``.
 
 .. code-block:: shell
 
-  mv *.dtb $HOME/m5/binaries
+  mv *.dtb $M5_PATH/binaries
 
 Now you are ready to execute SimpleSSD-FullSystem.
 See :ref:`tutorial_basic_fullsystem` for running instructions.
@@ -145,7 +145,7 @@ If you are on Linux system, ``gcc/g++ 4.9`` or newer will work.
 SimpleSSD-Standalone uses ``cmake`` for build system.
 If you prefer to use ``LLVM`` you may need to modify ``CMakeList.txt`` file.
 
-Install ``cmake 3.10`` or newer. (> 2.8 may work.)
+Install ``cmake 3.10`` or newer.
 
 
 Download source code
