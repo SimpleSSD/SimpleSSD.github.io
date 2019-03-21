@@ -48,11 +48,11 @@ x86 Architecture
 +-----------------+-------------+----------------+--------------------+
 | TimingSimpleCPU | No          | Works          | Yes                |
 |                 +-------------+----------------+--------------------+
-|                 | Yes         | Not works [1]_ | Unknown            |
+|                 | Yes         | Not works [4]_ | Unknown            |
 +-----------------+-------------+----------------+--------------------+
-| DerivO3CPU      | No          | Not works [2]_ | Unknown            |
+| DerivO3CPU      | No          | Not works [5]_ | Unknown            |
 |                 +-------------+----------------+--------------------+
-|                 | Yes         | Not works [2]_ | Unknown            |
+|                 | Yes         | Not works [5]_ | Unknown            |
 +-----------------+-------------+----------------+--------------------+
 
 .. [1] Stuck while in gem5 boot procedure
