@@ -205,7 +205,7 @@ You can create your own OS image, or prepare data for user-level application run
 <div class="section" id="create-empty-file">
 <h2>Create empty file<a class="headerlink" href="#create-empty-file" title="Permalink to this headline">¶</a></h2>
 <p>Create empty file to store raw disk data.</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>dd <span class="k">if</span><span class="o">=</span>/dev/zeros <span class="nv">of</span><span class="o">=</span>disk.img <span class="nv">oflag</span><span class="o">=</span>direct <span class="nv">bs</span><span class="o">=</span>1M <span class="nv">count</span><span class="o">=</span><span class="m">1024</span>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>dd <span class="k">if</span><span class="o">=</span>/dev/zero <span class="nv">of</span><span class="o">=</span>disk.img <span class="nv">oflag</span><span class="o">=</span>direct <span class="nv">bs</span><span class="o">=</span>1M <span class="nv">count</span><span class="o">=</span><span class="m">1024</span>
 </pre></div>
 </div>
 <p>Above command line will create <code class="docutils literal notranslate"><span class="pre">disk.img</span></code> file with <code class="docutils literal notranslate"><span class="pre">1GB</span> <span class="pre">=</span> <span class="pre">1M</span> <span class="pre">*</span> <span class="pre">1024</span></code> size.</p>

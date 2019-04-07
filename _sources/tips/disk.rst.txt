@@ -13,7 +13,7 @@ Create empty file to store raw disk data.
 
 .. code-block:: shell
 
-  dd if=/dev/zeros of=disk.img oflag=direct bs=1M count=1024
+  dd if=/dev/zero of=disk.img oflag=direct bs=1M count=1024
 
 Above command line will create ``disk.img`` file with ``1GB = 1M * 1024`` size.
 
