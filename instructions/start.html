@@ -31,7 +31,7 @@
   <link rel="stylesheet" href="../_static/css/readthedocs-doc-embed.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Running Instructions" href="run.html" />
+    <link rel="next" title="Configuration Files" href="config.html" />
     <link rel="prev" title="SimpleSSD" href="../index.html" /> 
 
   
@@ -104,6 +104,7 @@
 </li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="config.html">Configuration Files</a></li>
 <li class="toctree-l1"><a class="reference internal" href="run.html">Running Instructions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="analyze.html">Analyze Simulation Results</a></li>
 </ul>
@@ -209,7 +210,7 @@
             
   <div class="section" id="getting-started">
 <h1>Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h1>
-<p>In this section, we will explain how to prepare SimpleSSD in step by step.</p>
+<p>In this page, we will explain how to prepare SimpleSSD in step by step.</p>
 <div class="section" id="simplessd-fullsystem">
 <span id="start-fullsystem"></span><h2>SimpleSSD-FullSystem<a class="headerlink" href="#simplessd-fullsystem" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="prerequisite">
@@ -232,10 +233,10 @@ yum install protobuf-devel google-perftools-devel
 </div>
 <div class="section" id="download-source-code">
 <h3>Download source code<a class="headerlink" href="#download-source-code" title="Permalink to this headline">¶</a></h3>
-<p>After installing libraries, clone GitHub repository and configure submodules.</p>
+<p>After installing libraries, clone GitHub repository and configure submodules.
+If you want to use specific version, checkout using <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">checkout</span> <span class="pre">&lt;version&gt;</span></code> before initializing submodules.</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git clone git@github.com:simplessd/simplessd-fullsystem
 <span class="nb">cd</span> simplessd-fullsystem
-git checkout v2.0.5
 git submodule update --init --recursive
 </pre></div>
 </div>
@@ -319,10 +320,10 @@ If you prefer to use <code class="docutils literal notranslate"><span class="pre
 </div>
 <div class="section" id="id2">
 <h3>Download source code<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
-<p>After installing <code class="docutils literal notranslate"><span class="pre">cmake</span></code>, clone GitHub repository and configure submodules.</p>
+<p>After installing <code class="docutils literal notranslate"><span class="pre">cmake</span></code>, clone GitHub repository and configure submodules.
+If you want to use specific version, checkout using <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">checkout</span> <span class="pre">&lt;version&gt;</span></code> before initializing submodules.</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git clone git@github.com:simplessd/simplessd-standalone
 <span class="nb">cd</span> simplessd-standalone
-git checkout v2.0-rc3
 git submodule update --init --recursive
 </pre></div>
 </div>
@@ -350,7 +351,7 @@ See <a class="reference internal" href="run.html#tutorial-basic-standalone"><spa
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="run.html" class="btn btn-neutral float-right" title="Running Instructions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="config.html" class="btn btn-neutral float-right" title="Configuration Files" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="../index.html" class="btn btn-neutral" title="SimpleSSD" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>

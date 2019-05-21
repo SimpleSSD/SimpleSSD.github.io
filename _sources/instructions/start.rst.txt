@@ -2,7 +2,7 @@
 Getting Started
 ***************
 
-In this section, we will explain how to prepare SimpleSSD in step by step.
+In this page, we will explain how to prepare SimpleSSD in step by step.
 
 
 .. _start_fullsystem:
@@ -36,12 +36,12 @@ Download source code
 --------------------
 
 After installing libraries, clone GitHub repository and configure submodules.
+If you want to use specific version, checkout using ``git checkout <version>`` before initializing submodules.
 
 .. code-block:: shell
 
   git clone git@github.com:simplessd/simplessd-fullsystem
   cd simplessd-fullsystem
-  git checkout v2.0.5
   git submodule update --init --recursive
 
 
@@ -152,12 +152,12 @@ Download source code
 --------------------
 
 After installing ``cmake``, clone GitHub repository and configure submodules.
+If you want to use specific version, checkout using ``git checkout <version>`` before initializing submodules.
 
 .. code-block:: shell
 
   git clone git@github.com:simplessd/simplessd-standalone
   cd simplessd-standalone
-  git checkout v2.0-rc3
   git submodule update --init --recursive
 
 
