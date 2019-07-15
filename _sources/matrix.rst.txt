@@ -6,7 +6,8 @@ Status Matrix
 The following two tables describe the current state of component combinations in SimpleSSD-FullSystem.
 For the status matrix of gem5, check :xref:`here <gem5_status>`.
 
-Following tables are based on SimpleSSD-FullSystem version 2.0.5 with Linux kernel version 4.9.92.
+Following tables are based on SimpleSSD-FullSystem version 2.0.8 with Linux kernel version 4.18.14.
+
 
 ARM Architecture
 ================
@@ -20,20 +21,20 @@ ARM Architecture
 +-----------------+-------------+----------------+--------------------+
 | TimingSimpleCPU | No          | Works          | Yes                |
 |                 +-------------+----------------+--------------------+
-|                 | Yes         | Works          | Yes                |
+|                 | Yes         | Not works [4]_ | Unknown            |
 +-----------------+-------------+----------------+--------------------+
-| HPI [1]_        | No          | Works          | Yes                |
+| MinorCPU [1]_   | No          | Works          | Yes                |
 |                 +-------------+----------------+--------------------+
-|                 | Yes         | Works          | Yes                |
+|                 | Yes         | Not works [4]_ | Yes                |
 +-----------------+-------------+----------------+--------------------+
-| DerivO3CPU      | No          | Not works [2]_ | Yes                |
+| HPI [2]_        | No          | Not works [4]_ | Unknown            |
 |                 +-------------+----------------+--------------------+
-|                 | Yes         | Not works [3]_ | Unknown            |
+|                 | Yes         | Not works [4]_ | Unknown            |
 +-----------------+-------------+----------------+--------------------+
-
-.. [1] HPI stands for High Performance In-order CPU
-.. [2] gem5 boots successfully but fio test failed
-.. [3] gem5 cannot boot with assertion error
+| DerivO3CPU      | No          | Not works [4]_ | Unknown            |
+|                 +-------------+----------------+--------------------+
+|                 | Yes         | Not works [4]_ | Unknown            |
++-----------------+-------------+----------------+--------------------+
 
 
 x86 Architecture
@@ -50,10 +51,12 @@ x86 Architecture
 |                 +-------------+----------------+--------------------+
 |                 | Yes         | Not works [4]_ | Unknown            |
 +-----------------+-------------+----------------+--------------------+
-| DerivO3CPU      | No          | Not works [5]_ | Unknown            |
+| DerivO3CPU      | No          | Not works [3]_ | Unknown            |
 |                 +-------------+----------------+--------------------+
-|                 | Yes         | Not works [5]_ | Unknown            |
+|                 | Yes         | Not works [3]_ | Unknown            |
 +-----------------+-------------+----------------+--------------------+
 
+.. [1] MinorCPU is pipelined in-order CPU model in gem5
+.. [2] HPI stands for High Performance In-order CPU
+.. [3] gem5 cannot boot with assertion error
 .. [4] Stuck while in gem5 boot procedure
-.. [5] gem5 cannot boot with assertion error

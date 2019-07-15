@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Downloads &mdash; SimpleSSD 2.0.9+ documentation</title>
+  <title>Downloads &mdash; SimpleSSD 2.0.12 documentation</title>
   
 
   
@@ -234,7 +234,7 @@ All the values in the configuration files are derived from the test results and 
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p><strong>Testing environment</strong></p>
-<p class="last">For bandwidth and latency error calculation, we used <code class="docutils literal notranslate"><span class="pre">SimpleSSD-FullSystem</span> <span class="pre">v2.0.1</span></code> with ARM architecture.
+<p class="last">For bandwidth and latency error calculation, we used <code class="docutils literal notranslate"><span class="pre">SimpleSSD</span> <span class="pre">v2.0.12</span></code> with ARM architecture.
 On the user-level of gem5, we used <a class="reference external" href="https://github.com/axboe/fio">Flexible I/O Tester</a> to collect the performance of the SimpleSSD.
 <code class="docutils literal notranslate"><span class="pre">--bs</span></code> option varies from <code class="docutils literal notranslate"><span class="pre">4K</span></code> to <code class="docutils literal notranslate"><span class="pre">1M</span></code> and <code class="docutils literal notranslate"><span class="pre">--iodepth</span></code> option varies from <code class="docutils literal notranslate"><span class="pre">1</span></code> to <code class="docutils literal notranslate"><span class="pre">64</span></code>.
 Error is calculated by <code class="docutils literal notranslate"><span class="pre">|real</span> <span class="pre">-</span> <span class="pre">sim|</span> <span class="pre">/</span> <span class="pre">real</span></code>.</p>
@@ -245,16 +245,18 @@ Error is calculated by <code class="docutils literal notranslate"><span class="p
 <h4>Intel 750 400GB<a class="headerlink" href="#intel-750-400gb" title="Permalink to this headline">¶</a></h4>
 <p><a class="reference download internal" download="" href="_downloads/56cad9eddc7022b63df7bc3b17990b95/intel750_400gb.cfg"><code class="xref download docutils literal notranslate"><span class="pre">Download</span></code></a></p>
 <ul class="simple">
-<li>Average bandwidth error: <strong>20.0</strong> % (Read: 34.0%, Write: 5.9%)</li>
-<li>Average latency error: <strong>13.9</strong> % (Read: 21.9%, Write: 5.8%)</li>
+<li>Last tested version: <code class="docutils literal notranslate"><span class="pre">2.0.12</span></code></li>
+<li>Average bandwidth error: <strong>19.92</strong> % (Seq. Read: 34.97%, Rand. Read: 32.89%, Seq. Write: 8.18%, Rand. Write: 3.65%)</li>
+<li>Average latency error: <strong>13.9</strong> % (Seq. Read: 21.51%, Rand. Read: 22.47%, Seq. Write: 7.82%, Rand. Write: 3.85%)</li>
 </ul>
 </div>
 <div class="section" id="samsung-z-ssd-prototype-800gb">
 <h4>Samsung Z-SSD prototype 800GB<a class="headerlink" href="#samsung-z-ssd-prototype-800gb" title="Permalink to this headline">¶</a></h4>
 <p><a class="reference download internal" download="" href="_downloads/729e391a3b35d310787ff9efb43dd327/samsung_zssd_800gb.cfg"><code class="xref download docutils literal notranslate"><span class="pre">Download</span></code></a></p>
 <ul class="simple">
-<li>Average bandwidth error: <strong>12.9</strong> % (Read: 9.6%, Write: 16.2%)</li>
-<li>Average latency error: <strong>13.1</strong> % (Read: 8.0%, Write: 18.1%)</li>
+<li>Last tested version: <code class="docutils literal notranslate"><span class="pre">2.0.12</span></code></li>
+<li>Average bandwidth error: <strong>12.9</strong> % (Seq. Read: 13.9%, Rand. Read: 7.5%, Seq. Write: 21.2%, Rand. Write: 11.3%)</li>
+<li>Average latency error: <strong>16.5</strong> % (Seq. Read: 15.3%, Rand. Read: 9.9%, Seq. Write: 27.3%, Rand. Write: 13.7%)</li>
 </ul>
 </div>
 <div class="section" id="samsung-983-dct-1-92tb">
@@ -262,9 +264,11 @@ Error is calculated by <code class="docutils literal notranslate"><span class="p
 <p><a class="reference download internal" download="" href="_downloads/91a676f466c5bae15ee041861f5649fd/samsung_983dct_1.92tb.cfg"><code class="xref download docutils literal notranslate"><span class="pre">Download</span></code></a></p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">We only modeled one namespace (480GB).</p>
+<p class="last">With IOD prototype firmware (four namespaces).
+We only modeled one namespace (480GB).</p>
 </div>
 <ul class="simple">
+<li>Last tested version: <code class="docutils literal notranslate"><span class="pre">2.0.3</span></code></li>
 <li>Average bandwidth error: <strong>5.5</strong> % (Read: 6.9%, Write: 4.2%)</li>
 <li>Average latency error: <strong>5.2</strong> % (Read: 6.3%, Write: 4.1%)</li>
 </ul>
@@ -285,6 +289,7 @@ Please keep in mind that current configuration files may inaccurate.</p>
 <h4>Samsung 850 PRO 256GB<a class="headerlink" href="#samsung-850-pro-256gb" title="Permalink to this headline">¶</a></h4>
 <p><a class="reference download internal" download="" href="_downloads/a27a24867209b6e5addafbd503cc9e0f/samsung_850pro_256gb.cfg"><code class="xref download docutils literal notranslate"><span class="pre">Download</span></code></a></p>
 <ul class="simple">
+<li>Last tested version: <code class="docutils literal notranslate"><span class="pre">2.0.3</span></code></li>
 <li>Average bandwidth error: <strong>34.7</strong> % (Read: 35.5%, Write: 33.9%)</li>
 <li>Average latency error: <strong>58.5</strong> % (Read: 60.4%, Write: 56.6%)</li>
 </ul>
