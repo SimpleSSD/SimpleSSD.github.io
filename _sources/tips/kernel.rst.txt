@@ -67,7 +67,7 @@ Install utilities and libraries used by Linux Kernel.
 .. code-block:: shell
 
   # For Debian based Linux
-  apt install libncurses-dev bc libssl-dev libelf-dev
+  apt install libncurses-dev bc libssl-dev libelf-dev flex bison
 
   # For Red Hat based Linux
   yum install ncurses-devel bc openssl-devel elfutils-libelf-devel
