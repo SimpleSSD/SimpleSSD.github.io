@@ -28,13 +28,13 @@ We highly recommend to use ``virtualenv`` instead of installing packages in root
   apt install libprotobuf-dev protobuf-compiler
   apt install libgoogle-perftools-dev
 
-  # For Red Hat based Linux 7
+  # For RHEL 7 based Linux
   yum groupinstall "Development Tools"
   yum install epel-release
   yum install scons python2-devel zlib-devel cmake
   yum install protobuf-devel google-perftools-devel
 
-  # For Red Hat based Linux 8
+  # For RHEL 8 based Linux
   ## Run as root
   yum groupinstall "Development Tools"
   yum install python2-virtualenv cmake zlib-devel
