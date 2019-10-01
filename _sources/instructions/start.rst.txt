@@ -17,6 +17,9 @@ Prerequisite
 Before downloading SimpleSSD-FullSystem, you should install dependencies.
 As gem5 only supports Linux system, SimpleSSD-FullSystem does not supports other operating systems such as Windows or Mac OS.
 
+If you use RHEL 8/CentOS 8, you may need to install ``scons`` with ``pip2``.
+We highly recommend to use ``virtualenv`` instead of installing packages in root directory.
+
 .. code-block:: shell
 
   # For Debian based Linux
@@ -25,11 +28,20 @@ As gem5 only supports Linux system, SimpleSSD-FullSystem does not supports other
   apt install libprotobuf-dev protobuf-compiler
   apt install libgoogle-perftools-dev
 
-  # For Red Hat based Linux
+  # For Red Hat based Linux 7
   yum groupinstall "Development Tools"
   yum install epel-release
   yum install scons python2-devel zlib-devel cmake
   yum install protobuf-devel google-perftools-devel
+
+  # For Red Hat based Linux 8
+  ## Run as root
+  yum groupinstall "Development Tools"
+  yum install python2-virtualenv cmake zlib-devel
+  ## Run as non-root
+  virtualenv -p python2 <your virtual env name>
+  . <your virtual env name>/bin/activate
+  pip install scons six
 
 
 Download source code

@@ -217,17 +217,28 @@
 <h3>Prerequisite<a class="headerlink" href="#prerequisite" title="Permalink to this headline">¶</a></h3>
 <p>Before downloading SimpleSSD-FullSystem, you should install dependencies.
 As gem5 only supports Linux system, SimpleSSD-FullSystem does not supports other operating systems such as Windows or Mac OS.</p>
+<p>If you use RHEL 8/CentOS 8, you may need to install <code class="docutils literal notranslate"><span class="pre">scons</span></code> with <code class="docutils literal notranslate"><span class="pre">pip2</span></code>.
+We highly recommend to use <code class="docutils literal notranslate"><span class="pre">virtualenv</span></code> instead of installing packages in root directory.</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="c1"># For Debian based Linux</span>
 apt install build-essential
 apt install scons python-dev zlib1g-dev m4 cmake
 apt install libprotobuf-dev protobuf-compiler
 apt install libgoogle-perftools-dev
 
-<span class="c1"># For Red Hat based Linux</span>
+<span class="c1"># For Red Hat based Linux 7</span>
 yum groupinstall <span class="s2">&quot;Development Tools&quot;</span>
 yum install epel-release
 yum install scons python2-devel zlib-devel cmake
 yum install protobuf-devel google-perftools-devel
+
+<span class="c1"># For Red Hat based Linux 8</span>
+<span class="c1">## Run as root</span>
+yum groupinstall <span class="s2">&quot;Development Tools&quot;</span>
+yum install python2-virtualenv cmake zlib-devel
+<span class="c1">## Run as non-root</span>
+virtualenv -p python2 &lt;your virtual env name&gt;
+. &lt;your virtual env name&gt;/bin/activate
+pip install scons six
 </pre></div>
 </div>
 </div>
