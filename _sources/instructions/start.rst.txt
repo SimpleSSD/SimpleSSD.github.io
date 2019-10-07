@@ -28,7 +28,7 @@ We highly recommend to use ``virtualenv`` instead of installing packages in root
   apt install libprotobuf-dev protobuf-compiler
   apt install libgoogle-perftools-dev
 
-  # For RHEL 7 based Linux
+  # For Red Hat based Linux
   yum groupinstall "Development Tools"
   yum install epel-release
   yum install scons python2-devel zlib-devel cmake
@@ -36,8 +36,8 @@ We highly recommend to use ``virtualenv`` instead of installing packages in root
 
   # For RHEL 8 based Linux
   ## Run as root
-  yum groupinstall "Development Tools"
-  yum install python2-virtualenv cmake zlib-devel
+  dnf group install "Development Tools"
+  dnf install python2-virtualenv cmake zlib-devel python2-six python2-devel
   ## Run as non-root
   virtualenv -p python2 <your virtual env name>
   . <your virtual env name>/bin/activate
@@ -121,6 +121,9 @@ Install a DeviceTree Compiler.
 
   # For Red Hat based Linux
   yum install dtc
+
+  # Or
+  dnf --enablerepo=PowerTools install dtc
 
 You can find ``dts`` files in ``system/arm/dt`` of SimpleSSD-FullSystem repository.
 
