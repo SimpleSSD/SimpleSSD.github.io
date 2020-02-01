@@ -37,7 +37,7 @@ ARM Architecture
 | HPI                        | No          | Works       | Supported  | 45min     |
 |                            |             |             |            |           |
 | | (High-Performance        +-------------+-------------+------------+-----------+
-|   In-order CPU)            | Yes         | Works       | Supported  | 50min     |
+|   In-order)                | Yes         | Works       | Supported  | 50min     |
 +----------------------------+-------------+-------------+------------+-----------+
 | DerivO3CPU                 | No          | Works       | Supported  | 50min     |
 |                            +-------------+-------------+------------+-----------+
