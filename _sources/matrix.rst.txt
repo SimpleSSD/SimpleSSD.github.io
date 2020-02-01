@@ -6,57 +6,62 @@ Status Matrix
 The following two tables describe the current state of component combinations in SimpleSSD-FullSystem.
 For the status matrix of gem5, check :xref:`here <gem5_status>`.
 
-Following tables are based on SimpleSSD-FullSystem version 2.0.8 with Linux kernel version 4.18.14.
+.. note::
+  **Testing environment**
+
+  * SimpleSSD-FullSystem v2.0.9 + SimpleSSD v2.0.13 (NVMe with default configuration)
+  * Linux Kernel v4.9.92 (arm64 and x86_64)
+  * Caches are enabled. ``--caches --l2cache``
+  * For multi-core tests, we used four cores. ``--num-cpu=4``
 
 
 ARM Architecture
 ================
 
-+-----------------+-------------+----------------+--------------------+
-| CPU model       | Multi-core? | Operation      | MSI/MSI-X supports |
-+=================+=============+================+====================+
-| AtomicSimpleCPU | No          | Works          | Yes                |
-|                 +-------------+----------------+--------------------+
-|                 | Yes         | Works          | Yes                |
-+-----------------+-------------+----------------+--------------------+
-| TimingSimpleCPU | No          | Works          | Yes                |
-|                 +-------------+----------------+--------------------+
-|                 | Yes         | Not works [4]_ | Unknown            |
-+-----------------+-------------+----------------+--------------------+
-| MinorCPU [1]_   | No          | Works          | Yes                |
-|                 +-------------+----------------+--------------------+
-|                 | Yes         | Not works [4]_ | Yes                |
-+-----------------+-------------+----------------+--------------------+
-| HPI [2]_        | No          | Not works [4]_ | Unknown            |
-|                 +-------------+----------------+--------------------+
-|                 | Yes         | Not works [4]_ | Unknown            |
-+-----------------+-------------+----------------+--------------------+
-| DerivO3CPU      | No          | Not works [4]_ | Unknown            |
-|                 +-------------+----------------+--------------------+
-|                 | Yes         | Not works [4]_ | Unknown            |
-+-----------------+-------------+----------------+--------------------+
++-------------------------+-------------+----------------+------------+-----------+
+| CPU model               | Multi-core? | Operation      | MSI/MSI-X  | Boot time |
++=========================+=============+================+============+===========+
+| AtomicSimpleCPU         | No          | Works          | Supported  | 12min     |
+|                         +-------------+----------------+------------+-----------+
+|                         | Yes         | Works          | Supported  | 12min     |
++-------------------------+-------------+----------------+------------+-----------+
+| TimingSimpleCPU         | No          | Works          | Supported  | 20min     |
+|                         +-------------+----------------+------------+-----------+
+|                         | Yes         | Works          | Supported  | 20min     |
++-------------------------+-------------+----------------+------------+-----------+
+| MinorCPU                | No          | Works          | Supported  | 40min     |
+|                         |             |                |            |           |
+| | (Pipelined In-order   +-------------+----------------+------------+-----------+
+|   CPU)                  | Yes         | Works          | Supported  | 60min     |
++-------------------------+-------------+----------------+------------+-----------+
+| HPI                     | No          | Works          | Supported  | 45min     |
+|                         |             |                |            |           |
+| | (High-Performance     +-------------+----------------+------------+-----------+
+|   In-order CPU)         | Yes         | Works          | Supported  | 50min     |
++-------------------------+-------------+----------------+------------+-----------+
+| DerivO3CPU              | No          | Works          | Supported  | 50min     |
+|                         +-------------+----------------+------------+-----------+
+|                         | Yes         | Works          | Supported  | 60min     |
++-------------------------+-------------+----------------+------------+-----------+
 
 
 x86 Architecture
 ================
 
-+-----------------+-------------+----------------+--------------------+
-| CPU model       | Multi-core? | Operation      | MSI/MSI-X supports |
-+=================+=============+================+====================+
-| AtomicSimpleCPU | No          | Works          | Yes                |
-|                 +-------------+----------------+--------------------+
-|                 | Yes         | Works          | Yes                |
-+-----------------+-------------+----------------+--------------------+
-| TimingSimpleCPU | No          | Works          | Yes                |
-|                 +-------------+----------------+--------------------+
-|                 | Yes         | Not works [4]_ | Unknown            |
-+-----------------+-------------+----------------+--------------------+
-| DerivO3CPU      | No          | Not works [3]_ | Unknown            |
-|                 +-------------+----------------+--------------------+
-|                 | Yes         | Not works [3]_ | Unknown            |
-+-----------------+-------------+----------------+--------------------+
-
-.. [1] MinorCPU is pipelined in-order CPU model in gem5
-.. [2] HPI stands for High Performance In-order CPU
-.. [3] gem5 cannot boot with assertion error
-.. [4] Stuck while in gem5 boot procedure
++-------------------------+-------------+----------------+------------+-----------+
+| CPU model               | Multi-core? | Operation      | MSI/MSI-X  | Boot time |
++=========================+=============+================+============+===========+
+| AtomicSimpleCPU         | No          | Works          | Supported  | 15min     |
+|                         +-------------+----------------+------------+-----------+
+|                         | Yes         | Works          | Supported  | 18min     |
++-------------------------+-------------+----------------+------------+-----------+
+| TimingSimpleCPU         | No          | Works          | Supported  | 25min     |
+|                         +-------------+----------------+------------+-----------+
+|                         | Yes         | Stuck while    | Unknown    | N/A       |
+|                         |             | boot           |            |           |
++-------------------------+-------------+----------------+------------+-----------+
+| DerivO3CPU              | No          | Works          | Supported  | 135min    |
+|                         +-------------+----------------+------------+-----------+
+|                         | Yes         | Stuck while    | Unknown    | N/A       |
+|                         |             | boot           |            |           |
++-------------------------+-------------+----------------+------------+-----------+

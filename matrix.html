@@ -200,68 +200,99 @@
 <h1>Status Matrix<a class="headerlink" href="#status-matrix" title="Permalink to this headline">¶</a></h1>
 <p>The following two tables describe the current state of component combinations in SimpleSSD-FullSystem.
 For the status matrix of gem5, check <a class="reference external" href="http://www.gem5.org/Status_Matrix">here</a>.</p>
-<p>Following tables are based on SimpleSSD-FullSystem version 2.0.8 with Linux kernel version 4.18.14.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p><strong>Testing environment</strong></p>
+<ul class="last simple">
+<li>SimpleSSD-FullSystem v2.0.9 + SimpleSSD v2.0.13 (NVMe with default configuration)</li>
+<li>Linux Kernel v4.9.92 (arm64 and x86_64)</li>
+<li>Caches are enabled. <code class="docutils literal notranslate"><span class="pre">--caches</span> <span class="pre">--l2cache</span></code></li>
+<li>For multi-core tests, we used four cores. <code class="docutils literal notranslate"><span class="pre">--num-cpu=4</span></code></li>
+</ul>
+</div>
 <div class="section" id="arm-architecture">
 <h2>ARM Architecture<a class="headerlink" href="#arm-architecture" title="Permalink to this headline">¶</a></h2>
 <table border="1" class="docutils">
 <colgroup>
-<col width="26%" />
-<col width="20%" />
-<col width="24%" />
-<col width="30%" />
+<col width="32%" />
+<col width="17%" />
+<col width="21%" />
+<col width="16%" />
+<col width="14%" />
 </colgroup>
 <thead valign="bottom">
 <tr class="row-odd"><th class="head">CPU model</th>
 <th class="head">Multi-core?</th>
 <th class="head">Operation</th>
-<th class="head">MSI/MSI-X supports</th>
+<th class="head">MSI/MSI-X</th>
+<th class="head">Boot time</th>
 </tr>
 </thead>
 <tbody valign="top">
 <tr class="row-even"><td rowspan="2">AtomicSimpleCPU</td>
 <td>No</td>
 <td>Works</td>
-<td>Yes</td>
+<td>Supported</td>
+<td>12min</td>
 </tr>
 <tr class="row-odd"><td>Yes</td>
 <td>Works</td>
-<td>Yes</td>
+<td>Supported</td>
+<td>12min</td>
 </tr>
 <tr class="row-even"><td rowspan="2">TimingSimpleCPU</td>
 <td>No</td>
 <td>Works</td>
-<td>Yes</td>
+<td>Supported</td>
+<td>20min</td>
 </tr>
 <tr class="row-odd"><td>Yes</td>
-<td>Not works <a class="footnote-reference" href="#id15" id="id1">[4]</a></td>
-<td>Unknown</td>
+<td>Works</td>
+<td>Supported</td>
+<td>20min</td>
 </tr>
-<tr class="row-even"><td rowspan="2">MinorCPU <a class="footnote-reference" href="#id12" id="id2">[1]</a></td>
+<tr class="row-even"><td rowspan="2"><p class="first">MinorCPU</p>
+<div class="last line-block">
+<div class="line">(Pipelined In-order
+CPU)</div>
+</div>
+</td>
 <td>No</td>
 <td>Works</td>
-<td>Yes</td>
+<td>Supported</td>
+<td>40min</td>
 </tr>
 <tr class="row-odd"><td>Yes</td>
-<td>Not works <a class="footnote-reference" href="#id15" id="id3">[4]</a></td>
-<td>Yes</td>
+<td>Works</td>
+<td>Supported</td>
+<td>60min</td>
 </tr>
-<tr class="row-even"><td rowspan="2">HPI <a class="footnote-reference" href="#id13" id="id4">[2]</a></td>
+<tr class="row-even"><td rowspan="2"><p class="first">HPI</p>
+<div class="last line-block">
+<div class="line">(High-Performance
+In-order CPU)</div>
+</div>
+</td>
 <td>No</td>
-<td>Not works <a class="footnote-reference" href="#id15" id="id5">[4]</a></td>
-<td>Unknown</td>
+<td>Works</td>
+<td>Supported</td>
+<td>45min</td>
 </tr>
 <tr class="row-odd"><td>Yes</td>
-<td>Not works <a class="footnote-reference" href="#id15" id="id6">[4]</a></td>
-<td>Unknown</td>
+<td>Works</td>
+<td>Supported</td>
+<td>50min</td>
 </tr>
 <tr class="row-even"><td rowspan="2">DerivO3CPU</td>
 <td>No</td>
-<td>Not works <a class="footnote-reference" href="#id15" id="id7">[4]</a></td>
-<td>Unknown</td>
+<td>Works</td>
+<td>Supported</td>
+<td>50min</td>
 </tr>
 <tr class="row-odd"><td>Yes</td>
-<td>Not works <a class="footnote-reference" href="#id15" id="id8">[4]</a></td>
-<td>Unknown</td>
+<td>Works</td>
+<td>Supported</td>
+<td>60min</td>
 </tr>
 </tbody>
 </table>
@@ -270,70 +301,56 @@ For the status matrix of gem5, check <a class="reference external" href="http://
 <h2>x86 Architecture<a class="headerlink" href="#x86-architecture" title="Permalink to this headline">¶</a></h2>
 <table border="1" class="docutils">
 <colgroup>
-<col width="26%" />
-<col width="20%" />
-<col width="24%" />
-<col width="30%" />
+<col width="32%" />
+<col width="17%" />
+<col width="21%" />
+<col width="16%" />
+<col width="14%" />
 </colgroup>
 <thead valign="bottom">
 <tr class="row-odd"><th class="head">CPU model</th>
 <th class="head">Multi-core?</th>
 <th class="head">Operation</th>
-<th class="head">MSI/MSI-X supports</th>
+<th class="head">MSI/MSI-X</th>
+<th class="head">Boot time</th>
 </tr>
 </thead>
 <tbody valign="top">
 <tr class="row-even"><td rowspan="2">AtomicSimpleCPU</td>
 <td>No</td>
 <td>Works</td>
-<td>Yes</td>
+<td>Supported</td>
+<td>15min</td>
 </tr>
 <tr class="row-odd"><td>Yes</td>
 <td>Works</td>
-<td>Yes</td>
+<td>Supported</td>
+<td>18min</td>
 </tr>
 <tr class="row-even"><td rowspan="2">TimingSimpleCPU</td>
 <td>No</td>
 <td>Works</td>
-<td>Yes</td>
+<td>Supported</td>
+<td>25min</td>
 </tr>
 <tr class="row-odd"><td>Yes</td>
-<td>Not works <a class="footnote-reference" href="#id15" id="id9">[4]</a></td>
+<td>Stuck while
+boot</td>
 <td>Unknown</td>
+<td>N/A</td>
 </tr>
 <tr class="row-even"><td rowspan="2">DerivO3CPU</td>
 <td>No</td>
-<td>Not works <a class="footnote-reference" href="#id14" id="id10">[3]</a></td>
-<td>Unknown</td>
+<td>Works</td>
+<td>Supported</td>
+<td>135min</td>
 </tr>
 <tr class="row-odd"><td>Yes</td>
-<td>Not works <a class="footnote-reference" href="#id14" id="id11">[3]</a></td>
+<td>Stuck while
+boot</td>
 <td>Unknown</td>
+<td>N/A</td>
 </tr>
-</tbody>
-</table>
-<table class="docutils footnote" frame="void" id="id12" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id2">[1]</a></td><td>MinorCPU is pipelined in-order CPU model in gem5</td></tr>
-</tbody>
-</table>
-<table class="docutils footnote" frame="void" id="id13" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id4">[2]</a></td><td>HPI stands for High Performance In-order CPU</td></tr>
-</tbody>
-</table>
-<table class="docutils footnote" frame="void" id="id14" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label">[3]</td><td><em>(<a class="fn-backref" href="#id10">1</a>, <a class="fn-backref" href="#id11">2</a>)</em> gem5 cannot boot with assertion error</td></tr>
-</tbody>
-</table>
-<table class="docutils footnote" frame="void" id="id15" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label">[4]</td><td><em>(<a class="fn-backref" href="#id1">1</a>, <a class="fn-backref" href="#id3">2</a>, <a class="fn-backref" href="#id5">3</a>, <a class="fn-backref" href="#id6">4</a>, <a class="fn-backref" href="#id7">5</a>, <a class="fn-backref" href="#id8">6</a>, <a class="fn-backref" href="#id9">7</a>)</em> Stuck while in gem5 boot procedure</td></tr>
 </tbody>
 </table>
 </div>
