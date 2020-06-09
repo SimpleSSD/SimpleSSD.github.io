@@ -1,0 +1,732 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Analyze Simulation Results &mdash; SimpleSSD 2.0.12 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/color.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/table.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/readthedocs-doc-embed.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Build Linux Kernel for gem5" href="../tips/kernel.html" />
+    <link rel="prev" title="Running Instructions" href="run.html" /> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> SimpleSSD
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                2.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">User Documentation</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="start.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="config.html">Configuration Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="run.html">Running Instructions</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Analyze Simulation Results</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#analyze-simplessd-log-and-statistics">Analyze SimpleSSD Log and Statistics</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#simplessd-debug-log">SimpleSSD debug log</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#simplessd-statistics">SimpleSSD Statistics</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#analyze-log-from-linux-kernel">Analyze Log from Linux Kernel</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#prepare-linux-kernel">Prepare Linux Kernel</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#modify-kernel">Modify Kernel</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#analyze-result">Analyze result</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#analyze-debug-log-and-statistics-from-simulator">Analyze Debug Log and Statistics from Simulator</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#simplessd-fullsystem">SimpleSSD-FullSystem</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#simplessd-standalone">SimpleSSD-Standalone</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#analyze-on-user-level">Analyze on user-level</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Tips</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tips/kernel.html">Build Linux Kernel for gem5</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tips/program.html">Build User-Level Program for gem5</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tips/disk.html">Create Disk Image for gem5</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Firmware Model Documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../v2.0/hil.html">Host Interface Layer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../v2.0/icl.html">Internal Cache Layer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../v2.0/ftl.html">Flash Translation Layer</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Hardware Model Documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../v2.0/cpu.html">Firmware Execution Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../v2.0/dram.html">DRAM Latency Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../v2.0/pal.html">Parallelism Abstraction Layer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../v2.0/power.html">Power and Energy Model</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Resources</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../download.html">Downloads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../matrix.html">Status Matrix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ack.html">Acknowledgement</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+
+      <div style="position: absolute; bottom: 0px;">
+        <div style="width: 3em; height: 3em; float: left; margin-right: 0.2em;">
+          <a href="http://camelab.org" rel="nofollow" target="_blank">
+            <img src="../_static/image/camelab.png" style="height: 2.8em; margin: 0.1em auto; display: block;">
+          </a>
+        </div>
+        <div>
+          <span class="ack" style="margin-top: 0.3em; color: #d9d9d9; font-size: 14px; line-height: 20px;">
+            SimpleSSD is designed, developed and maintained by
+            <a href="http://camelab.org" rel="nofollow" target="_blank">CAMELab.</a>
+          </span>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">SimpleSSD</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>Analyze Simulation Results</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="analyze-simulation-results">
+<h1>Analyze Simulation Results<a class="headerlink" href="#analyze-simulation-results" title="Permalink to this headline">¶</a></h1>
+<p>In this page, we will explain how to analyze simulation results.</p>
+<div class="section" id="analyze-simplessd-log-and-statistics">
+<span id="tutorial-analyze-simplessd"></span><h2>Analyze SimpleSSD Log and Statistics<a class="headerlink" href="#analyze-simplessd-log-and-statistics" title="Permalink to this headline">¶</a></h2>
+<p>SimpleSSD prints debug log which contains all information about I/O requests and statistics of all components.</p>
+<div class="section" id="simplessd-debug-log">
+<h3>SimpleSSD debug log<a class="headerlink" href="#simplessd-debug-log" title="Permalink to this headline">¶</a></h3>
+<p>For SimpleSSD-FullSystem, you can find debug log on <code class="docutils literal notranslate"><span class="pre">stdout</span></code> of gem5.
+For SimpleSSD-Standalone, you can define where to save debug log by <code class="docutils literal notranslate"><span class="pre">[global]</span> <span class="pre">DebugLogFile</span></code> simulation option.</p>
+<p>Here is an example of debug log when read-ahead triggered.</p>
+<div class="highlight-text notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39</pre></div></td><td class="code"><div class="highlight"><pre><span></span>861004146876: HIL::NVMe: SQ 3    | Submission Queue Tail Doorbell | Item count in queue 0 -&gt; 1 | head 432 | tail 432 -&gt; 433
+861004362088: HIL::NVMe: NVM     | READ  | NSID 1     | 1B0 + 1
+861004362088: HIL: READ  | REQ     477 | LCA 432 + 1 | BYTE 0 + 4096
+861004362088: ICL::GenericCache: READ  | REQ     477-1    | LCA 432 | SIZE 4096
+861004362088: ICL::GenericCache: READ  | Cache hit at (0, 71) | 861004362088 - 861005056598 (694510)
+<span class="hll">861004362088: ICL::GenericCache: READ  | Prefetch triggered
+</span>861004362088: ICL::GenericCache: ----- | Begin eviction
+861004362088: ICL::GenericCache: ----- | End eviction | 861008457768 - 861008457768 (0)
+861004362088: FTL: READ  | LPN 5
+861004362088: PAL::PALOLD: READ  | Block 2555 | Page 1
+861004362088: PAL::PALOLD: READ  | C     0 | W     0 | D     0 | P     0 | B   511 | P     1
+861004362088: FTL::PageMapping: READ  | LPN 5 | 861008457768 - 861126478092 (118020324)
+<span class="hll">861004362088: ICL::GenericCache: READ  | Cache miss at (0, 77) | 861008457768 - 861126775592 (118317824)
+</span>
+...
+
+861004362088: FTL: READ  | LPN 5
+861004362088: PAL::PALOLD: READ  | Block 2555 | Page 1
+861004362088: PAL::PALOLD: READ  | C    11 | W     0 | D     0 | P     0 | B   511 | P     1
+861004362088: FTL::PageMapping: READ  | LPN 5 | 861008457768 - 861126478092 (118020324)
+<span class="hll">861004362088: ICL::GenericCache: READ  | Cache miss at (3, 77) | 861008457768 - 861126775592 (118317824)
+</span>861004362088: FTL: READ  | LPN 5
+861004362088: PAL::PALOLD: READ  | Block 2555 | Page 1
+861004362088: PAL::PALOLD: READ  | C     0 | W     0 | D     1 | P     0 | B   511 | P     1
+861004362088: FTL::PageMapping: READ  | LPN 5 | 861008457768 - 861138228620 (129770852)
+<span class="hll">861004362088: ICL::GenericCache: READ  | Cache miss at (4, 77) | 861008457768 - 861138526120 (130068352)
+</span>
+...
+
+861004362088: FTL: READ  | LPN 5
+861004362088: PAL::PALOLD: READ  | Block 2555 | Page 1
+861004362088: PAL::PALOLD: READ  | C    11 | W     0 | D     7 | P     0 | B   511 | P     1
+861004362088: FTL::PageMapping: READ  | LPN 5 | 861008457768 - 861208731788 (200274020)
+<span class="hll">861004362088: ICL::GenericCache: READ  | Cache miss at (7, 87) | 861008457768 - 861209029288 (200571520)
+</span>861004362088: ICL::GenericCache: READ  | Prefetch done
+<span class="hll">861004362088: ICL: READ  | LCA 432 + 1 | 861004362088 - 861006961598 (2599510)
+</span>861007304098: HIL::NVMe: NVM     | READ  | NSID 1     | 1B0 + 1 | 861004362088 - 861007304098 (2942010)
+861007444114: HIL::NVMe: INTR    | MSI-X sent | vector 2
+861008760480: HIL::NVMe: CQ 3    | Completion Queue Head Doorbell | Item count in queue 1 -&gt; 0 | head 432 -&gt; 433 | tail 433
+</pre></div>
+</td></tr></table></div>
+<p>As shown at line 6, prefetch has been triggered because prefetch condition has been satisfied.
+<code class="docutils literal notranslate"><span class="pre">GenericCache</span></code> module of SimpleSSD will read <code class="docutils literal notranslate"><span class="pre">one</span> <span class="pre">super</span> <span class="pre">page</span></code> or <code class="docutils literal notranslate"><span class="pre">all</span> <span class="pre">pages</span> <span class="pre">from</span> <span class="pre">all</span> <span class="pre">planes</span></code> (you can configure this).</p>
+<p>At line 13 and 21, you can check the latency calculated by <code class="docutils literal notranslate"><span class="pre">PAL</span></code> has same value (118,317,824 ps).
+These two requests are targets different channel, so they can operate simultaneously (They are accessing channel 0 and 11, respectively).
+At line 26, the latency value changed (130,068,352 ps), because channel 0 has previous request, so PAL determined there was channel conflicts.
+At line 34, request targeting die 7 in channel 11 delayed about 90us because of previous I/Os targeting 7 dies (die 0 to 6).</p>
+<p>After prefetch, <code class="docutils literal notranslate"><span class="pre">GenericCache</span></code> return request as shown at line 36.
+The latency is quite small because data for the request is already exists on the cache (see line 5).</p>
+<p>By analyzing debug log, you can find characteristics of each I/O and which component consumes large portion of I/O latency.</p>
+</div>
+<div class="section" id="simplessd-statistics">
+<h3>SimpleSSD Statistics<a class="headerlink" href="#simplessd-statistics" title="Permalink to this headline">¶</a></h3>
+<p>For SimpleSSD-FullSystem, you can find statistics at <code class="docutils literal notranslate"><span class="pre">m5out/stats.txt</span></code>.
+For SimpleSSD-Standalone, not yet supported (at point of writing <code class="docutils literal notranslate"><span class="pre">v2.0-rc3</span></code>).</p>
+<p>Here is the example of statistics.
+This file is generated after performing I/O using <code class="docutils literal notranslate"><span class="pre">fio</span></code> with <code class="docutils literal notranslate"><span class="pre">--direct=1</span> <span class="pre">--ioengine=libaio</span> <span class="pre">--bs=4K</span> <span class="pre">--iodepth=1</span> <span class="pre">--rw=read</span> <span class="pre">--time_based</span> <span class="pre">--runtime=5s</span></code>.</p>
+<div class="highlight-text notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47</pre></div></td><td class="code"><div class="highlight"><pre><span></span>system.pci_nvme.command_count                  413480                       # Total number of NVMe command handled
+system.pci_nvme.read.request_count             413480                       # Read request count
+system.pci_nvme.read.bytes                 1693614080                       # Read data size in byte
+system.pci_nvme.read.busy                1653776508704                       # Device busy time when read
+system.pci_nvme.write.request_count                 0                       # Write request count
+system.pci_nvme.write.bytes                         0                       # Write data size in byte
+system.pci_nvme.write.busy                          0                       # Device busy time when write
+system.pci_nvme.request_count                  413480                       # Total request count
+system.pci_nvme.bytes                      1693614080                       # Total data size in byte
+system.pci_nvme.busy                     1653776508704                       # Total device busy time
+system.pci_nvme.icl.generic_cache.read.request_count       413480                       # Read request count
+system.pci_nvme.icl.generic_cache.read.from_cache       413224                       # Read requests that served from cache
+system.pci_nvme.icl.generic_cache.write.request_count            0                       # Write request count
+system.pci_nvme.icl.generic_cache.write.to_cache            0                       # Write requests that served to cache
+system.pci_nvme.dram.energy.act          351568356.208920                       # ACT command energy (pJ)
+system.pci_nvme.dram.energy.pre          437367776.459918                       # PRE command energy (pJ)
+system.pci_nvme.dram.energy.rd           368277927.504022                       # RD command energy (pJ)
+system.pci_nvme.dram.energy.wr           198140164.999281                       # WR command energy (pJ)
+system.pci_nvme.dram.energy.act.standby  1992764428.068482                       # ACT standby energy (pJ)
+system.pci_nvme.dram.energy.pre.standby  146846141074.948761                       # PRE standby energy (pJ)
+system.pci_nvme.dram.energy.ref          2589408.045731                       # Refresh energy (pJ)
+system.pci_nvme.dram.read.request_count        826662                       # Read request count
+system.pci_nvme.dram.read.bytes            1695873008                       # Read data size in byte
+system.pci_nvme.dram.write.request_count       413438                       # Write request count
+system.pci_nvme.dram.write.bytes           1693442048                       # Write data size in byte
+system.pci_nvme.dram.request_count            1240100                       # Total request count
+system.pci_nvme.dram.bytes                 3389315056                       # Total data size in byte
+system.pci_nvme.ftl.page_mapping.gc_count            0                       # Total GC count
+system.pci_nvme.ftl.page_mapping.reclaimed_blocks            0                       # Total reclaimed blocks in GC
+system.pci_nvme.pal.energy.read          2892824.972693                       # NAND power used on read transaction (uJ)
+system.pci_nvme.pal.energy.program                  0                       # NAND power used on program transaction (uJ)
+system.pci_nvme.pal.energy.erase                    0                       # NAND power used on erase transaction (uJ)
+system.pci_nvme.pal.energy.total         2892824.972693                       # NAND power used on all transaction (uJ)
+system.pci_nvme.cpu.icl0.busy            929296300000                       # CPU for ICL core 0 busy ticks
+system.pci_nvme.cpu.icl0.insts.branch        31837960                       # CPU for ICL core 0 executed branch instructions
+system.pci_nvme.cpu.icl0.insts.load         193508640                       # CPU for ICL core 0 executed load instructions
+system.pci_nvme.cpu.icl0.insts.store         26049240                       # CPU for ICL core 0 executed store instructions
+system.pci_nvme.cpu.icl0.insts.arithmetic    118668760                       # CPU for ICL core 0 executed arithmetic instructions
+system.pci_nvme.cpu.icl0.insts.fp                   0                       # CPU for ICL core 0 executed floating point instructions
+system.pci_nvme.cpu.icl0.insts.others         1653920                       # CPU for ICL core 0 executed other instructions
+system.pci_nvme.cpu.ftl0.busy            373127795000                       # CPU for FTL core 0 busy ticks
+system.pci_nvme.cpu.ftl0.insts.branch        21085338                       # CPU for FTL core 0 executed branch instructions
+system.pci_nvme.cpu.ftl0.insts.load          74418840                       # CPU for FTL core 0 executed store instructions
+system.pci_nvme.cpu.ftl0.insts.store         12403140                       # CPU for FTL core 0 executed load instructions
+system.pci_nvme.cpu.ftl0.insts.arithmetic     39276610                       # CPU for FTL core 0 executed arithmetic instructions
+system.pci_nvme.cpu.ftl0.insts.fp                   0                       # CPU for FTL core 0 executed floating point instructions
+system.pci_nvme.cpu.ftl0.insts.others         2067190                       # CPU for FTL core 0 executed other instructions
+</pre></div>
+</td></tr></table></div>
+<p>Each line contains one statistic for components.
+You can find DRAMPower result at line 15-21.
+This SSD has three cores, each core is dedicated for each firmware component.
+You can find CPU statistics at line 34-47.</p>
+<p>This <code class="docutils literal notranslate"><span class="pre">stats.txt</span></code> file is generated by gem5, which can controlled in user-level space through <code class="docutils literal notranslate"><span class="pre">m5</span></code> utility.</p>
+</div>
+</div>
+<div class="section" id="analyze-log-from-linux-kernel">
+<h2>Analyze Log from Linux Kernel<a class="headerlink" href="#analyze-log-from-linux-kernel" title="Permalink to this headline">¶</a></h2>
+<p>To analyze kernel behavior, you need to modify the kernel source code.
+In SimpleSSD-FullSystem, we added new M5 pseudo-instruction (M5OP) called m5print.
+This instruction prints string to debug log of gem5 (specified by <code class="docutils literal notranslate"><span class="pre">--debug-flag</span></code> and <code class="docutils literal notranslate"><span class="pre">--debug-file</span></code> options).</p>
+<div class="section" id="prepare-linux-kernel">
+<h3>Prepare Linux Kernel<a class="headerlink" href="#prepare-linux-kernel" title="Permalink to this headline">¶</a></h3>
+<p>In this section, we will explain how to add <code class="docutils literal notranslate"><span class="pre">M5OP</span></code> to the Linux Kernel.
+We assumes <code class="docutils literal notranslate"><span class="pre">ARMv8</span></code> (<code class="docutils literal notranslate"><span class="pre">arm64</span></code>) architecture.</p>
+<p>Copy <code class="docutils literal notranslate"><span class="pre">m5ops.h</span></code> and <code class="docutils literal notranslate"><span class="pre">m5op_flags.h</span></code> files in <code class="docutils literal notranslate"><span class="pre">include/gem5/asm/generic</span></code> directory of SimpleSSD-FullSystem to <code class="docutils literal notranslate"><span class="pre">arch/arm64/include/asm</span></code> of Linux Kernel.
+Modify <code class="docutils literal notranslate"><span class="pre">m5ops.h</span></code> file to change include path of <code class="docutils literal notranslate"><span class="pre">m5op_flags.h</span></code>.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="c1">// From</span>
+<span class="cp">#include</span> <span class="cpf">&lt;gem5/asm/generic/m5op_flags.h&gt;</span><span class="cp"></span>
+
+<span class="c1">// To</span>
+<span class="cp">#include</span> <span class="cpf">&lt;asm/m5op_flags.h&gt;</span><span class="cp"></span>
+</pre></div>
+</div>
+<p>Copy <code class="docutils literal notranslate"><span class="pre">m5op_arm_A64.S</span></code> file in <code class="docutils literal notranslate"><span class="pre">util/m5</span></code> directory of SimpleSSD-FullSystem to <code class="docutils literal notranslate"><span class="pre">arch/arm64/kernel</span></code> of Linux Kernel.
+Modify <code class="docutils literal notranslate"><span class="pre">m5op_arm_A64.S</span></code> file to change include path of <code class="docutils literal notranslate"><span class="pre">m5ops.h</span></code></p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="c1">// From</span>
+<span class="cp">#include</span> <span class="cpf">&lt;gem5/asm/generic/m5ops.h&gt;</span><span class="cp"></span>
+
+<span class="c1">// To</span>
+<span class="cp">#include</span> <span class="cpf">&lt;asm/m5ops.h&gt;</span><span class="cp"></span>
+</pre></div>
+</div>
+<p>Add following line to <code class="docutils literal notranslate"><span class="pre">Makefile</span></code> in <code class="docutils literal notranslate"><span class="pre">arch/arm64/kernel</span></code> (line number may different).</p>
+<div class="highlight-Makefile notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c"># Object file lists.</span>
+<span class="nv">arm64-obj-y</span>             <span class="o">:=</span> debug-monitors.o entry.o irq.o fpsimd.o              <span class="se">\</span>
+                           entry-fpsimd.o process.o ptrace.o setup.o signal.o   <span class="se">\</span>
+                           sys.o stacktrace.o time.o traps.o io.o vdso.o        <span class="se">\</span>
+                           hyp-stub.o psci.o cpu_ops.o insn.o   <span class="se">\</span>
+                           return_address.o cpuinfo.o cpu_errata.o              <span class="se">\</span>
+                           cpufeature.o alternative.o cacheinfo.o               <span class="se">\</span>
+                           smp.o smp_spin_table.o topology.o smccc-call.o       <span class="se">\</span>
+<span class="hll">                           m5op_arm_A64.o
+</span>
+<span class="nv">extra-$(CONFIG_EFI)</span>                     <span class="o">:=</span> efi-entry.o
+</pre></div>
+</td></tr></table></div>
+<p>Copy <code class="docutils literal notranslate"><span class="pre">m5ops.h</span></code> file in <code class="docutils literal notranslate"><span class="pre">include/gem5</span></code> directory of SimpleSSD to <code class="docutils literal notranslate"><span class="pre">include/linux</span></code> of Linux Kernel.
+Do not confuse with <code class="docutils literal notranslate"><span class="pre">m5ops.h</span></code> which copied to <code class="docutils literal notranslate"><span class="pre">arch/arm64/include/asm</span></code> directory.</p>
+<p>Modify <code class="docutils literal notranslate"><span class="pre">include/linux/m5ops.h</span></code>.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="c1">// From</span>
+<span class="cp">#include</span> <span class="cpf">&lt;stdint.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;time.h&gt;</span><span class="cp"></span>
+
+<span class="cp">#include</span> <span class="cpf">&lt;gem5/asm/generic/m5op_flags.h&gt;</span><span class="cp"></span>
+
+<span class="c1">// To</span>
+<span class="cp">#include</span> <span class="cpf">&lt;linux/types.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;linux/time.h&gt;</span><span class="cp"></span>
+
+<span class="cp">#include</span> <span class="cpf">&lt;asm/m5op_flags.h&gt;</span><span class="cp"></span>
+</pre></div>
+</div>
+<p>Also you need to modify following lines too.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="c1">// From line 49 and 66</span>
+<span class="kt">uint64_t</span> <span class="nf">m5_rpns</span><span class="p">();</span>
+<span class="kt">void</span> <span class="nf">m5_load_symbol</span><span class="p">();</span>
+
+<span class="c1">// To</span>
+<span class="kt">uint64_t</span> <span class="nf">m5_rpns</span><span class="p">(</span><span class="kt">void</span><span class="p">);</span>
+<span class="kt">void</span> <span class="nf">m5_load_symbol</span><span class="p">(</span><span class="kt">void</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Now you are ready to use <code class="docutils literal notranslate"><span class="pre">M5OP</span></code> inside the Linux Kernel.</p>
+</div>
+<div class="section" id="modify-kernel">
+<h3>Modify Kernel<a class="headerlink" href="#modify-kernel" title="Permalink to this headline">¶</a></h3>
+<p>Now, let’s add <code class="docutils literal notranslate"><span class="pre">m5_print</span></code> function where you want to analyze.</p>
+<p>Objective: measure latency of MSI-X interrupt.</p>
+<p>As SimpleSSD sends MSI-X interrupt (see above section for debug log), you can measure latency until IRQ handler of NVMe driver called.
+Modify <code class="docutils literal notranslate"><span class="pre">drivers/nvme/host/pci.c</span></code> (line number may different).</p>
+<div class="highlight-c notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>854
+855
+856
+857
+858
+859
+860
+861
+862
+863
+864
+865</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">static</span> <span class="n">irqreturn_t</span> <span class="nf">nvme_irq</span><span class="p">(</span><span class="kt">int</span> <span class="n">irq</span><span class="p">,</span> <span class="kt">void</span> <span class="o">*</span><span class="n">data</span><span class="p">)</span>
+<span class="p">{</span>
+        <span class="n">irqreturn_t</span> <span class="n">result</span><span class="p">;</span>
+        <span class="k">struct</span> <span class="n">nvme_queue</span> <span class="o">*</span><span class="n">nvmeq</span> <span class="o">=</span> <span class="n">data</span><span class="p">;</span>
+<span class="hll">        <span class="n">m5_print</span><span class="p">(</span><span class="s">&quot;nvme_irq&quot;</span><span class="p">,</span> <span class="mi">8</span><span class="p">);</span>
+</span>        <span class="n">spin_lock</span><span class="p">(</span><span class="o">&amp;</span><span class="n">nvmeq</span><span class="o">-&gt;</span><span class="n">q_lock</span><span class="p">);</span>
+        <span class="n">nvme_process_cq</span><span class="p">(</span><span class="n">nvmeq</span><span class="p">);</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">nvmeq</span><span class="o">-&gt;</span><span class="n">cqe_seen</span> <span class="o">?</span> <span class="nl">IRQ_HANDLED</span> <span class="p">:</span> <span class="n">IRQ_NONE</span><span class="p">;</span>
+        <span class="n">nvmeq</span><span class="o">-&gt;</span><span class="n">cqe_seen</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="n">spin_unlock</span><span class="p">(</span><span class="o">&amp;</span><span class="n">nvmeq</span><span class="o">-&gt;</span><span class="n">q_lock</span><span class="p">);</span>
+        <span class="k">return</span> <span class="n">result</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+<p>Don’t forget to add <code class="docutils literal notranslate"><span class="pre">#include</span> <span class="pre">&lt;linux/m5ops.h&gt;</span></code> to beginning of the file.</p>
+<p>Build Linux Kernel and copy it to <code class="docutils literal notranslate"><span class="pre">$M5_PATH/binaries</span></code>.
+For kernel build instructions, see <a class="reference internal" href="../tips/kernel.html"><span class="doc">Build Linux Kernel for gem5</span></a>.</p>
+</div>
+<div class="section" id="analyze-result">
+<h3>Analyze result<a class="headerlink" href="#analyze-result" title="Permalink to this headline">¶</a></h3>
+<p>Boot SimpleSSD-FullSystem with newly built kernel image.
+As we want to check MSI-X, terminate simulation with <code class="docutils literal notranslate"><span class="pre">m5</span> <span class="pre">exit</span></code> after kernel boot.</p>
+<p>Here is the example of <code class="docutils literal notranslate"><span class="pre">m5out/debug.txt</span></code> and <code class="docutils literal notranslate"><span class="pre">m5out/simout</span></code>.</p>
+<div class="highlight-text notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="highlight"><pre><span></span>5361549000: system.terminal: attach terminal 0
+<span class="hll">436771014500: global: Log from guest: nvme_irq
+</span>436777643000: global: Log from guest: nvme_irq
+437013694000: global: Log from guest: nvme_irq
+437021837500: global: Log from guest: nvme_irq
+</pre></div>
+</td></tr></table></div>
+<div class="highlight-text notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 91
+ 92
+ 93
+ 94
+ 95
+ 96
+ 97
+ 98
+ 99
+100
+101
+102
+103
+104
+105
+106</pre></div></td><td class="code"><div class="highlight"><pre><span></span>436732767000: HIL::NVMe: BAR0    | WRITE | Controller Configuration
+436732767000: HIL::NVMe: DMAPORT | WRITE | DATA 00460001
+436732786500: HIL::NVMe: BAR0    | READ  | Controller Status
+436732786500: HIL::NVMe: DMAPORT | READ  | DATA 00000001
+436763277000: HIL::NVMe: BAR0    | READ  | Version
+436763277000: HIL::NVMe: DMAPORT | READ  | DATA 00010201
+436763284000: HIL::NVMe: BAR0    | READ  | Controller Capabilities
+436763284000: HIL::NVMe: DMAPORT | READ  | DATA 0020002028010FFF
+436765154500: HIL::NVMe: SQ 0    | Submission Queue Tail Doorbell | Item count in queue 0 -&gt; 1 | head 0 | tail 0 -&gt; 1
+436768910422: HIL::NVMe: ADMIN   | Identify | CNS 1 | CNTID 0 | NSID 0
+<span class="hll">436770652297: HIL::NVMe: INTR    | MSI-X sent | vector 0
+</span>436771375000: HIL::NVMe: CQ 0    | Completion Queue Head Doorbell | Item count in queue 1 -&gt; 0 | head 0 -&gt; 1 | tail 1
+436776059000: HIL::NVMe: SQ 0    | Submission Queue Tail Doorbell | Item count in queue 0 -&gt; 1 | head 1 | tail 1 -&gt; 2
+436777053844: HIL::NVMe: ADMIN   | Set Features | Feature 7 | NSID 0
+436777179719: HIL::NVMe: INTR    | MSI-X sent | vector 0
+436778003500: HIL::NVMe: CQ 0    | Completion Queue Head Doorbell | Item count in queue 1 -&gt; 0 | head 1 -&gt; 2 | tail 2
+</pre></div>
+</td></tr></table></div>
+<p>In the <code class="docutils literal notranslate"><span class="pre">simout</span></code> (lower code block), MSI-X sent at 436,770,652,297 ps (436ms).
+In the <code class="docutils literal notranslate"><span class="pre">debug.txt</span></code> (upper code block), <code class="docutils literal notranslate"><span class="pre">nvme_irq</span></code> function called at 436,771,014,500 ps (436ms).
+The difference was 362,203 ps (362ns).</p>
+<p>The analysis method using <code class="docutils literal notranslate"><span class="pre">M5OP</span></code> has very low overhead (few CPU cycles) because it based on the instruction.
+You can add any number of <code class="docutils literal notranslate"><span class="pre">m5_print</span></code> function to the Linux Kernel or even in user-level program.</p>
+<p>To generate <code class="docutils literal notranslate"><span class="pre">debug.txt</span></code> file, you should specify <code class="docutils literal notranslate"><span class="pre">--debug-flag=M5Print</span></code> and <code class="docutils literal notranslate"><span class="pre">--debug-file=debug.txt</span></code> when executing SimpleSSD-FullSystem.</p>
+</div>
+</div>
+<div class="section" id="analyze-debug-log-and-statistics-from-simulator">
+<h2>Analyze Debug Log and Statistics from Simulator<a class="headerlink" href="#analyze-debug-log-and-statistics-from-simulator" title="Permalink to this headline">¶</a></h2>
+<p>Also you can analyze debug log and statistics of simulator itself.</p>
+<div class="section" id="simplessd-fullsystem">
+<h3>SimpleSSD-FullSystem<a class="headerlink" href="#simplessd-fullsystem" title="Permalink to this headline">¶</a></h3>
+<p>Similar to <a class="reference internal" href="#tutorial-analyze-simplessd"><span class="std std-ref">Analyze SimpleSSD Log and Statistics</span></a>, gem5 uses <code class="docutils literal notranslate"><span class="pre">--debug-file</span></code> and <code class="docutils literal notranslate"><span class="pre">stats.txt</span></code> to print detailed debug log of hardware components and statistics.
+<code class="docutils literal notranslate"><span class="pre">stats.txt</span></code> file can be analyzed with same method of SimpleSSD.
+We will explain how to use <code class="docutils literal notranslate"><span class="pre">--debug-flag</span></code> and <code class="docutils literal notranslate"><span class="pre">--debug-file</span></code> options of gem5.</p>
+<p><code class="docutils literal notranslate"><span class="pre">--debug-file</span></code> specifies where to save hardware debug log (see <a class="reference internal" href="run.html#tutorial-basic-fullsystem"><span class="std std-ref">Execution of SimpleSSD-FullSystem</span></a>).
+<code class="docutils literal notranslate"><span class="pre">--debug-flag</span></code> specifies which hardware modules to enable debug log printout.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">M5Print</span></code> module used in above section specifies debug log from guest OS running on gem5.
+You can list up all usable debug flags using <code class="docutils literal notranslate"><span class="pre">./build/ARM/gem5.opt</span> <span class="pre">--debug-help</span></code> command.</p>
+</div>
+<div class="section" id="simplessd-standalone">
+<h3>SimpleSSD-Standalone<a class="headerlink" href="#simplessd-standalone" title="Permalink to this headline">¶</a></h3>
+<p>For standalone version, the log printout is quite limited (<code class="docutils literal notranslate"><span class="pre">v2.0-rc3</span></code>).</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>SimpleSSD Standalone v2.0
+********** Begin of simulation **********
+*** Statistics of Request Generator ***
+Tick: 5000439428548
+Time (ps): 79297718 - 5000439428548 (5000360130830)
+I/O (bytes): 1393033216 (278586577.676911 B/s)
+I/O (counts): 340096 (Read: 170048, Write: 170048)
+*** End of statistics ***
+*** Statistics of Event Engine ***
+Simulation Tick (ps): 5000439428548
+Host time duration (sec): 27.220903
+Event handled: 10758702 (395236.771106 ops)
+*** End of statistics ***
+End of simulation @ tick 5000439428548
+</pre></div>
+</div>
+<p>As shown as above code block, statistics of request generator contains total I/O count and bandwidth information.</p>
+</div>
+</div>
+<div class="section" id="analyze-on-user-level">
+<h2>Analyze on user-level<a class="headerlink" href="#analyze-on-user-level" title="Permalink to this headline">¶</a></h2>
+<p>If you are using SimpleSSD-FullSystem, you can analyze the SimpleSSD using user-level benchmark programs.
+Compile benchmark program (see <a class="reference internal" href="../tips/program.html"><span class="doc">Build User-Level Program for gem5</span></a>) and run inside of gem5.</p>
+<p>Here is the example script (using with <code class="docutils literal notranslate"><span class="pre">--script</span></code> option).</p>
+<div class="highlight-shell notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+<span class="nb">cd</span> /home/root
+<span class="hll">./stat <span class="m">100</span> <span class="p">&amp;</span>
+</span><span class="hll">m5 resetstats
+</span>./fio --direct<span class="o">=</span><span class="m">1</span> --ioengine<span class="o">=</span>libaio --iodepth<span class="o">=</span><span class="m">1</span> --bs<span class="o">=</span><span class="m">4096</span> <span class="se">\</span>
+--rw<span class="o">=</span><span class="nb">read</span> --filename<span class="o">=</span>/dev/nvme0n1 --numjobs<span class="o">=</span><span class="m">1</span> --name<span class="o">=</span><span class="nb">test</span> --write_lat_log<span class="o">=</span><span class="nb">test</span> <span class="se">\</span>
+--write_iops_log<span class="o">=</span><span class="nb">test</span> --write_bw_log<span class="o">=</span><span class="nb">test</span> <span class="se">\</span>
+--log_avg_msec<span class="o">=</span><span class="m">10</span> --time_based --runtime<span class="o">=</span>5s <span class="se">\</span>
+--randseed<span class="o">=</span><span class="m">13425</span>
+<span class="hll">m5 dumpstats
+</span>m5 writefile test_clat.1.log
+m5 writefile test_slat.1.log
+m5 writefile test_lat.1.log
+m5 writefile test_iops.1.log
+m5 writefile test_bw.1.log
+<span class="hll">m5 <span class="nb">exit</span>
+</span></pre></div>
+</td></tr></table></div>
+<p>At line 3, <code class="docutils literal notranslate"><span class="pre">stat</span></code> program collects kernel/user CPU and DRAM utilization (through <code class="docutils literal notranslate"><span class="pre">/proc</span></code> filesystem).
+At line 4, reset all statistics of gem5 to zero.
+Execute <code class="docutils literal notranslate"><span class="pre">fio</span></code> and dump final statistics (line 10).
+After writing result files of <code class="docutils literal notranslate"><span class="pre">fio</span></code>, terminate simulation (line 16).</p>
+<p>After simulation, you can get 6 files (one for <code class="docutils literal notranslate"><span class="pre">fio</span></code> output, 5 for <code class="docutils literal notranslate"><span class="pre">fio</span></code> log files).</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../tips/kernel.html" class="btn btn-neutral float-right" title="Build Linux Kernel for gem5" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="run.html" class="btn btn-neutral float-left" title="Running Instructions" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018 CAMELab All rights reserved
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+    
+
+  
+
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
