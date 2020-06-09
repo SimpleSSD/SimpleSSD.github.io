@@ -1,0 +1,316 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Internal Cache Layer &mdash; SimpleSSD 2.0.12 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/color.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/table.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/readthedocs-doc-embed.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Flash Translation Layer" href="ftl.html" />
+    <link rel="prev" title="Host Interface Layer" href="hil.html" /> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> SimpleSSD
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                2.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">User Documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../instructions/start.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../instructions/config.html">Configuration Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../instructions/run.html">Running Instructions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../instructions/analyze.html">Analyze Simulation Results</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Tips</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tips/kernel.html">Build Linux Kernel for gem5</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tips/program.html">Build User-Level Program for gem5</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tips/disk.html">Create Disk Image for gem5</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Firmware Model Documentation</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="hil.html">Host Interface Layer</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Internal Cache Layer</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#abstract-class">Abstract Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#set-associative-cache">Set-Associative Cache</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="ftl.html">Flash Translation Layer</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Hardware Model Documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="cpu.html">Firmware Execution Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dram.html">DRAM Latency Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pal.html">Parallelism Abstraction Layer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="power.html">Power and Energy Model</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Resources</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../download.html">Downloads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../matrix.html">Status Matrix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ack.html">Acknowledgement</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+      
+      <div style="position: absolute; bottom: 3em; overflow-y: hidden;" class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+        <span class="rst-current-version" data-toggle="rst-current-version">
+          <span class="fa fa-book"> Other Versions</span>
+          v2.0.12
+          <span class="fa fa-caret-down"></span>
+        </span>
+        <div class="rst-other-versions">
+          <dl>
+            <dt>Languages</dt>
+            <dd><a href="/en/v2.0.12">en</a></dd>
+          </dl>
+          <dl>
+            <dt>Versions</dt>
+              
+            <dd><a href="icl.html">v2.0.12</a></dd>
+              
+          </dl>
+        </div>
+      </div>
+      
+      <div style="position: absolute; bottom: 0px; background-color: #272525;">
+        <div style="width: 3em; height: 3em; float: left; margin-right: 0.2em;">
+          <a href="http://camelab.org" rel="nofollow" target="_blank">
+            <img src="../_static/image/camelab.png" style="height: 2.8em; margin: 0.1em auto; display: block;">
+          </a>
+        </div>
+        <div>
+          <span class="ack" style="margin-top: 0.3em; color: #d9d9d9; font-size: 14px; line-height: 20px;">
+            SimpleSSD is designed, developed and maintained by
+            <a href="http://camelab.org" rel="nofollow" target="_blank">CAMELab.</a>
+          </span>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">SimpleSSD</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>Internal Cache Layer</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="internal-cache-layer">
+<h1>Internal Cache Layer<a class="headerlink" href="#internal-cache-layer" title="Permalink to this headline">¶</a></h1>
+<p>In this page, we will explain how we design and implement I/O buffer model (data cache), named Internal Cache Layer - ICL.</p>
+<p>ICL provides abstract class, so you can implement your own data buffer model by inherit the class.
+By default, we provide <code class="docutils literal notranslate"><span class="pre">GenericCache</span></code>, which implements set-associative cache.</p>
+<div class="align-center figure" id="id1" style="width: 100%">
+<a class="reference internal image-reference" href="v2.0/../../images/firmware/icl.jpg"><img alt="v2.0/../../images/firmware/icl.jpg" src="v2.0/../../images/firmware/icl.jpg" style="width: 400px;" /></a>
+<p class="caption"><span class="caption-text">Components of Internal Cache Layer</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+</div>
+<div class="section" id="abstract-class">
+<h2>Abstract Class<a class="headerlink" href="#abstract-class" title="Permalink to this headline">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">AbstractCache</span></code> class is defined in <code class="docutils literal notranslate"><span class="pre">icl/abstract_cache.hh</span></code>.
+It defines five virtual functions (+ three virtual functions derived from <code class="docutils literal notranslate"><span class="pre">StatObject</span></code>).</p>
+<p>ICL get I/O requests from each virtual function and buffer I/O with own algorithm.
+Pass I/O to FTL when data eviction needed or flush request arrived.</p>
+<p>Data buffer in SSD is very important for hiding slow NAND I/O performance.
+Small changes to the buffer algorithm introduces big performance changes.</p>
+</div>
+<div class="section" id="set-associative-cache">
+<h2>Set-Associative Cache<a class="headerlink" href="#set-associative-cache" title="Permalink to this headline">¶</a></h2>
+<p>We provides set-associative cache, which defined as <code class="docutils literal notranslate"><span class="pre">SimpleSSD::ICL::GenericCache</span></code> in <code class="docutils literal notranslate"><span class="pre">icl/generic_cache.hh</span></code>.
+Following parameters are customizable.
+For more detailed description, check sample configuration file.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">CacheSize</span></code>: Buffer capacity.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CacheWaySize</span></code>: Set associativity of cache. Set size will automatically calculated.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">EnableReadCache</span></code>: Enable read data caching.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">EnableReadPrefetch</span></code>: Enable read-ahead and prefetch.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ReadPrefetchMode</span></code>: Specify how many data should be read-ahead/prefetch.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ReadPrefetchCount</span></code>: Threshold for read-ahead/prefetch (# of sequential I/O).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ReadPrefetchRatio</span></code>: Threshold for read-ahead/prefetch (data size of sequential I/O).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">EnableWriteCache</span></code>: enable write data caching.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">EvictPolicy</span></code>: Specify which algorithm to use to select victim cache line.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">EvictMode</span></code>: Specify how many data should be evicted when cache is full.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CacheLatency</span></code>: Set cache metadata access latency.</p></li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="ftl.html" class="btn btn-neutral float-right" title="Flash Translation Layer" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="hil.html" class="btn btn-neutral float-left" title="Host Interface Layer" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018 CAMELab All rights reserved
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+    
+
+  
+
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

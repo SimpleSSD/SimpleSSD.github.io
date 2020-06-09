@@ -1,0 +1,577 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Host Interface Layer &mdash; SimpleSSD 2.0.12 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/color.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/table.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/readthedocs-doc-embed.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Internal Cache Layer" href="icl.html" />
+    <link rel="prev" title="Create Disk Image for gem5" href="../tips/disk.html" /> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> SimpleSSD
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                2.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">User Documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../instructions/start.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../instructions/config.html">Configuration Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../instructions/run.html">Running Instructions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../instructions/analyze.html">Analyze Simulation Results</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Tips</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tips/kernel.html">Build Linux Kernel for gem5</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tips/program.html">Build User-Level Program for gem5</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tips/disk.html">Create Disk Image for gem5</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Firmware Model Documentation</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Host Interface Layer</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#host-controller">Host controller</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#non-volatile-memory-express">Non-Volatile Memory Express</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#serial-at-attachment">Serial AT Attachment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#universal-flash-storage">Universal Flash Storage</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#ssd-interface">SSD interface</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="icl.html">Internal Cache Layer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ftl.html">Flash Translation Layer</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Hardware Model Documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="cpu.html">Firmware Execution Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dram.html">DRAM Latency Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pal.html">Parallelism Abstraction Layer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="power.html">Power and Energy Model</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Resources</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../download.html">Downloads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../matrix.html">Status Matrix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ack.html">Acknowledgement</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+      
+      <div style="position: absolute; bottom: 3em; overflow-y: hidden;" class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+        <span class="rst-current-version" data-toggle="rst-current-version">
+          <span class="fa fa-book"> Other Versions</span>
+          v2.0.12
+          <span class="fa fa-caret-down"></span>
+        </span>
+        <div class="rst-other-versions">
+          <dl>
+            <dt>Languages</dt>
+            <dd><a href="/en/v2.0.12">en</a></dd>
+          </dl>
+          <dl>
+            <dt>Versions</dt>
+              
+            <dd><a href="hil.html">v2.0.12</a></dd>
+              
+          </dl>
+        </div>
+      </div>
+      
+      <div style="position: absolute; bottom: 0px; background-color: #272525;">
+        <div style="width: 3em; height: 3em; float: left; margin-right: 0.2em;">
+          <a href="http://camelab.org" rel="nofollow" target="_blank">
+            <img src="../_static/image/camelab.png" style="height: 2.8em; margin: 0.1em auto; display: block;">
+          </a>
+        </div>
+        <div>
+          <span class="ack" style="margin-top: 0.3em; color: #d9d9d9; font-size: 14px; line-height: 20px;">
+            SimpleSSD is designed, developed and maintained by
+            <a href="http://camelab.org" rel="nofollow" target="_blank">CAMELab.</a>
+          </span>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">SimpleSSD</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>Host Interface Layer</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="host-interface-layer">
+<h1>Host Interface Layer<a class="headerlink" href="#host-interface-layer" title="Permalink to this headline">¶</a></h1>
+<p>In this page, we will explain how we design and implement host controller model, named Host Interface Layer - HIL.</p>
+<p>HIL is consists of two components.
+First is host controller, which is interfaced to the host side.
+Second is SSD interface, which provides abstracted API to the host controller.</p>
+<div class="align-center figure" id="id4" style="width: 100%">
+<a class="reference internal image-reference" href="v2.0/../../images/firmware/hil.jpg"><img alt="v2.0/../../images/firmware/hil.jpg" src="v2.0/../../images/firmware/hil.jpg" style="width: 400px;" /></a>
+<p class="caption"><span class="caption-text">Components of Host Interface Layer</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
+</div>
+<div class="section" id="host-controller">
+<h2>Host controller<a class="headerlink" href="#host-controller" title="Permalink to this headline">¶</a></h2>
+<p>In HIL, we implemented three host controller models - NVMe, SATA and UFS.
+Open-Channel SSD, which overrides NVMe, inherits NVMe.</p>
+<div class="section" id="non-volatile-memory-express">
+<h3>Non-Volatile Memory Express<a class="headerlink" href="#non-volatile-memory-express" title="Permalink to this headline">¶</a></h3>
+<p>Non-volatile Memory Express - NVMe - is emerging standard for modern SSDs.
+Its first standard - NVMHCI - was released at 2011.</p>
+<p>In SimpleSSD, we implemented NVMe interface based on <a class="reference external" href="https://nvmexpress.org/wp-content/uploads/NVM_Express_1_2_1_Gold_20160603.pdf">NVMe Base Specification Revision 1.2.1</a>, and update to <a class="reference external" href="http://nvmexpress.org/wp-content/uploads/NVM-Express-1_3c-2018.05.24-Ratified.pdf">NVMe Base Specification Revision 1.3c</a> is in progress.</p>
+<p>Following figure shows how each components are connected.</p>
+<div class="align-center figure" id="id5" style="width: 100%">
+<a class="reference internal image-reference" href="v2.0/../../images/firmware/nvme_overview.jpg"><img alt="v2.0/../../images/firmware/nvme_overview.jpg" src="v2.0/../../images/firmware/nvme_overview.jpg" style="width: 450px;" /></a>
+<p class="caption"><span class="caption-text">Components of NVMe model</span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
+</div>
+<div class="section" id="host-interface">
+<h4>Host interface<a class="headerlink" href="#host-interface" title="Permalink to this headline">¶</a></h4>
+<p>A <code class="docutils literal notranslate"><span class="pre">SimpleSSD::HIL::NVMe::Interface</span></code> abstract class defined in <code class="docutils literal notranslate"><span class="pre">hil/nvme/interface.hh</span></code> provides common API to simulators.
+You can check <code class="docutils literal notranslate"><span class="pre">NVMeInterface</span></code> class defined in <code class="docutils literal notranslate"><span class="pre">src/dev/storage/nvme_interface.hh</span></code> of SimpleSSD-FullSystem and <code class="docutils literal notranslate"><span class="pre">SIL::NVMe::Driver</span></code> class defined in <code class="docutils literal notranslate"><span class="pre">sil/nvme/nvme.hh</span></code> of SimpleSSD-Standalone to know how they inherits the class.</p>
+<p>Let’s see <code class="docutils literal notranslate"><span class="pre">SimpleSSD::HIL::NVMe::Interface</span></code> and <code class="docutils literal notranslate"><span class="pre">SimpleSSD::DMAInterface</span></code> which is parent class.</p>
+<div class="highlight-cpp notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>41
+42
+43
+44
+45
+46
+47
+48
+49
+50</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">DMAInterface</span> <span class="p">{</span>
+ <span class="k">public</span><span class="o">:</span>
+  <span class="n">DMAInterface</span><span class="p">()</span> <span class="p">{}</span>
+  <span class="k">virtual</span> <span class="o">~</span><span class="n">DMAInterface</span><span class="p">()</span> <span class="p">{}</span>
+
+  <span class="k">virtual</span> <span class="kt">void</span> <span class="n">dmaRead</span><span class="p">(</span><span class="kt">uint64_t</span><span class="p">,</span> <span class="kt">uint64_t</span><span class="p">,</span> <span class="kt">uint8_t</span> <span class="o">*</span><span class="p">,</span> <span class="n">DMAFunction</span> <span class="o">&amp;</span><span class="p">,</span>
+                       <span class="kt">void</span> <span class="o">*</span> <span class="o">=</span> <span class="k">nullptr</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="k">virtual</span> <span class="kt">void</span> <span class="nf">dmaWrite</span><span class="p">(</span><span class="kt">uint64_t</span><span class="p">,</span> <span class="kt">uint64_t</span><span class="p">,</span> <span class="kt">uint8_t</span> <span class="o">*</span><span class="p">,</span> <span class="n">DMAFunction</span> <span class="o">&amp;</span><span class="p">,</span>
+                        <span class="kt">void</span> <span class="o">*</span> <span class="o">=</span> <span class="k">nullptr</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">};</span>
+</pre></div>
+</td></tr></table></div>
+<div class="highlight-cpp notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>37
+38
+39
+40
+41
+42
+43
+44</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Interface</span> <span class="o">:</span> <span class="k">public</span> <span class="n">SimpleSSD</span><span class="o">::</span><span class="n">DMAInterface</span> <span class="p">{</span>
+ <span class="k">protected</span><span class="o">:</span>
+  <span class="n">Controller</span> <span class="o">*</span><span class="n">pController</span><span class="p">;</span>
+
+ <span class="k">public</span><span class="o">:</span>
+  <span class="k">virtual</span> <span class="kt">void</span> <span class="n">updateInterrupt</span><span class="p">(</span><span class="kt">uint16_t</span><span class="p">,</span> <span class="kt">bool</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="k">virtual</span> <span class="kt">void</span> <span class="nf">getVendorID</span><span class="p">(</span><span class="kt">uint16_t</span> <span class="o">&amp;</span><span class="p">,</span> <span class="kt">uint16_t</span> <span class="o">&amp;</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">};</span>
+</pre></div>
+</td></tr></table></div>
+<p>Two functions defined in <code class="docutils literal notranslate"><span class="pre">DMAInterface</span></code> are for Direct Memory Access, which is used when read/write data from/to system memory.
+The <code class="docutils literal notranslate"><span class="pre">updateInterrupt</span></code> function will send interrupt at specified interrupt vector to the host.
+The <code class="docutils literal notranslate"><span class="pre">getVendorID</span></code> function exists for <code class="docutils literal notranslate"><span class="pre">Identify</span> <span class="pre">Controller</span></code> NVMe command, because it requires vendor Id and subsystem vendor ID.</p>
+<p>Other controller protocols implemented in SimpleSSD has similar interface definition.</p>
+</div>
+<div class="section" id="controller-and-firmware">
+<h4>Controller and Firmware<a class="headerlink" href="#controller-and-firmware" title="Permalink to this headline">¶</a></h4>
+<p>We designed NVMe controller/firmware in three components - Controller, Subsystem and Namespace.
+<strong>Controller</strong> handles all queue operations - read request from SQ, write response to CQ and send interrupt.
+<strong>Subsystem</strong> handles all NVMe admin commands, manages Namespaces and issues I/O to underlying SSD interface.
+<strong>Namespace</strong> handles all NVMe I/O (NVM) commands.</p>
+<div class="section" id="controller">
+<h5>Controller<a class="headerlink" href="#controller" title="Permalink to this headline">¶</a></h5>
+<p>NVMe Controller, which handles all queue operations, is defined as <code class="docutils literal notranslate"><span class="pre">SimpleSSD::HIL::NVMe::Controller</span></code> in <code class="docutils literal notranslate"><span class="pre">hil/nvme/controller.hh</span></code>.
+Following figure shows how Controller works.</p>
+<div class="align-center figure" id="id6" style="width: 100%">
+<a class="reference internal image-reference" href="v2.0/../../images/firmware/nvme_controller.jpg"><img alt="v2.0/../../images/firmware/nvme_controller.jpg" src="v2.0/../../images/firmware/nvme_controller.jpg" style="width: 550px;" /></a>
+<p class="caption"><span class="caption-text">Controller operation diagram</span><a class="headerlink" href="#id6" title="Permalink to this image">¶</a></p>
+</div>
+<p>An <strong>Event Engine</strong> will invoke <code class="docutils literal notranslate"><span class="pre">Controller::work</span></code> function periodically.
+This period can be configured by <code class="docutils literal notranslate"><span class="pre">WorkPeriod</span></code> configuration parameter.
+The <code class="docutils literal notranslate"><span class="pre">Controller::work</span></code> function will collect all submission queues using configured arbitration method (<code class="docutils literal notranslate"><span class="pre">Controller::collectSQueue</span></code> function).
+New requests are inserted to internal FIFO queue (<code class="docutils literal notranslate"><span class="pre">Controller::lSQFIFO</span></code> variable).
+If we have new request(s), <code class="docutils literal notranslate"><span class="pre">Controller::handleRequest</span></code> function called.
+This function will invoke <code class="docutils literal notranslate"><span class="pre">AbstractSubsystem::submitRequest</span></code> function.</p>
+<p>After <code class="docutils literal notranslate"><span class="pre">AbstractSubsystem</span></code> handled the request, it calls <code class="docutils literal notranslate"><span class="pre">Controller::submit</span></code> function to submit completion to internal FIFO queue (<code class="docutils literal notranslate"><span class="pre">Controller::lCQFIFO</span></code> variable).
+<code class="docutils literal notranslate"><span class="pre">Controller::submit</span></code> function schedule event which calls <code class="docutils literal notranslate"><span class="pre">Controller::completion</span></code> function.
+<code class="docutils literal notranslate"><span class="pre">Controller::completion</span></code> function will fill CQ entry and post interrupt through <code class="docutils literal notranslate"><span class="pre">Controller::updateInterrupt</span></code> function.
+<code class="docutils literal notranslate"><span class="pre">Controller::updateInterrupt</span></code> function just calls <code class="docutils literal notranslate"><span class="pre">Interface::updateInterrupt</span></code>.</p>
+</div>
+<div class="section" id="subsystem">
+<h5>Subsystem<a class="headerlink" href="#subsystem" title="Permalink to this headline">¶</a></h5>
+<p>NVMe Subsystem, which handles admin commands, is defined as <code class="docutils literal notranslate"><span class="pre">SimpleSSD::HIL::NVMe::Subsystem</span></code> in <code class="docutils literal notranslate"><span class="pre">hil/nvme/subsystem.hh</span></code>.
+Open-channel SSD Subsystem is defined as <code class="docutils literal notranslate"><span class="pre">SimpleSSD::HIL::NVMe::OpenChannelSSD</span></code> in <code class="docutils literal notranslate"><span class="pre">hil/nvme/ocssd.hh</span></code>.
+Both subsystem inherits <code class="docutils literal notranslate"><span class="pre">SimpleSSD::HIL::NVMe::AbstractSubsystem</span></code> in <code class="docutils literal notranslate"><span class="pre">hil/nvme/abstract_subsystem.hh</span></code>.</p>
+<p>We will only explain NVMe Subsystem, because Open-Channel SSD Subsystem only has minor changes to NVMe subsystem.
+Following figure shows how Subsystem works.</p>
+<div class="align-center figure" id="id7" style="width: 100%">
+<a class="reference internal image-reference" href="v2.0/../../images/firmware/nvme_subsystem.jpg"><img alt="v2.0/../../images/firmware/nvme_subsystem.jpg" src="v2.0/../../images/firmware/nvme_subsystem.jpg" style="width: 520px;" /></a>
+<p class="caption"><span class="caption-text">Subsystem operation diagram</span><a class="headerlink" href="#id7" title="Permalink to this image">¶</a></p>
+</div>
+<p>NVMe Subsystem has two parts, first is command handling, second is I/O request handling.
+As Subsystem is able to have multiple namespaces, Subsystem should pass I/O requests from Namespaces to SSD interface of HIL.</p>
+<p>Each NVMe command passed through <code class="docutils literal notranslate"><span class="pre">Subsystem::submitCommand</span></code> function is routed to specific Namespace if command is I/O command.
+If arrived command is admin command, <code class="docutils literal notranslate"><span class="pre">submitCommand</span></code> function will check OPCODE and call proper function.</p>
+<p>All commands invoke <code class="docutils literal notranslate"><span class="pre">Controller::submit</span></code> function to submit completion.</p>
+<p>When I/O specific functions (<code class="docutils literal notranslate"><span class="pre">Subsystem::read,</span> <span class="pre">write,</span> <span class="pre">flush</span> <span class="pre">and</span> <span class="pre">trim</span></code>) called, these function will translate I/O unit and invoke functions in SSD interface (<code class="docutils literal notranslate"><span class="pre">HIL::HIL::read,</span> <span class="pre">write,</span> <span class="pre">flush</span> <span class="pre">and</span> <span class="pre">trim</span></code>).</p>
+<p>By splitting linear logical space of SSD, Subsystem can maintain multiple Namespaces.</p>
+<div class="align-center figure" id="id8" style="width: 100%">
+<a class="reference internal image-reference" href="v2.0/../../images/firmware/nvme_subsystem_ns.jpg"><img alt="v2.0/../../images/firmware/nvme_subsystem_ns.jpg" src="v2.0/../../images/firmware/nvme_subsystem_ns.jpg" style="width: 500px;" /></a>
+<p class="caption"><span class="caption-text">Namespace management diagram</span><a class="headerlink" href="#id8" title="Permalink to this image">¶</a></p>
+</div>
+<p>Let’s assume there is 1TB SSD which uses 4K logical block.
+We can allocate three Namespaces, which has 512GB, 256GB and 256GB capacity, respectively.
+Subsystem will allocate Namespaces by finding offset and length.
+Subsystem searches unallocated spaces which can fit allocating Namespace (first-fit).
+If no such space, allocation will be failed.</p>
+<p>Each Namespace has offset and length.
+This value will be used when translating I/O unit for SSD interface.</p>
+</div>
+<div class="section" id="namespace">
+<h5>Namespace<a class="headerlink" href="#namespace" title="Permalink to this headline">¶</a></h5>
+<p>NVMe Namespace, which handles I/O commands, is defined as <code class="docutils literal notranslate"><span class="pre">SimpleSSD::HIL::NVMe::Namespace</span></code> in <code class="docutils literal notranslate"><span class="pre">hil/nvme/namespace.hh</span></code>.
+It has similar structure with NVMe Subsystem (both are handling commands).</p>
+<p>When I/O command arrived, Namespace invokes corresponding function on Subsystem (<code class="docutils literal notranslate"><span class="pre">read,</span> <span class="pre">write,</span> <span class="pre">flush</span> <span class="pre">and</span> <span class="pre">trim</span></code>).</p>
+</div>
+</div>
+</div>
+<div class="section" id="serial-at-attachment">
+<h3>Serial AT Attachment<a class="headerlink" href="#serial-at-attachment" title="Permalink to this headline">¶</a></h3>
+<p>Serial AT Attachment - SATA - is conventional interface for SSDs and HDDs.</p>
+<p>In SimpleSSD, we implemented SATA HBA based on <a class="reference external" href="https://www.intel.co.kr/content/dam/www/public/us/en/documents/technical-specifications/serial-ata-ahci-spec-rev1-3-1.pdf">Serial ATA Advanced host Controller Interface (AHCI) 1.3.1</a> and SATA PHY and protocol based on <a class="reference external" href="https://sata-io.org/developers/purchase-specification">Serial ATA Revision 3.0</a>.</p>
+<p>Following figure shows how each components are connected.</p>
+<div class="align-center figure" id="id9" style="width: 100%">
+<a class="reference internal image-reference" href="v2.0/../../images/firmware/sata_overview.jpg"><img alt="v2.0/../../images/firmware/sata_overview.jpg" src="v2.0/../../images/firmware/sata_overview.jpg" style="width: 450px;" /></a>
+<p class="caption"><span class="caption-text">Components of SATA model</span><a class="headerlink" href="#id9" title="Permalink to this image">¶</a></p>
+</div>
+<div class="section" id="id1">
+<h4>Host interface<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h4>
+<p>A <code class="docutils literal notranslate"><span class="pre">SimpleSSD::HIL::SATA::Interface</span></code> abstract class defined in <code class="docutils literal notranslate"><span class="pre">hil/sata/interface.hh</span></code> provides common API to simulators.
+You can check <code class="docutils literal notranslate"><span class="pre">SATAInterface</span></code> class defined in <code class="docutils literal notranslate"><span class="pre">src/dev/storage/sata_interface.hh</span></code> of SimpleSSD-FullSystem to know how they inherits the class.</p>
+<p><code class="docutils literal notranslate"><span class="pre">SimpleSSD::HIL::SATA::Interface</span></code> only contains <code class="docutils literal notranslate"><span class="pre">virtual</span> <span class="pre">void</span> <span class="pre">updateInterrupt(bool)</span> <span class="pre">=</span> <span class="pre">0;</span></code> for interrupt posting.</p>
+</div>
+<div class="section" id="host-bus-adapter">
+<h4>Host Bus Adapter<a class="headerlink" href="#host-bus-adapter" title="Permalink to this headline">¶</a></h4>
+<p>SATA needs host-side controller, which called Host Bus Adapter (HBA).
+Multiple vendors designs own HBA, but we used <a class="reference external" href="https://www.intel.co.kr/content/dam/www/public/us/en/documents/technical-specifications/serial-ata-ahci-spec-rev1-3-1.pdf">AHCI specification</a> because it is available on public domain.</p>
+<p>AHCI HBA is defined as <code class="docutils literal notranslate"><span class="pre">SimpleSSD::HIL::SATA::HBA</span></code> in <code class="docutils literal notranslate"><span class="pre">hil/sata/hba.hh</span></code>.</p>
+<p>We implemented only one port because only one SimpleSSD instance will connected to the HBA.</p>
+<div class="align-center figure" id="id10" style="width: 100%">
+<a class="reference internal image-reference" href="v2.0/../../images/firmware/sata_hba.jpg"><img alt="v2.0/../../images/firmware/sata_hba.jpg" src="v2.0/../../images/firmware/sata_hba.jpg" style="width: 550px;" /></a>
+<p class="caption"><span class="caption-text">HBA operation diagram</span><a class="headerlink" href="#id10" title="Permalink to this image">¶</a></p>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Interface</span></code> write AHCI registers (Generic Host Controller registers and Port registers) through <code class="docutils literal notranslate"><span class="pre">HBA::writeAHCIRegister</span></code> function.
+Writing bits to <code class="docutils literal notranslate"><span class="pre">PxCI</span></code> register indicates corresponding NCQ has new request.
+<code class="docutils literal notranslate"><span class="pre">HBA</span></code> will invoke <code class="docutils literal notranslate"><span class="pre">HBA::processCommand</span></code> function to enqueue request to internal FIFO (<code class="docutils literal notranslate"><span class="pre">HBA::lRequestQueue</span></code>).</p>
+<p>As same as NVMe, <strong>Event Engine</strong> will periodically invoke <code class="docutils literal notranslate"><span class="pre">HBA::work</span></code> function.
+This function will call <code class="docutils literal notranslate"><span class="pre">HBA::handleRequest</span></code> function and <code class="docutils literal notranslate"><span class="pre">Device::submitCommand</span></code> function will be called.</p>
+<p>After command handling, <code class="docutils literal notranslate"><span class="pre">Device</span></code> calls <code class="docutils literal notranslate"><span class="pre">HBA::submitFIS</span></code> function to return response FIS to the host.
+<code class="docutils literal notranslate"><span class="pre">HBA::submitFIS</span></code> function enqueue response to <code class="docutils literal notranslate"><span class="pre">HBA::lResponseQueue</span></code> and schedule event which calls <code class="docutils literal notranslate"><span class="pre">HBA::handleResponse</span></code> function.
+<code class="docutils literal notranslate"><span class="pre">handleResponse</span></code> function will read first response from internal FIFO, write to NCQ and send interrupt using <code class="docutils literal notranslate"><span class="pre">Interface::updateInterrupt</span></code> function.</p>
+</div>
+<div class="section" id="device">
+<h4>Device<a class="headerlink" href="#device" title="Permalink to this headline">¶</a></h4>
+<p>Device, which connected to HBA, is defined as <code class="docutils literal notranslate"><span class="pre">SimpleSSD::HIL::SATA::Device</span></code> in <code class="docutils literal notranslate"><span class="pre">hil/sata/device.hh</span></code>.</p>
+<p>Device can handle following ATA commands defined in <a class="reference external" href="http://www.t13.org/Documents/UploadedDocuments/docs2009/d2015r2-ATAATAPI_Command_set_-_2_ACS-2.pdf">ATA/ATAPI Command Set - 2 (ACS-2)</a> and <a class="reference external" href="http://www.t13.org/documents/uploadeddocuments/docs2008/d1699r6a-ata8-acs.pdf">AT Attachment 8 - ATA/ATAPI Command Set (ATA8-ACS)</a>.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">FLUSH</span> <span class="pre">CACHE</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">FLUSH</span> <span class="pre">CACHE</span> <span class="pre">EXT</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">IDENTIFY</span> <span class="pre">DEVICE</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">READ</span> <span class="pre">DMA</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">READ</span> <span class="pre">DMA</span> <span class="pre">EXT</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">READ</span> <span class="pre">FPDMA</span> <span class="pre">QUEUED</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">READ</span> <span class="pre">SECTOR</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">READ</span> <span class="pre">SECTOR</span> <span class="pre">EXT</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">READ</span> <span class="pre">VERIFY</span> <span class="pre">SECTOR</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">READ</span> <span class="pre">VERIFY</span> <span class="pre">SECTOR</span> <span class="pre">EXT</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">SET</span> <span class="pre">FEATURE</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">WRITE</span> <span class="pre">DMA</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">WRITE</span> <span class="pre">DMA</span> <span class="pre">EXT</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">WRITE</span> <span class="pre">FPDMA</span> <span class="pre">QUEUED</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">WRITE</span> <span class="pre">SECTOR</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">WRITE</span> <span class="pre">SECTOR</span> <span class="pre">EXT</span></code></p></li>
+</ul>
+<div class="align-center figure" id="id11" style="width: 100%">
+<a class="reference internal image-reference" href="v2.0/../../images/firmware/sata_device.jpg"><img alt="v2.0/../../images/firmware/sata_device.jpg" src="v2.0/../../images/firmware/sata_device.jpg" style="width: 500px;" /></a>
+<p class="caption"><span class="caption-text">Device operation diagram</span><a class="headerlink" href="#id11" title="Permalink to this image">¶</a></p>
+</div>
+<p>Device implementation is simple compared to NVMe Subsystem, because they don’t need to manage Namespace.
+All commands passed through <code class="docutils literal notranslate"><span class="pre">Device::submitCommand</span></code> function will handled properly.
+After completion, each command function will call <code class="docutils literal notranslate"><span class="pre">HBA::submitFIS</span></code> to report command result to the <code class="docutils literal notranslate"><span class="pre">HBA</span></code>.
+I/O related commands <code class="docutils literal notranslate"><span class="pre">READ*</span></code>, <code class="docutils literal notranslate"><span class="pre">WRITE*</span></code> and <code class="docutils literal notranslate"><span class="pre">FLUSH*</span></code> will invoke functions of SSD interface (<code class="docutils literal notranslate"><span class="pre">HIL::HIL::read,</span> <span class="pre">write</span> <span class="pre">and</span> <span class="pre">flush</span></code>).</p>
+</div>
+</div>
+<div class="section" id="universal-flash-storage">
+<h3>Universal Flash Storage<a class="headerlink" href="#universal-flash-storage" title="Permalink to this headline">¶</a></h3>
+<p>Universal Flash Storage - UFS - is interface designed for mobile storage.
+Most of smartphones uses UFS interfaces.</p>
+<p>In SimpleSSD, we implemented UFS Host Controller Interface based on <a class="reference external" href="https://www.jedec.org/sites/default/files/docs/JESD223.pdf">Universal Flash Storage (UFS) Host Controller Interface (JESD223)</a>, UFS PHY based on <a class="reference external" href="https://mipi.org/specifications/m-phy">Specification for M-PHY Version 4.0</a> and UFS protocol based on <a class="reference external" href="https://www.jedec.org/sites/default/files/docs/JESD220C.pdf">Universal Flash Storage (UFS) Version 2.1 (JESD220C)</a>.</p>
+<p>Implementation of UFS is very similar to SATA, as shown as following figure.</p>
+<div class="align-center figure" id="id12" style="width: 100%">
+<a class="reference internal image-reference" href="v2.0/../../images/firmware/ufs_overview.jpg"><img alt="v2.0/../../images/firmware/ufs_overview.jpg" src="v2.0/../../images/firmware/ufs_overview.jpg" style="width: 450px;" /></a>
+<p class="caption"><span class="caption-text">Components of SATA model</span><a class="headerlink" href="#id12" title="Permalink to this image">¶</a></p>
+</div>
+<div class="section" id="id2">
+<h4>Host interface<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h4>
+<p>A <code class="docutils literal notranslate"><span class="pre">SimpleSSD::HIL::UFS::Interface</span></code> abstract class defined in <code class="docutils literal notranslate"><span class="pre">hil/ufs/interface.hh</span></code> provides common API to simulators.
+You can check <code class="docutils literal notranslate"><span class="pre">UFSInterface</span></code> class defined in <code class="docutils literal notranslate"><span class="pre">src/dev/storage/ufs_interface.hh</span></code> of SimpleSSD-FullSystem to know how they inherits the class.</p>
+<p><code class="docutils literal notranslate"><span class="pre">SimpleSSD::HIL::UFS::Interface</span></code> only contains two functions (<code class="docutils literal notranslate"><span class="pre">generateInterrupt()</span></code> and <code class="docutils literal notranslate"><span class="pre">clearInterrupt()</span></code>) for interrupt posting.</p>
+</div>
+<div class="section" id="host-controller-interface">
+<h4>Host controller interface<a class="headerlink" href="#host-controller-interface" title="Permalink to this headline">¶</a></h4>
+<p>Like SATA, UFS employs host controller named UFS Host Controller Interface - UFSHCI.
+This interface follows <a class="reference external" href="https://www.jedec.org/sites/default/files/docs/JESD223.pdf">Universal Flash Storage (UFS) Host Controller Interface (JESD223)</a> specification from JEDEC.</p>
+<p>UFSHCI is defined as <code class="docutils literal notranslate"><span class="pre">SimpleSSD::HIL::UFS::Host</span></code> in <code class="docutils literal notranslate"><span class="pre">hil/ufs/host.hh</span></code>.</p>
+<div class="align-center figure" id="id13" style="width: 100%">
+<a class="reference internal image-reference" href="v2.0/../../images/firmware/ufs_host.jpg"><img alt="v2.0/../../images/firmware/ufs_host.jpg" src="v2.0/../../images/firmware/ufs_host.jpg" style="width: 550px;" /></a>
+<p class="caption"><span class="caption-text">UFS Host Controller Interface operation diagram</span><a class="headerlink" href="#id13" title="Permalink to this image">¶</a></p>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Interface</span></code> write UFSHCI registers through <code class="docutils literal notranslate"><span class="pre">Host::writeRegister</span></code> function.</p>
+<p>UFS defines three types of commands:</p>
+<ul class="simple">
+<li><p>UFS Transport Protocol Transfer (UTP Transfer)</p></li>
+<li><p>UFS Transport Protocol Task Management (UTP Task)</p></li>
+<li><p>UFS InterConnect Command (UIC Command)</p></li>
+</ul>
+<p>Each command uses different doorbell for request arrival notification.
+You can check <code class="docutils literal notranslate"><span class="pre">REG_UTRLDBR</span></code> for UTP Transfer, <code class="docutils literal notranslate"><span class="pre">REG_UTMRLDBR</span></code> for UTP Task and <code class="docutils literal notranslate"><span class="pre">REG_UICCMDR</span></code> for UIC Command.</p>
+<p>As UTP Task is not implemented in UFS 2.1 and Linux Kernel, we did not implemented them in SimpleSSD.
+UIC Commands are only used when initializing UFS hardware - jobs such as boot up M-PHY link and so on.
+So we only implemented two mandatory commands.</p>
+<p>As same as NVMe and SATA, <strong>Event Engine</strong> will periodically invoke <code class="docutils literal notranslate"><span class="pre">Host::work</span></code> function.
+<code class="docutils literal notranslate"><span class="pre">Host::handleRequest</span></code> function is invoked by <code class="docutils literal notranslate"><span class="pre">work</span></code> and determine the request is valid.
+<code class="docutils literal notranslate"><span class="pre">Host::processUTPCommand</span></code> parse the request and call proper handler for the request.</p>
+<p>UFS Transfer defines three types of commands:</p>
+<ul class="simple">
+<li><p>Command (SCSI protocol)</p></li>
+<li><p>Native UFS Command</p></li>
+<li><p>Device Management Command</p></li>
+</ul>
+<p><em>Native UFS Command</em> is not defined in UFS 2.1 specification.
+So we implemented <em>Command</em> and <em>Device Management Command</em>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">Device::processCommand</span></code> function will handle <em>Command</em> and <code class="docutils literal notranslate"><span class="pre">Device::processQueryCommand</span></code> function will handle <em>Device Management Command</em>.</p>
+<p>Completion routine also defined in <code class="docutils literal notranslate"><span class="pre">handleRequest</span></code> function.
+See lambda functions named <code class="docutils literal notranslate"><span class="pre">doRequest</span></code> and <code class="docutils literal notranslate"><span class="pre">doWrite</span></code>.
+<code class="docutils literal notranslate"><span class="pre">doWrite</span></code> function schedule completion routine (<code class="docutils literal notranslate"><span class="pre">Host::completion</span></code>).
+<code class="docutils literal notranslate"><span class="pre">completion</span></code> function will send interrupt using <code class="docutils literal notranslate"><span class="pre">Interface::updateInterrupt</span></code> function.</p>
+</div>
+<div class="section" id="id3">
+<h4>Device<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h4>
+<p>Device, which connected to UFSHCI, is defined as <code class="docutils literal notranslate"><span class="pre">SimpleSSD::HIL::UFS::Device</span></code> in <code class="docutils literal notranslate"><span class="pre">hil/ufs/device.hh</span></code>.</p>
+<p>UFS used SCSI command sets for I/O (<a class="reference external" href="http://t10.org/ftp/t10/document.05/05-344r0.pdf">SCSI Block Commands - 3 (SBC-3)</a> and <a class="reference external" href="http://www.t10.org/members/w_spc4.htm">SCSI Primary Commands - 4 (SPC-4)</a>).
+Device can handle following SCSI commands.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">INQUERY</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">MODE</span> <span class="pre">SELECT</span> <span class="pre">10</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">MODE</span> <span class="pre">SENSE</span> <span class="pre">10</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">READ</span> <span class="pre">6</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">READ</span> <span class="pre">10</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">READ</span> <span class="pre">CAPACITY</span> <span class="pre">10</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">READ</span> <span class="pre">CAPACITY</span> <span class="pre">16</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">START</span> <span class="pre">STOP</span> <span class="pre">UNIT</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">TEST</span> <span class="pre">UNIT</span> <span class="pre">READY</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">REPORT</span> <span class="pre">LUNS</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">VERIFY</span> <span class="pre">10</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">WRITE</span> <span class="pre">6</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">WRITE</span> <span class="pre">10</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">SYNCHRONIZE</span> <span class="pre">CACHE</span> <span class="pre">10</span></code></p></li>
+</ul>
+<div class="align-center figure" id="id14" style="width: 100%">
+<a class="reference internal image-reference" href="v2.0/../../images/firmware/ufs_device.jpg"><img alt="v2.0/../../images/firmware/ufs_device.jpg" src="v2.0/../../images/firmware/ufs_device.jpg" style="width: 500px;" /></a>
+<p class="caption"><span class="caption-text">Device operation diagram</span><a class="headerlink" href="#id14" title="Permalink to this image">¶</a></p>
+</div>
+<p>Device implementation is similar to SATA, but they have two command handling functions - <code class="docutils literal notranslate"><span class="pre">processCommand</span></code> and <code class="docutils literal notranslate"><span class="pre">processQueryCommand</span></code>.
+After completion, each SCSI command function will call callback handler provided as parameter of <code class="docutils literal notranslate"><span class="pre">processCommand</span></code> function.
+<code class="docutils literal notranslate"><span class="pre">processQueryCommand</span></code> will return results immediately.
+I/O related commands <code class="docutils literal notranslate"><span class="pre">READ*</span></code>, <code class="docutils literal notranslate"><span class="pre">WRITE*</span></code> and <code class="docutils literal notranslate"><span class="pre">SYNCHRONIZE</span> <span class="pre">CACHE</span></code> will invoke functions of SSD interface (<code class="docutils literal notranslate"><span class="pre">HIL::HIL::read,</span> <span class="pre">write</span> <span class="pre">and</span> <span class="pre">flush</span></code>).</p>
+</div>
+</div>
+</div>
+<div class="section" id="ssd-interface">
+<h2>SSD interface<a class="headerlink" href="#ssd-interface" title="Permalink to this headline">¶</a></h2>
+<p>SSD interface of HIL is quite simple.
+It is defined as <code class="docutils literal notranslate"><span class="pre">SimpleSSD::HIL::HIL</span></code> in <code class="docutils literal notranslate"><span class="pre">hil/hil.hh</span></code>.
+It receives I/O request from host controllers, passing to <a class="reference internal" href="icl.html"><span class="doc">Internal Cache Layer</span></a>.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="icl.html" class="btn btn-neutral float-right" title="Internal Cache Layer" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../tips/disk.html" class="btn btn-neutral float-left" title="Create Disk Image for gem5" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018 CAMELab All rights reserved
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+    
+
+  
+
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

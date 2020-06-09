@@ -1,0 +1,343 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Parallelism Abstraction Layer &mdash; SimpleSSD 2.0.12 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/color.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/table.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/readthedocs-doc-embed.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Power and Energy Model" href="power.html" />
+    <link rel="prev" title="DRAM Latency Model" href="dram.html" /> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> SimpleSSD
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                2.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">User Documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../instructions/start.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../instructions/config.html">Configuration Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../instructions/run.html">Running Instructions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../instructions/analyze.html">Analyze Simulation Results</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Tips</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tips/kernel.html">Build Linux Kernel for gem5</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tips/program.html">Build User-Level Program for gem5</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tips/disk.html">Create Disk Image for gem5</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Firmware Model Documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="hil.html">Host Interface Layer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="icl.html">Internal Cache Layer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ftl.html">Flash Translation Layer</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Hardware Model Documentation</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="cpu.html">Firmware Execution Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dram.html">DRAM Latency Model</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Parallelism Abstraction Layer</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#abstract-class">Abstract Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#palold">PALOLD</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#parallelism-and-page-allocation">Parallelism and Page Allocation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#simplified-timeline-scheduling">Simplified Timeline Scheduling</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="power.html">Power and Energy Model</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Resources</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../download.html">Downloads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../matrix.html">Status Matrix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ack.html">Acknowledgement</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+      
+      <div style="position: absolute; bottom: 3em; overflow-y: hidden;" class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+        <span class="rst-current-version" data-toggle="rst-current-version">
+          <span class="fa fa-book"> Other Versions</span>
+          v2.0.12
+          <span class="fa fa-caret-down"></span>
+        </span>
+        <div class="rst-other-versions">
+          <dl>
+            <dt>Languages</dt>
+            <dd><a href="/en/v2.0.12">en</a></dd>
+          </dl>
+          <dl>
+            <dt>Versions</dt>
+              
+            <dd><a href="pal.html">v2.0.12</a></dd>
+              
+          </dl>
+        </div>
+      </div>
+      
+      <div style="position: absolute; bottom: 0px; background-color: #272525;">
+        <div style="width: 3em; height: 3em; float: left; margin-right: 0.2em;">
+          <a href="http://camelab.org" rel="nofollow" target="_blank">
+            <img src="../_static/image/camelab.png" style="height: 2.8em; margin: 0.1em auto; display: block;">
+          </a>
+        </div>
+        <div>
+          <span class="ack" style="margin-top: 0.3em; color: #d9d9d9; font-size: 14px; line-height: 20px;">
+            SimpleSSD is designed, developed and maintained by
+            <a href="http://camelab.org" rel="nofollow" target="_blank">CAMELab.</a>
+          </span>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">SimpleSSD</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>Parallelism Abstraction Layer</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="parallelism-abstraction-layer">
+<h1>Parallelism Abstraction Layer<a class="headerlink" href="#parallelism-abstraction-layer" title="Permalink to this headline">¶</a></h1>
+<p>In this page, we will explain how we design and implement NAND flash array model, named Parallelism Abstraction Layer - PAL.</p>
+<p>PAL provides abstract class, so you can implement your own NVM latency model by inherit the class.
+By default, we provide <code class="docutils literal notranslate"><span class="pre">PALOLD</span></code>, derived from SimpleSSD 1.0.</p>
+<div class="section" id="abstract-class">
+<h2>Abstract Class<a class="headerlink" href="#abstract-class" title="Permalink to this headline">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">AbstractPAL</span></code> class is defined in <code class="docutils literal notranslate"><span class="pre">pal/abstract_pal.hh</span></code>.
+It defines three virtual functions (+ three virtual functions derived from <code class="docutils literal notranslate"><span class="pre">StatObject</span></code>).</p>
+<p>Current <code class="docutils literal notranslate"><span class="pre">PALOLD</span></code> does not supports advanced NAND operations, such as copyback, read/write cache, multi-plane and so on.
+We will update <code class="docutils literal notranslate"><span class="pre">AbstractPAL</span></code> when we replace <code class="docutils literal notranslate"><span class="pre">PALOLD</span></code> with updated PAL.</p>
+</div>
+<div class="section" id="palold">
+<h2>PALOLD<a class="headerlink" href="#palold" title="Permalink to this headline">¶</a></h2>
+<p>Original PAL source code derived from SimpleSSD 1.0 can be found at <code class="docutils literal notranslate"><span class="pre">pal/old</span></code> directory.
+<code class="docutils literal notranslate"><span class="pre">PALOLD</span></code> class defined in <code class="docutils literal notranslate"><span class="pre">pal/pal_old.hh</span></code> wraps all PAL codes.</p>
+<p>Original PAL supports per-die/per-plane statistics but current <code class="docutils literal notranslate"><span class="pre">PALOLD</span></code> disabled them (calculated, not printed).
+If you need such detailed statistics, you can modify <code class="docutils literal notranslate"><span class="pre">PALStatistics.*</span></code> files inside the <code class="docutils literal notranslate"><span class="pre">pal/old</span></code> directory.</p>
+<p>Source codes inside <code class="docutils literal notranslate"><span class="pre">pal/old</span></code> are quite complicated and hard-to-read.
+You may not want to modify them.</p>
+<p>Here is brief explanation of each files:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Latency*</span></code>: These files calculate NAND page offset (LSB/CSB/MSB) and consumed energy.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">PAL2_TimeSlot.*</span></code>: These files define timeslot, the unit of flash transaction scheduling.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">PALStatistics.*</span></code>: These files calculate all statistics of all NAND flash array components.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">PAL2.*</span></code>: These file defines <code class="docutils literal notranslate"><span class="pre">PAL2</span></code> class, top class of PAL.</p></li>
+</ul>
+<div class="section" id="parallelism-and-page-allocation">
+<h3>Parallelism and Page Allocation<a class="headerlink" href="#parallelism-and-page-allocation" title="Permalink to this headline">¶</a></h3>
+<div class="align-center figure" id="id1" style="width: 100%">
+<a class="reference internal image-reference" href="v2.0/../../images/hardware/pal_parallelism.jpg"><img alt="v2.0/../../images/hardware/pal_parallelism.jpg" src="v2.0/../../images/hardware/pal_parallelism.jpg" style="width: 100%;" /></a>
+<p class="caption"><span class="caption-text">Different level of parallelism</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+</div>
+<p>In order to improve the SSD performance, there are four different level of parallelism methods which are system-level parallel access methods (channel striping and way pipelining) and flash-level parallel access methods (die interleaving and plane sharing).
+As shown in above Figure, an I/O request is striped over multiple channels (channel striping).
+Although an I/O request cannot be perfectly striped in parallel over multiple-ways since the ways share the channel, individual NAND flash chip (package) can work simultaneously due to NAND flash transaction’ multiple phases (way pipelining).
+Not only for the system-level parallelism but the striped or pipelined I/O request can be further interleaved within a NAND flash chip (die interleaving).
+In addition, multiple planes simultaneously work using shared wordline(s).
+Note that different vendors use different naming rules for parallelisms.
+Channel striping (= superblock, parallel-request scheme), way pipelining (= gaining, micron-style interleaving, package interleaving), die interleaving (= channel interleaving, inter-plane interleaving, interleaved die operation, bank interleaving), and plane sharing (= micron-style superblock, plane-pairs, super-page, multiple-mode operation).</p>
+<p>To enable the different level of parallelisms when the flash translation layer (FTL) allocates a page, SimpleSSD provides configuration parameters, <code class="docutils literal notranslate"><span class="pre">SuperblockSize</span></code> and <code class="docutils literal notranslate"><span class="pre">PageAllocation</span></code> which configures size of super block and determines physical page address disassemble orders.</p>
+</div>
+<div class="section" id="simplified-timeline-scheduling">
+<h3>Simplified Timeline Scheduling<a class="headerlink" href="#simplified-timeline-scheduling" title="Permalink to this headline">¶</a></h3>
+<div class="align-center figure" id="id2" style="width: 100%">
+<a class="reference internal image-reference" href="v2.0/../../images/hardware/pal_timeline.jpg"><img alt="v2.0/../../images/hardware/pal_timeline.jpg" src="v2.0/../../images/hardware/pal_timeline.jpg" style="width: 100%;" /></a>
+<p class="caption"><span class="caption-text">Different level of parallelism</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+</div>
+<p>As shown in Figure a, NAND flash’ PROGRAM/READ latency model is complicated due to multiple cycle types such as command, address, data input, and output.
+In order to simplify the traditional SSD operations, SimpleSSD models the latency with three categories, pre-dma, mem-op, and post-dma.
+<strong>Pre-dma</strong> consists of opcode, address, READ operation data, and command which should be transferred before the flash memory operation.
+Thus, pre-dma can be configured with page size, DMA frequency, command and address delay parameters.
+<strong>Mem-op</strong> is a latency of NAND-flash operation itself (READ/PROGRAM).
+It can be decided by considering NAND flash types (SLC/MLC/TLC), operation types (READ/WRITE), and page types (MSB/CSB/LSB).
+In contrast to pre-dma, <strong>post-dma</strong> includes WRITE operation data, and command which should be transferred after NAND-flash memory operation.</p>
+<p>Since the pre-dma and post-dma consume CHANNEL resource and mem-op consumes DIE resource, there can be conflicts as shown in Figure b and c.
+If the two request are issued to pages which use same channel 0 and different die 0 and 1, there are pre-dma and post-dma conflicts due to channel sharing.
+In addiion, if two requests use same channel and die, there are not only for pre-dma and post-dma conflicts but also the mem-op conflict due to die sharing.</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="power.html" class="btn btn-neutral float-right" title="Power and Energy Model" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="dram.html" class="btn btn-neutral float-left" title="DRAM Latency Model" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018 CAMELab All rights reserved
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+    
+
+  
+
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

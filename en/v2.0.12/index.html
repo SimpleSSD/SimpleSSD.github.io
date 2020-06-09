@@ -1,0 +1,416 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>SimpleSSD &mdash; SimpleSSD 2.0.12 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/color.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/table.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/readthedocs-doc-embed.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Getting Started" href="instructions/start.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="#" class="icon icon-home"> SimpleSSD
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                2.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">User Documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="instructions/start.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="instructions/config.html">Configuration Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="instructions/run.html">Running Instructions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="instructions/analyze.html">Analyze Simulation Results</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Tips</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="tips/kernel.html">Build Linux Kernel for gem5</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tips/program.html">Build User-Level Program for gem5</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tips/disk.html">Create Disk Image for gem5</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Firmware Model Documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="v2.0/hil.html">Host Interface Layer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="v2.0/icl.html">Internal Cache Layer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="v2.0/ftl.html">Flash Translation Layer</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Hardware Model Documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="v2.0/cpu.html">Firmware Execution Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="v2.0/dram.html">DRAM Latency Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="v2.0/pal.html">Parallelism Abstraction Layer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="v2.0/power.html">Power and Energy Model</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Resources</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="download.html">Downloads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="matrix.html">Status Matrix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ack.html">Acknowledgement</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+      
+      <div style="position: absolute; bottom: 3em; overflow-y: hidden;" class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+        <span class="rst-current-version" data-toggle="rst-current-version">
+          <span class="fa fa-book"> Other Versions</span>
+          v2.0.12
+          <span class="fa fa-caret-down"></span>
+        </span>
+        <div class="rst-other-versions">
+          <dl>
+            <dt>Languages</dt>
+            <dd><a href="/en/v2.0.12">en</a></dd>
+          </dl>
+          <dl>
+            <dt>Versions</dt>
+              
+            <dd><a href="index.html">v2.0.12</a></dd>
+              
+          </dl>
+        </div>
+      </div>
+      
+      <div style="position: absolute; bottom: 0px; background-color: #272525;">
+        <div style="width: 3em; height: 3em; float: left; margin-right: 0.2em;">
+          <a href="http://camelab.org" rel="nofollow" target="_blank">
+            <img src="_static/image/camelab.png" style="height: 2.8em; margin: 0.1em auto; display: block;">
+          </a>
+        </div>
+        <div>
+          <span class="ack" style="margin-top: 0.3em; color: #d9d9d9; font-size: 14px; line-height: 20px;">
+            SimpleSSD is designed, developed and maintained by
+            <a href="http://camelab.org" rel="nofollow" target="_blank">CAMELab.</a>
+          </span>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">SimpleSSD</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="#">Docs</a> &raquo;</li>
+        
+      <li>SimpleSSD</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="simplessd">
+<h1>SimpleSSD<a class="headerlink" href="#simplessd" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="open-source-licensed-full-system-ssd-simulator">
+<h2>Open-Source Licensed Full-system SSD Simulator<a class="headerlink" href="#open-source-licensed-full-system-ssd-simulator" title="Permalink to this headline">¶</a></h2>
+<div class="align-center figure align-right">
+<a class="reference internal image-reference" href="../images/index/logo.jpg"><img alt="../images/index/logo.jpg" src="../images/index/logo.jpg" style="width: 250px;" /></a>
+</div>
+<p>Welcome to the SimpleSSD website.
+SimpleSSD is a high-fidelity simulator that models all detailed characteristics of hardware and software, to build up a complete storage stack from scratch and simplify the nondescript features of storage internals.
+In contrast to existing SSD simulators, it can accommodate a complete storage stack and evaluate the performance of SSDs along with diverse memory technologies and micro-architectures by integrating into publicly-available full system simulator (<a class="reference external" href="http://gem5.org">gem5</a>).
+Consequently, it allows system designers and architects to explore the full design space at different levels of system abstraction.
+The SimpleSSD simulation model has been validated with a real devices.</p>
+<p>You can download SimpleSSD from <a class="reference internal" href="download.html"><span class="doc">Downloads</span></a>.
+If you’d like to use the SimpleSSD simulator in your research, please cite our paper.
+For convenience, here is the <a class="reference internal" href="ack.html"><span class="doc">Acknowledgement</span></a>.</p>
+</div>
+<div class="section" id="demo-video">
+<h2>Demo Video<a class="headerlink" href="#demo-video" title="Permalink to this headline">¶</a></h2>
+<p>Here is the demo video what we used for MICRO 51 presentation.
+This video includes NVMe and Open-Channel SSD interface demo.</p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/KpsAhsXPSMo?rel=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe><div class="line-block">
+<div class="line"><br /></div>
+</div>
+</div>
+<div class="section" id="contents-of-simplessd-website">
+<h2>Contents of SimpleSSD Website<a class="headerlink" href="#contents-of-simplessd-website" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<p class="caption"><span class="caption-text">User Documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="instructions/start.html">Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="instructions/start.html#simplessd-fullsystem">SimpleSSD-FullSystem</a></li>
+<li class="toctree-l2"><a class="reference internal" href="instructions/start.html#simplessd-standalone">SimpleSSD-Standalone</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="instructions/config.html">Configuration Files</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="instructions/config.html#simplessd">SimpleSSD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="instructions/config.html#simplessd-standalone">SimpleSSD-Standalone</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="instructions/run.html">Running Instructions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="instructions/run.html#execution-of-simplessd-fullsystem">Execution of SimpleSSD-FullSystem</a></li>
+<li class="toctree-l2"><a class="reference internal" href="instructions/run.html#execution-of-simplessd-standalone">Execution of SimpleSSD-Standalone</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="instructions/analyze.html">Analyze Simulation Results</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="instructions/analyze.html#analyze-simplessd-log-and-statistics">Analyze SimpleSSD Log and Statistics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="instructions/analyze.html#analyze-log-from-linux-kernel">Analyze Log from Linux Kernel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="instructions/analyze.html#analyze-debug-log-and-statistics-from-simulator">Analyze Debug Log and Statistics from Simulator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="instructions/analyze.html#analyze-on-user-level">Analyze on user-level</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<p class="caption"><span class="caption-text">Tips</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="tips/kernel.html">Build Linux Kernel for gem5</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tips/kernel.html#prerequisite">Prerequisite</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tips/kernel.html#build-linux-kernel">Build Linux Kernel</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tips/program.html">Build User-Level Program for gem5</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tips/program.html#arm-architecture">ARM Architecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tips/program.html#x86-architecture">X86 Architecture</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tips/disk.html">Create Disk Image for gem5</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tips/disk.html#create-empty-file">Create empty file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tips/disk.html#mount-file-as-loop-device">Mount file as loop device</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tips/disk.html#create-partition">Create partition</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tips/disk.html#mount-unmount-partition">Mount/Unmount partition</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tips/disk.html#use-in-gem5-and-simplessd">Use in gem5 and SimpleSSD</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<p class="caption"><span class="caption-text">Firmware Model Documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="v2.0/hil.html">Host Interface Layer</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="v2.0/hil.html#host-controller">Host controller</a></li>
+<li class="toctree-l2"><a class="reference internal" href="v2.0/hil.html#ssd-interface">SSD interface</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="v2.0/icl.html">Internal Cache Layer</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="v2.0/icl.html#abstract-class">Abstract Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="v2.0/icl.html#set-associative-cache">Set-Associative Cache</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="v2.0/ftl.html">Flash Translation Layer</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="v2.0/ftl.html#abstract-class">Abstract Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="v2.0/ftl.html#page-level-ftl">Page-level FTL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="v2.0/ftl.html#random-i-o-tweak">Random I/O tweak</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<p class="caption"><span class="caption-text">Hardware Model Documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="v2.0/cpu.html">Firmware Execution Model</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="v2.0/cpu.html#cpu-and-core">CPU and Core</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="v2.0/dram.html">DRAM Latency Model</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="v2.0/dram.html#abstractclass">AbstractClass</a></li>
+<li class="toctree-l2"><a class="reference internal" href="v2.0/dram.html#simpledram">SimpleDRAM</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="v2.0/pal.html">Parallelism Abstraction Layer</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="v2.0/pal.html#abstract-class">Abstract Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="v2.0/pal.html#palold">PALOLD</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="v2.0/power.html">Power and Energy Model</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="v2.0/power.html#embedded-core">Embedded Core</a></li>
+<li class="toctree-l2"><a class="reference internal" href="v2.0/power.html#dram">DRAM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="v2.0/power.html#nand-flash-array">NAND flash array</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<p class="caption"><span class="caption-text">Resources</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="download.html">Downloads</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="download.html#source-codes">Source Codes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="download.html#full-system-files">Full-System Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="download.html#ssd-configuration-files">SSD Configuration Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="download.html#software-license">Software License</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="matrix.html">Status Matrix</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="matrix.html#arm-architecture">ARM Architecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="matrix.html#x86-architecture">x86 Architecture</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="ack.html">Acknowledgement</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ack.html#citation">Citation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="instructions/start.html" class="btn btn-neutral float-right" title="Getting Started" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018 CAMELab All rights reserved
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+    
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
