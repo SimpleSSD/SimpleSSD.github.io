@@ -256,7 +256,7 @@ git submodule update --init --recursive
 <h3>Build<a class="headerlink" href="#build" title="Permalink to this headline">¶</a></h3>
 <p>Build SimpleSSD-FullSystem using <code class="docutils literal notranslate"><span class="pre">scons</span></code>.
 SimpleSSD only supports <code class="docutils literal notranslate"><span class="pre">ARM</span></code> and <code class="docutils literal notranslate"><span class="pre">X86</span></code> architectures.</p>
-<p>For more details on command line, check <a class="reference external" href="http://gem5.org/Build_System">gem5 build instruction</a>.</p>
+<p>For more details on command line, check <a class="reference external" href="http://www.gem5.org/documentation/general_docs/building">gem5 build instruction</a>.</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="c1"># For ARM architecture</span>
 scons build/ARM/gem5.opt -j <span class="m">8</span> --ignore-style
 
@@ -268,7 +268,7 @@ scons build/X86/gem5.opt -j <span class="m">8</span> --ignore-style
 <div class="section" id="prepare-full-system-files">
 <h3>Prepare full system files<a class="headerlink" href="#prepare-full-system-files" title="Permalink to this headline">¶</a></h3>
 <p>As we will boot gem5 in full system simulation mode, we need full system files such as Linux Kernel image and disk image.
-If you want to download original gem5-provided full system files, visit <a class="reference external" href="http://gem5.org/Download">gem5 download page</a>.
+If you want to download original gem5-provided full system files, visit <a class="reference external" href="http://www.gem5.org/documentation/general_docs/fullsystem/guest_binaries">gem5 download page</a>.
 We recommend to download files from <a class="reference external" href="https://drive.google.com/drive/folders/14b-kJmGXOhltX9Aqr8XV9i48KkZk4Lzs?usp=sharing">here</a>, because the files from gem5 does not support NVMe.
 You don’t need to download <code class="docutils literal notranslate"><span class="pre">kernel_configs</span></code> directory if you are not plan to build Linux Kernel on your own.</p>
 <p>Create directory to store downloaded files and set <code class="docutils literal notranslate"><span class="pre">M5_PATH</span></code> environment variable points that directory.</p>
