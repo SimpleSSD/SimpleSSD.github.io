@@ -8,7 +8,7 @@ SimpleSSD
 Open-Source Licensed Full-system SSD Simulator
 ==============================================
 
-.. figure:: ../images/index/logo.jpg
+.. figure:: ../../images/index/logo.jpg
     :width: 250px
     :align: right
     :figclass: align-center
