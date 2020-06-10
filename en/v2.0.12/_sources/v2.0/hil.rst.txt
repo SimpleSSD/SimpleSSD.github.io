@@ -8,7 +8,7 @@ HIL is consists of two components.
 First is host controller, which is interfaced to the host side.
 Second is SSD interface, which provides abstracted API to the host controller.
 
-.. figure:: ../../images/firmware/hil.jpg
+.. figure:: ../../../images/firmware/hil.jpg
   :width: 400px
   :align: center
   :figclass: align-center
@@ -33,7 +33,7 @@ In SimpleSSD, we implemented NVMe interface based on :xref:`nvme_1.2.1`, and upd
 
 Following figure shows how each components are connected.
 
-.. figure:: ../../images/firmware/nvme_overview.jpg
+.. figure:: ../../../images/firmware/nvme_overview.jpg
   :width: 450px
   :align: center
   :figclass: align-center
@@ -100,7 +100,7 @@ Controller
 NVMe Controller, which handles all queue operations, is defined as ``SimpleSSD::HIL::NVMe::Controller`` in ``hil/nvme/controller.hh``.
 Following figure shows how Controller works.
 
-.. figure:: ../../images/firmware/nvme_controller.jpg
+.. figure:: ../../../images/firmware/nvme_controller.jpg
   :width: 550px
   :align: center
   :figclass: align-center
@@ -131,7 +131,7 @@ Both subsystem inherits ``SimpleSSD::HIL::NVMe::AbstractSubsystem`` in ``hil/nvm
 We will only explain NVMe Subsystem, because Open-Channel SSD Subsystem only has minor changes to NVMe subsystem.
 Following figure shows how Subsystem works.
 
-.. figure:: ../../images/firmware/nvme_subsystem.jpg
+.. figure:: ../../../images/firmware/nvme_subsystem.jpg
   :width: 520px
   :align: center
   :figclass: align-center
@@ -151,7 +151,7 @@ When I/O specific functions (``Subsystem::read, write, flush and trim``) called,
 
 By splitting linear logical space of SSD, Subsystem can maintain multiple Namespaces.
 
-.. figure:: ../../images/firmware/nvme_subsystem_ns.jpg
+.. figure:: ../../../images/firmware/nvme_subsystem_ns.jpg
   :width: 500px
   :align: center
   :figclass: align-center
@@ -187,7 +187,7 @@ In SimpleSSD, we implemented SATA HBA based on :xref:`ahci_1.3.1` and SATA PHY a
 
 Following figure shows how each components are connected.
 
-.. figure:: ../../images/firmware/sata_overview.jpg
+.. figure:: ../../../images/firmware/sata_overview.jpg
   :width: 450px
   :align: center
   :figclass: align-center
@@ -214,7 +214,7 @@ AHCI HBA is defined as ``SimpleSSD::HIL::SATA::HBA`` in ``hil/sata/hba.hh``.
 
 We implemented only one port because only one SimpleSSD instance will connected to the HBA.
 
-.. figure:: ../../images/firmware/sata_hba.jpg
+.. figure:: ../../../images/firmware/sata_hba.jpg
   :width: 550px
   :align: center
   :figclass: align-center
@@ -258,7 +258,7 @@ Device can handle following ATA commands defined in :xref:`ata_acs2` and :xref:`
 * ``WRITE SECTOR``
 * ``WRITE SECTOR EXT``
 
-.. figure:: ../../images/firmware/sata_device.jpg
+.. figure:: ../../../images/firmware/sata_device.jpg
   :width: 500px
   :align: center
   :figclass: align-center
@@ -282,7 +282,7 @@ In SimpleSSD, we implemented UFS Host Controller Interface based on :xref:`ufshc
 
 Implementation of UFS is very similar to SATA, as shown as following figure.
 
-.. figure:: ../../images/firmware/ufs_overview.jpg
+.. figure:: ../../../images/firmware/ufs_overview.jpg
   :width: 450px
   :align: center
   :figclass: align-center
@@ -308,7 +308,7 @@ This interface follows :xref:`ufshci` specification from JEDEC.
 
 UFSHCI is defined as ``SimpleSSD::HIL::UFS::Host`` in ``hil/ufs/host.hh``.
 
-.. figure:: ../../images/firmware/ufs_host.jpg
+.. figure:: ../../../images/firmware/ufs_host.jpg
   :width: 550px
   :align: center
   :figclass: align-center
@@ -375,7 +375,7 @@ Device can handle following SCSI commands.
 * ``WRITE 10``
 * ``SYNCHRONIZE CACHE 10``
 
-.. figure:: ../../images/firmware/ufs_device.jpg
+.. figure:: ../../../images/firmware/ufs_device.jpg
   :width: 500px
   :align: center
   :figclass: align-center

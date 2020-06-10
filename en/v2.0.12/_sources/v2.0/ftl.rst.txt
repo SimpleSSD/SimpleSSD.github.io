@@ -7,7 +7,7 @@ In this page, we will explain how we design and implement Flash Translation Laye
 FTL provides abstract class, so you can implement your own FTL by inherit the class.
 By default, we provide ``PageMapping``, which implements Page-level FTL.
 
-.. figure:: ../../images/firmware/ftl.jpg
+.. figure:: ../../../images/firmware/ftl.jpg
   :width: 400px
   :align: center
   :figclass: align-center
@@ -44,7 +44,7 @@ If you set ``[pal] SuperblockSize`` configuration, this FTL will work as superpa
 GC invoked when configured threshold is triggered (See ``PageMapping::writeInternal``).
 ``PageMapping::table`` stores LPN -> PPN mapping and ``FTL::Block`` stores block metadata and reverse mapping table.
 
-.. figure:: ../../images/firmware/ftl_page.png
+.. figure:: ../../../images/firmware/ftl_page.png
   :width: 100%
   :align: center
   :figclass: align-center

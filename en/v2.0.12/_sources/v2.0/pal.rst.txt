@@ -42,7 +42,7 @@ Here is brief explanation of each files:
 Parallelism and Page Allocation
 -------------------------------
 
-.. figure:: ../../images/hardware/pal_parallelism.jpg
+.. figure:: ../../../images/hardware/pal_parallelism.jpg
   :width: 100%
   :align: center
   :figclass: align-center
@@ -64,7 +64,7 @@ To enable the different level of parallelisms when the flash translation layer (
 Simplified Timeline Scheduling
 ------------------------------
 
-.. figure:: ../../images/hardware/pal_timeline.jpg
+.. figure:: ../../../images/hardware/pal_timeline.jpg
   :width: 100%
   :align: center
   :figclass: align-center

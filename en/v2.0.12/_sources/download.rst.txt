@@ -48,7 +48,7 @@ NVMe SSD
 Intel 750 400GB
 ^^^^^^^^^^^^^^^
 
-:download:`Download <../configs/intel750_400gb.cfg>`
+:download:`Download <../../configs/intel750_400gb.cfg>`
 
 * Last tested version: ``2.0.12``
 * Average bandwidth error: **19.92** % (Seq. Read: 34.97%, Rand. Read: 32.89%, Seq. Write: 8.18%, Rand. Write: 3.65%)
@@ -58,7 +58,7 @@ Intel 750 400GB
 Samsung Z-SSD prototype 800GB
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-:download:`Download <../configs/samsung_zssd_800gb.cfg>`
+:download:`Download <../../configs/samsung_zssd_800gb.cfg>`
 
 * Last tested version: ``2.0.12``
 * Average bandwidth error: **12.9** % (Seq. Read: 13.9%, Rand. Read: 7.5%, Seq. Write: 21.2%, Rand. Write: 11.3%)
@@ -68,7 +68,7 @@ Samsung Z-SSD prototype 800GB
 Samsung 983 DCT 1.92TB
 ^^^^^^^^^^^^^^^^^^^^^^
 
-:download:`Download <../configs/samsung_983dct_1.92tb.cfg>`
+:download:`Download <../../configs/samsung_983dct_1.92tb.cfg>`
 
 .. note::
   With IOD prototype firmware (four namespaces).
@@ -89,7 +89,7 @@ Please keep in mind that current configuration files may inaccurate.
 Intel 535 240GB
 ^^^^^^^^^^^^^^^
 
-:download:`Download <../configs/intel535_240gb.cfg>`
+:download:`Download <../../configs/intel535_240gb.cfg>`
 
 * Not validated
 
@@ -97,7 +97,7 @@ Intel 535 240GB
 Samsung 850 PRO 256GB
 ^^^^^^^^^^^^^^^^^^^^^
 
-:download:`Download <../configs/samsung_850pro_256gb.cfg>`
+:download:`Download <../../configs/samsung_850pro_256gb.cfg>`
 
 * Last tested version: ``2.0.3``
 * Average bandwidth error: **34.7** % (Read: 35.5%, Write: 33.9%)

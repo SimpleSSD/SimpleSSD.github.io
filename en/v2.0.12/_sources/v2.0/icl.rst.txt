@@ -7,7 +7,7 @@ In this page, we will explain how we design and implement I/O buffer model (data
 ICL provides abstract class, so you can implement your own data buffer model by inherit the class.
 By default, we provide ``GenericCache``, which implements set-associative cache.
 
-.. figure:: ../../images/firmware/icl.jpg
+.. figure:: ../../../images/firmware/icl.jpg
   :width: 400px
   :align: center
   :figclass: align-center
