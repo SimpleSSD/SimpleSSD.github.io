@@ -1,0 +1,38 @@
+**********************
+Power and Energy Model
+**********************
+
+In this page, we will explain how we design and implement power and energy model of hardware.
+
+
+Embedded Core
+=============
+
+We used McPAT [1]_ library for estimating power and energy consumption of embedded core.
+We modified McPAT (for windows support and interfacing SimpleSSD), you can download our version of McPAT :xref:`here <mcpat>`.
+
+For McPAT interfacing, see ``SimpleSSD::CPU::CPU::calculatePower`` function defined in ``cpu/cpu.cc``.
+
+
+DRAM
+====
+
+We used DRAMPower [2]_ library for DRAM power and energy consumption estimation.
+As gem5 uses DRAMPower, you can find DRAMPower source at ``ext/drampower`` of SimpleSSD-FullSystem repository.
+For standalone version, ``lib/drampower`` contains same DRAMPower with full system.
+
+For DRAMPower interfacing, see ``SimpleSSD::DRAM::SimpleDRAM::read`` and ``write`` functions defined in ``dram/simple.cc``.
+
+
+NAND flash array
+================
+
+As there is no NAND power estimation library, we created simple power/energy model for NAND flash based on NANDFlashSim [3]_.
+
+From the NAND flash datasheet, we get current values that NAND flash consumes when idle or perform I/O operations.
+These values are multiplied by die active time (at each state, which is collected by PAL statistics) to get energy consumption (of course, the voltage value also multiplied).
+
+
+.. [1] Sheng Li, et. al., "McPAT: An integrated power, area, and timing modeling framework for multicore and manycore architectures, " in the 42nd Annual IEEE/ACM International Symposium on Microarchitecture (MICRO 42), 2009
+.. [2] Karthik Chandrasekar, et. al., "DRAMPower: Open-source DRAM Power & Energy Estimation Tool, " URL: http://www.drampower.info
+.. [3] Myoungsoo Jung, et. al., "NANDFlashSim: High-Fidelity, Micro-Architecture-Aware NAND Flash Memory Simulation, " in ACM Transactions on Storage (ToS), vol. 12 issue 2, no. 6, Feb. 2016

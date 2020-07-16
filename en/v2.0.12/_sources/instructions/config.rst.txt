@@ -1,0 +1,207 @@
+*******************
+Configuration Files
+*******************
+
+.. warning::
+  **Under construction**
+
+  This page is not finished yet.
+
+In this page, we will explain each options in configuration files.
+
+
+SimpleSSD
+=========
+
+In this section, we will explain each options in SimpleSSD configuration file.
+You can download validated configuration files in :ref:`download_config_file`.
+Also, you can find sample configuration file which contains all possible options in following paths:
+
+* SimpleSSD-FullSystem: ``src/dev/storage/simplessd/config/sample.cfg``
+* SimpleSSD-Standalone: ``simplessd/config/sample.cfg``
+
+
+Host Interface Specific Options
+-------------------------------
+
+
+NVMe Specific
+^^^^^^^^^^^^^
+
+Configuration header: ``[nvme]``
+
+Following options are related to PCI Express and FIFO queue between system bus and PCIe PHY.
+The FIFO queue and PCIe model are based on Xilinx PCIe IP. The size of queue is fixed as 8KB.
+
+.. function:: PCIEGeneration=<int>
+
+  Set generation of PCI Express.
+
+  Possible values:
+
+  | 0: PCI Express 1.x (2.5GT/s/lane)
+  | 1: PCI Express 2.x (5GT/s/lane)
+  | 2: PCI Express 3.x (8GT/s/lane)
+
+
+.. function:: PCIELane=<int>
+
+  Set total number of lanes in PCI Express. Recommanded values: ``1``, ``2``, ``4``, ``8``, ``16``, and ``32``.
+
+
+.. function:: AXIBusWidth=<int>
+
+  Set bus width of AXI4 bus.
+
+  Possible values:
+
+  | 0: 32Bit
+  | 1: 64Bit
+  | 2: 128Bit
+  | 3: 256Bit
+  | 4: 512Bit
+  | 5: 1024Bit
+
+.. function:: AXIClock=<int>
+
+  Set clock of AXI4 bus in Hz.
+
+
+.. function:: FIFOTransferUnit=<int>
+
+  Default transfer unit of FIFO queue in bytes.
+
+
+Following options are related to NVMe specification.
+
+.. function:: MaxIOCQueue=<int>
+
+  Maximum number of I/O Completion Queues.
+
+
+.. function:: MaxIOSQueue=<int>
+
+  Maximum number of I/O Submission Queues.
+
+
+.. function:: WRRHigh=<int>
+
+  Set parameter of weighted-round-robin.
+
+  Medium-priority command will inserted after specified number of high-priority commands inserted.
+
+
+.. function:: WRRMedium=<int>
+
+  Set parameter of weighted-round-robin.
+
+  Low-priority command will inserted after specified number of medium-priority commands inserted.
+
+
+.. function:: DefaultNamespace=<bool>
+
+  If true, create a default and full-sized namespace. If false, no namespace will be created by default.
+  You need to create namespace using ``nvme create-ns`` before any I/O.
+
+
+
+SATA Specific
+^^^^^^^^^^^^^
+
+Configuration header: ``[sata]``
+
+
+UFS Specific
+^^^^^^^^^^^^
+
+Configuration header: ``[ufs]``
+
+
+Common Options
+^^^^^^^^^^^^^^
+
+Following options are related to request handling.
+
+.. function:: WorkInterval=<int>
+
+  Interval of request handling. Controller will check arrival of new request periodically in specified interval.
+
+
+.. function:: MaxRequestCount=<int>
+
+  Maximum number of requests can be handled in one work interval.
+  Controller will try to handle specified number of requests in one period.
+
+
+.. function:: LBASize=<int>
+
+  Set logical block size. This should be one of ``512``, ``1024``, ``2048`` and ``4096``.
+
+
+Following options are related to disk image.
+
+.. function:: EnableDiskImage=<bool>
+
+  Enable disk image.
+  You can access disk image file through block device created by SimpleSSD in guest OS if enabled.
+
+
+.. function:: StrictSizeCheck=<bool>
+
+  If true, the size of disk image should be same with the size of SimpleSSD block device.
+
+
+.. function:: DiskImageFile=<string>
+
+  Path to disk image. Relative to working directory, not ``$M5_PATH``.
+  If file does not exists, zero-filled file will be created.
+
+
+.. function:: UseCopyOnWriteDisk=<bool>
+
+  If true, write to the block device will not applied to disk image.
+  (disk image is read-only, modifications are stored in memory)
+
+
+
+Data Cache Options
+------------------
+
+
+Flash Translation Layer Options
+-------------------------------
+
+
+Parallelism Abstraction Layer Options
+-------------------------------------
+
+
+Hardware Options
+----------------
+
+
+Embedded CPU
+^^^^^^^^^^^^
+
+
+DRAM
+^^^^
+
+
+SimpleSSD-Standalone
+====================
+
+In this section, we will explain each options in simulation configuration file only used in SimpleSSD-Standalone.
+You can find sample configuration file which contains all possible options in ``config/sample.cfg``.
+
+
+Global Options
+--------------
+
+
+Request Generator Options
+-------------------------
+
+
+Trace Replayer Options
+----------------------

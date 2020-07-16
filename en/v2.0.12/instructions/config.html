@@ -1,0 +1,488 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Configuration Files &mdash; SimpleSSD 2.0.12 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/color.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/table.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/readthedocs-doc-embed.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Running Instructions" href="run.html" />
+    <link rel="prev" title="Getting Started" href="start.html" /> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> SimpleSSD
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                2.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">User Documentation</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="start.html">Getting Started</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Configuration Files</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#simplessd">SimpleSSD</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#host-interface-specific-options">Host Interface Specific Options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#data-cache-options">Data Cache Options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#flash-translation-layer-options">Flash Translation Layer Options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#parallelism-abstraction-layer-options">Parallelism Abstraction Layer Options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#hardware-options">Hardware Options</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#simplessd-standalone">SimpleSSD-Standalone</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#global-options">Global Options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#request-generator-options">Request Generator Options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#trace-replayer-options">Trace Replayer Options</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="run.html">Running Instructions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="analyze.html">Analyze Simulation Results</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Tips</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tips/kernel.html">Build Linux Kernel for gem5</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tips/program.html">Build User-Level Program for gem5</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tips/disk.html">Create Disk Image for gem5</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Firmware Model Documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../v2.0/hil.html">Host Interface Layer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../v2.0/icl.html">Internal Cache Layer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../v2.0/ftl.html">Flash Translation Layer</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Hardware Model Documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../v2.0/cpu.html">Firmware Execution Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../v2.0/dram.html">DRAM Latency Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../v2.0/pal.html">Parallelism Abstraction Layer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../v2.0/power.html">Power and Energy Model</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Resources</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../download.html">Downloads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../matrix.html">Status Matrix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ack.html">Acknowledgement</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+      
+      <div style="position: absolute; bottom: 3em; overflow-y: hidden;" class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+        <span class="rst-current-version" data-toggle="rst-current-version">
+          <span class="fa fa-book"> Other Versions</span>
+          v2.0.12
+          <span class="fa fa-caret-down"></span>
+        </span>
+        <div class="rst-other-versions">
+          <dl>
+            <dt>Languages</dt>
+            <dd><a href="/en/v2.0.12">en</a></dd>
+          </dl>
+          <dl>
+            <dt>Versions</dt>
+              
+            <dd><a href="config.html">v2.0.12</a></dd>
+              
+          </dl>
+        </div>
+      </div>
+      
+      <div style="position: absolute; bottom: 0px; background-color: #272525;">
+        <div style="width: 3em; height: 3em; float: left; margin-right: 0.2em;">
+          <a href="http://camelab.org" rel="nofollow" target="_blank">
+            <img src="../_static/image/camelab.png" style="height: 2.8em; margin: 0.1em auto; display: block;">
+          </a>
+        </div>
+        <div>
+          <span class="ack" style="margin-top: 0.3em; color: #d9d9d9; font-size: 14px; line-height: 20px;">
+            SimpleSSD is designed, developed and maintained by
+            <a href="http://camelab.org" rel="nofollow" target="_blank">CAMELab.</a>
+          </span>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">SimpleSSD</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>Configuration Files</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="configuration-files">
+<h1>Configuration Files<a class="headerlink" href="#configuration-files" title="Permalink to this headline">¶</a></h1>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p><strong>Under construction</strong></p>
+<p>This page is not finished yet.</p>
+</div>
+<p>In this page, we will explain each options in configuration files.</p>
+<div class="section" id="simplessd">
+<h2>SimpleSSD<a class="headerlink" href="#simplessd" title="Permalink to this headline">¶</a></h2>
+<p>In this section, we will explain each options in SimpleSSD configuration file.
+You can download validated configuration files in <a class="reference internal" href="../download.html#download-config-file"><span class="std std-ref">SSD Configuration Files</span></a>.
+Also, you can find sample configuration file which contains all possible options in following paths:</p>
+<ul class="simple">
+<li><p>SimpleSSD-FullSystem: <code class="docutils literal notranslate"><span class="pre">src/dev/storage/simplessd/config/sample.cfg</span></code></p></li>
+<li><p>SimpleSSD-Standalone: <code class="docutils literal notranslate"><span class="pre">simplessd/config/sample.cfg</span></code></p></li>
+</ul>
+<div class="section" id="host-interface-specific-options">
+<h3>Host Interface Specific Options<a class="headerlink" href="#host-interface-specific-options" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="nvme-specific">
+<h4>NVMe Specific<a class="headerlink" href="#nvme-specific" title="Permalink to this headline">¶</a></h4>
+<p>Configuration header: <code class="docutils literal notranslate"><span class="pre">[nvme]</span></code></p>
+<p>Following options are related to PCI Express and FIFO queue between system bus and PCIe PHY.
+The FIFO queue and PCIe model are based on Xilinx PCIe IP. The size of queue is fixed as 8KB.</p>
+<dl class="py function">
+<dt>
+<code class="sig-name descname">PCIEGeneration=&lt;int&gt;</code></dt>
+<dd><p>Set generation of PCI Express.</p>
+<p>Possible values:</p>
+<div class="line-block">
+<div class="line">0: PCI Express 1.x (2.5GT/s/lane)</div>
+<div class="line">1: PCI Express 2.x (5GT/s/lane)</div>
+<div class="line">2: PCI Express 3.x (8GT/s/lane)</div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt>
+<code class="sig-name descname">PCIELane=&lt;int&gt;</code></dt>
+<dd><p>Set total number of lanes in PCI Express. Recommanded values: <code class="docutils literal notranslate"><span class="pre">1</span></code>, <code class="docutils literal notranslate"><span class="pre">2</span></code>, <code class="docutils literal notranslate"><span class="pre">4</span></code>, <code class="docutils literal notranslate"><span class="pre">8</span></code>, <code class="docutils literal notranslate"><span class="pre">16</span></code>, and <code class="docutils literal notranslate"><span class="pre">32</span></code>.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt>
+<code class="sig-name descname">AXIBusWidth=&lt;int&gt;</code></dt>
+<dd><p>Set bus width of AXI4 bus.</p>
+<p>Possible values:</p>
+<div class="line-block">
+<div class="line">0: 32Bit</div>
+<div class="line">1: 64Bit</div>
+<div class="line">2: 128Bit</div>
+<div class="line">3: 256Bit</div>
+<div class="line">4: 512Bit</div>
+<div class="line">5: 1024Bit</div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt>
+<code class="sig-name descname">AXIClock=&lt;int&gt;</code></dt>
+<dd><p>Set clock of AXI4 bus in Hz.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt>
+<code class="sig-name descname">FIFOTransferUnit=&lt;int&gt;</code></dt>
+<dd><p>Default transfer unit of FIFO queue in bytes.</p>
+</dd></dl>
+
+<p>Following options are related to NVMe specification.</p>
+<dl class="py function">
+<dt>
+<code class="sig-name descname">MaxIOCQueue=&lt;int&gt;</code></dt>
+<dd><p>Maximum number of I/O Completion Queues.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt>
+<code class="sig-name descname">MaxIOSQueue=&lt;int&gt;</code></dt>
+<dd><p>Maximum number of I/O Submission Queues.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt>
+<code class="sig-name descname">WRRHigh=&lt;int&gt;</code></dt>
+<dd><p>Set parameter of weighted-round-robin.</p>
+<p>Medium-priority command will inserted after specified number of high-priority commands inserted.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt>
+<code class="sig-name descname">WRRMedium=&lt;int&gt;</code></dt>
+<dd><p>Set parameter of weighted-round-robin.</p>
+<p>Low-priority command will inserted after specified number of medium-priority commands inserted.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt>
+<code class="sig-name descname">DefaultNamespace=&lt;bool&gt;</code></dt>
+<dd><p>If true, create a default and full-sized namespace. If false, no namespace will be created by default.
+You need to create namespace using <code class="docutils literal notranslate"><span class="pre">nvme</span> <span class="pre">create-ns</span></code> before any I/O.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="sata-specific">
+<h4>SATA Specific<a class="headerlink" href="#sata-specific" title="Permalink to this headline">¶</a></h4>
+<p>Configuration header: <code class="docutils literal notranslate"><span class="pre">[sata]</span></code></p>
+</div>
+<div class="section" id="ufs-specific">
+<h4>UFS Specific<a class="headerlink" href="#ufs-specific" title="Permalink to this headline">¶</a></h4>
+<p>Configuration header: <code class="docutils literal notranslate"><span class="pre">[ufs]</span></code></p>
+</div>
+<div class="section" id="common-options">
+<h4>Common Options<a class="headerlink" href="#common-options" title="Permalink to this headline">¶</a></h4>
+<p>Following options are related to request handling.</p>
+<dl class="py function">
+<dt>
+<code class="sig-name descname">WorkInterval=&lt;int&gt;</code></dt>
+<dd><p>Interval of request handling. Controller will check arrival of new request periodically in specified interval.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt>
+<code class="sig-name descname">MaxRequestCount=&lt;int&gt;</code></dt>
+<dd><p>Maximum number of requests can be handled in one work interval.
+Controller will try to handle specified number of requests in one period.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt>
+<code class="sig-name descname">LBASize=&lt;int&gt;</code></dt>
+<dd><p>Set logical block size. This should be one of <code class="docutils literal notranslate"><span class="pre">512</span></code>, <code class="docutils literal notranslate"><span class="pre">1024</span></code>, <code class="docutils literal notranslate"><span class="pre">2048</span></code> and <code class="docutils literal notranslate"><span class="pre">4096</span></code>.</p>
+</dd></dl>
+
+<p>Following options are related to disk image.</p>
+<dl class="py function">
+<dt>
+<code class="sig-name descname">EnableDiskImage=&lt;bool&gt;</code></dt>
+<dd><p>Enable disk image.
+You can access disk image file through block device created by SimpleSSD in guest OS if enabled.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt>
+<code class="sig-name descname">StrictSizeCheck=&lt;bool&gt;</code></dt>
+<dd><p>If true, the size of disk image should be same with the size of SimpleSSD block device.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt>
+<code class="sig-name descname">DiskImageFile=&lt;string&gt;</code></dt>
+<dd><p>Path to disk image. Relative to working directory, not <code class="docutils literal notranslate"><span class="pre">$M5_PATH</span></code>.
+If file does not exists, zero-filled file will be created.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt>
+<code class="sig-name descname">UseCopyOnWriteDisk=&lt;bool&gt;</code></dt>
+<dd><p>If true, write to the block device will not applied to disk image.
+(disk image is read-only, modifications are stored in memory)</p>
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="data-cache-options">
+<h3>Data Cache Options<a class="headerlink" href="#data-cache-options" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="flash-translation-layer-options">
+<h3>Flash Translation Layer Options<a class="headerlink" href="#flash-translation-layer-options" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="parallelism-abstraction-layer-options">
+<h3>Parallelism Abstraction Layer Options<a class="headerlink" href="#parallelism-abstraction-layer-options" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="hardware-options">
+<h3>Hardware Options<a class="headerlink" href="#hardware-options" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="embedded-cpu">
+<h4>Embedded CPU<a class="headerlink" href="#embedded-cpu" title="Permalink to this headline">¶</a></h4>
+</div>
+<div class="section" id="dram">
+<h4>DRAM<a class="headerlink" href="#dram" title="Permalink to this headline">¶</a></h4>
+</div>
+</div>
+</div>
+<div class="section" id="simplessd-standalone">
+<h2>SimpleSSD-Standalone<a class="headerlink" href="#simplessd-standalone" title="Permalink to this headline">¶</a></h2>
+<p>In this section, we will explain each options in simulation configuration file only used in SimpleSSD-Standalone.
+You can find sample configuration file which contains all possible options in <code class="docutils literal notranslate"><span class="pre">config/sample.cfg</span></code>.</p>
+<div class="section" id="global-options">
+<h3>Global Options<a class="headerlink" href="#global-options" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="request-generator-options">
+<h3>Request Generator Options<a class="headerlink" href="#request-generator-options" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="trace-replayer-options">
+<h3>Trace Replayer Options<a class="headerlink" href="#trace-replayer-options" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="run.html" class="btn btn-neutral float-right" title="Running Instructions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="start.html" class="btn btn-neutral float-left" title="Getting Started" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018 CAMELab All rights reserved
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+    
+
+  
+
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

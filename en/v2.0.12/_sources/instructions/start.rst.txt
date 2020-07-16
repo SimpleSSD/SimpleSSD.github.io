@@ -1,0 +1,193 @@
+***************
+Getting Started
+***************
+
+In this page, we will explain how to prepare SimpleSSD in step by step.
+
+
+.. _start_fullsystem:
+
+SimpleSSD-FullSystem
+====================
+
+
+Prerequisite
+------------
+
+Before downloading SimpleSSD-FullSystem, you should install dependencies.
+As gem5 only supports Linux system, SimpleSSD-FullSystem does not supports other operating systems such as Windows or Mac OS.
+
+If you use RHEL 8/CentOS 8, you may need to install ``scons`` with ``pip2``.
+We highly recommend to use ``virtualenv`` instead of installing packages in root directory.
+
+.. code-block:: shell
+
+  # For Debian based Linux
+  apt install build-essential
+  apt install scons python-dev zlib1g-dev m4 cmake
+  apt install libprotobuf-dev protobuf-compiler
+  apt install libgoogle-perftools-dev
+
+  # For Red Hat based Linux
+  yum groupinstall "Development Tools"
+  yum install epel-release
+  yum install scons python2-devel zlib-devel cmake
+  yum install protobuf-devel google-perftools-devel
+
+  # For RHEL 8 based Linux
+  ## Run as root
+  dnf group install "Development Tools"
+  dnf install python2-virtualenv cmake zlib-devel python2-six python2-devel
+  ## Run as non-root
+  virtualenv -p python2 <your virtual env name>
+  . <your virtual env name>/bin/activate
+  pip install scons six
+
+
+Download source code
+--------------------
+
+After installing libraries, clone GitHub repository and configure submodules.
+If you want to use specific version, checkout using ``git checkout <version>`` before initializing submodules.
+
+.. code-block:: shell
+
+  git clone git@github.com:simplessd/simplessd-fullsystem
+  cd simplessd-fullsystem
+  git submodule update --init --recursive
+
+
+Build
+-----
+
+Build SimpleSSD-FullSystem using ``scons``.
+SimpleSSD only supports ``ARM`` and ``X86`` architectures.
+
+For more details on command line, check :xref:`gem5_build`.
+
+.. code-block:: shell
+
+  # For ARM architecture
+  scons build/ARM/gem5.opt -j 8 --ignore-style
+
+  # For X86 architecture
+  scons build/X86/gem5.opt -j 8 --ignore-style
+
+
+Prepare full system files
+-------------------------
+
+As we will boot gem5 in full system simulation mode, we need full system files such as Linux Kernel image and disk image.
+If you want to download original gem5-provided full system files, visit :xref:`gem5_download`.
+We recommend to download files from :xref:`here <camelab_files>`, because the files from gem5 does not support NVMe.
+You don't need to download ``kernel_configs`` directory if you are not plan to build Linux Kernel on your own.
+
+Create directory to store downloaded files and set ``M5_PATH`` environment variable points that directory.
+
+.. code-block:: shell
+
+  mkdir $HOME/m5
+  export M5_PATH=$HOME/m5
+
+Download files from the above link.
+If you only downloaded files we provided, a directory tree should looks like:
+
+.. code-block:: shell
+
+  $M5_PATH
+  ├─ binaries
+  │ ├─ boot.arm
+  │ ├─ boot_emm.arm
+  │ ├─ boot_emm.arm64
+  │ ├─ aarch64-vmlinux-4.9.92
+  │ └─ x86_64-vmlinux-4.9.92
+  └─ disks
+    ├─ linaro-aarch64-linux.img
+    └─ x86root
+
+
+ARM specific stuff
+------------------
+
+We need to compile ``dts`` files to create ``dtb`` files.
+These file define hardware components (and its information) exist on current system.
+
+Install a DeviceTree Compiler.
+
+.. code-block:: shell
+
+  # For Debian based Linux
+  apt install device-tree-compiler
+
+  # For Red Hat based Linux
+  yum install dtc
+
+  # Or
+  dnf --enablerepo=PowerTools install dtc
+
+You can find ``dts`` files in ``system/arm/dt`` of SimpleSSD-FullSystem repository.
+
+.. code-block:: shell
+
+  cd system/arm/dt
+  make
+
+``make`` will generates ``dtb`` files for ``VExpress_GEM5_V1`` system of gem5.
+Each file defines architecture (``armv7`` or ``armv8``) and the number of CPU in the system (1, 2, 4. 8 or 16).
+Copy or move produced ``dtb`` to ``$M5_PATH/binaries``.
+
+.. code-block:: shell
+
+  mv *.dtb $M5_PATH/binaries
+
+Now you are ready to execute SimpleSSD-FullSystem.
+See :ref:`tutorial_basic_fullsystem` for running instructions.
+
+
+.. _start_standalone:
+
+SimpleSSD-Standalone
+====================
+
+
+Prerequisite
+------------
+
+Before downloading SimpleSSD-Standalone, you need C/C++ compiler which supports C++11 and ``<regex>``.
+If you are on Windows, ``MSVC 2015`` or newer will work.
+If you are on Linux system, ``gcc/g++ 4.9`` or newer will work.
+
+SimpleSSD-Standalone uses ``cmake`` for build system.
+If you prefer to use ``LLVM`` you may need to modify ``CMakeList.txt`` file.
+
+Install ``cmake 3.10`` or newer.
+
+
+Download source code
+--------------------
+
+After installing ``cmake``, clone GitHub repository and configure submodules.
+If you want to use specific version, checkout using ``git checkout <version>`` before initializing submodules.
+
+.. code-block:: shell
+
+  git clone git@github.com:simplessd/simplessd-standalone
+  cd simplessd-standalone
+  git submodule update --init --recursive
+
+
+Build
+-----
+
+Build SimpleSSD-Standalone using following command line.
+
+.. code-block:: shell
+
+  cmake -DDEBUG_BUILD=off .
+  make -j 8
+
+To build SimpleSSD-Standalone in debug mode, use ``-DDEBUG_BUILD=on``.
+After successful build, you can find ``simplessd-standalone`` executable on current working directory.
+
+Now you are ready to execute SimpleSSD-Standalone.
+See :ref:`tutorial_basic_standalone` for running instructions.
