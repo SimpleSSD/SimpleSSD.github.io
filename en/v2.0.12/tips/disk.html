@@ -1,98 +1,55 @@
-
-
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Create Disk Image for gem5 &mdash; SimpleSSD 2.0.12 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/color.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/table.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/readthedocs-doc-embed.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
-
-  
-  
-  
-  
-
-  
-
-  
-  
-    
-
-  
-
-  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/css/color.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/css/table.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/css/readthedocs-doc-embed.css" type="text/css" />
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Host Interface Layer" href="../v2.0/hil.html" />
     <link rel="prev" title="Build User-Level Program for gem5" href="program.html" /> 
-
-  
-  <script src="../_static/js/modernizr.min.js"></script>
-
 </head>
 
-<body class="wy-body-for-nav">
-
-   
+<body class="wy-body-for-nav"> 
   <div class="wy-grid-for-nav">
-
-    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
-      <div class="wy-side-scroll">
-        <div class="wy-side-nav-search">
-          
-
-          
+      <div style="padding-bottom: 3em;" class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
             <a href="../index.html" class="icon icon-home"> SimpleSSD
-          
-
-          
           </a>
-
-          
-            
-            
               <div class="version">
                 2.0
               </div>
-            
-          
-
-          
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-
-          
-        </div>
-
-        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-          
-            
-            
-              
-            
-            
-              <p class="caption"><span class="caption-text">User Documentation</span></p>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">User Documentation</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../instructions/start.html">Getting Started</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../instructions/config.html">Configuration Files</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../instructions/run.html">Running Instructions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../instructions/analyze.html">Analyze Simulation Results</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Tips</span></p>
+<p class="caption" role="heading"><span class="caption-text">Tips</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="kernel.html">Build Linux Kernel for gem5</a></li>
 <li class="toctree-l1"><a class="reference internal" href="program.html">Build User-Level Program for gem5</a></li>
@@ -105,28 +62,26 @@
 </ul>
 </li>
 </ul>
-<p class="caption"><span class="caption-text">Firmware Model Documentation</span></p>
+<p class="caption" role="heading"><span class="caption-text">Firmware Model Documentation</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../v2.0/hil.html">Host Interface Layer</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../v2.0/icl.html">Internal Cache Layer</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../v2.0/ftl.html">Flash Translation Layer</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Hardware Model Documentation</span></p>
+<p class="caption" role="heading"><span class="caption-text">Hardware Model Documentation</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../v2.0/cpu.html">Firmware Execution Model</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../v2.0/dram.html">DRAM Latency Model</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../v2.0/pal.html">Parallelism Abstraction Layer</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../v2.0/power.html">Power and Energy Model</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Resources</span></p>
+<p class="caption" role="heading"><span class="caption-text">Resources</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../download.html">Downloads</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../matrix.html">Status Matrix</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../ack.html">Acknowledgement</a></li>
 </ul>
 
-            
-          
         </div>
       </div>
       
@@ -165,66 +120,31 @@
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" aria-label="top navigation">
-        
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../index.html">SimpleSSD</a>
-        
       </nav>
 
-
       <div class="wy-nav-content">
-        
         <div class="rst-content">
-        
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
-
+          <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-    
-      <li><a href="../index.html">Docs</a> &raquo;</li>
-        
-      <li>Create Disk Image for gem5</li>
-    
-    
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Create Disk Image for gem5</li>
       <li class="wy-breadcrumbs-aside">
-        
-            
-        
       </li>
-    
   </ul>
-
-  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-            
+             
   <div class="section" id="create-disk-image-for-gem5">
-<h1>Create Disk Image for gem5<a class="headerlink" href="#create-disk-image-for-gem5" title="Permalink to this headline">¶</a></h1>
+<h1>Create Disk Image for gem5<a class="headerlink" href="#create-disk-image-for-gem5" title="Permalink to this headline"></a></h1>
 <p>In this page, we will explain how to prepare custom disk image for gem5.
 You can create your own OS image, or prepare data for user-level application running inside of gem5.</p>
 <div class="section" id="create-empty-file">
-<h2>Create empty file<a class="headerlink" href="#create-empty-file" title="Permalink to this headline">¶</a></h2>
+<h2>Create empty file<a class="headerlink" href="#create-empty-file" title="Permalink to this headline"></a></h2>
 <p>Create empty file to store raw disk data.</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>dd <span class="k">if</span><span class="o">=</span>/dev/zero <span class="nv">of</span><span class="o">=</span>disk.img <span class="nv">oflag</span><span class="o">=</span>direct <span class="nv">bs</span><span class="o">=</span>1M <span class="nv">count</span><span class="o">=</span><span class="m">1024</span>
 </pre></div>
@@ -232,7 +152,7 @@ You can create your own OS image, or prepare data for user-level application run
 <p>Above command line will create <code class="docutils literal notranslate"><span class="pre">disk.img</span></code> file with <code class="docutils literal notranslate"><span class="pre">1GB</span> <span class="pre">=</span> <span class="pre">1M</span> <span class="pre">*</span> <span class="pre">1024</span></code> size.</p>
 </div>
 <div class="section" id="mount-file-as-loop-device">
-<h2>Mount file as loop device<a class="headerlink" href="#mount-file-as-loop-device" title="Permalink to this headline">¶</a></h2>
+<h2>Mount file as loop device<a class="headerlink" href="#mount-file-as-loop-device" title="Permalink to this headline"></a></h2>
 <p>Map created file as loop device.
 You may need administrator privileges.</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create loop device</span>
@@ -249,7 +169,7 @@ losetup -d /dev/loop0
 </div>
 </div>
 <div class="section" id="create-partition">
-<h2>Create partition<a class="headerlink" href="#create-partition" title="Permalink to this headline">¶</a></h2>
+<h2>Create partition<a class="headerlink" href="#create-partition" title="Permalink to this headline"></a></h2>
 <p>Create partition table and format.
 Here, we used <code class="docutils literal notranslate"><span class="pre">fdisk</span></code>, but you can use your favorite utility such as <code class="docutils literal notranslate"><span class="pre">parted</span></code>.</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="c1"># Run fdisk</span>
@@ -267,7 +187,7 @@ mkfs -t ext4 /dev/loop0p1
 </div>
 </div>
 <div class="section" id="mount-unmount-partition">
-<h2>Mount/Unmount partition<a class="headerlink" href="#mount-unmount-partition" title="Permalink to this headline">¶</a></h2>
+<h2>Mount/Unmount partition<a class="headerlink" href="#mount-unmount-partition" title="Permalink to this headline"></a></h2>
 <p>Mount formatted partition.</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>mkdir mnt
 mount /dev/loop0p1 mnt
@@ -280,7 +200,7 @@ mount /dev/loop0p1 mnt
 <p>Don’t forget to detach loop device.</p>
 </div>
 <div class="section" id="use-in-gem5-and-simplessd">
-<h2>Use in gem5 and SimpleSSD<a class="headerlink" href="#use-in-gem5-and-simplessd" title="Permalink to this headline">¶</a></h2>
+<h2>Use in gem5 and SimpleSSD<a class="headerlink" href="#use-in-gem5-and-simplessd" title="Permalink to this headline"></a></h2>
 <p>If you created new OS image, you can specify using <code class="docutils literal notranslate"><span class="pre">--disk-image</span></code> option of gem5.
 If you want simulate SSD to have contents of disk image, modify SimpleSSD configuration file to enable disk image feature and specify disk image path.</p>
 </div>
@@ -288,56 +208,26 @@ If you want simulate SSD to have contents of disk image, modify SimpleSSD config
 
 
            </div>
-           
           </div>
-          <footer>
-  
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="../v2.0/hil.html" class="btn btn-neutral float-right" title="Host Interface Layer" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="program.html" class="btn btn-neutral float-left" title="Build User-Level Program for gem5" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="program.html" class="btn btn-neutral float-left" title="Build User-Level Program for gem5" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../v2.0/hil.html" class="btn btn-neutral float-right" title="Host Interface Layer" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
-  
 
   <hr/>
 
   <div role="contentinfo">
-    <p>
-        &copy; Copyright 2018 CAMELab All rights reserved
+    <p>&#169; Copyright 2018 CAMELab All rights reserved.</p>
+  </div>
 
-    </p>
-  </div> 
+   
 
 </footer>
-
         </div>
       </div>
-
     </section>
-
   </div>
-  
-
-
-  
-
-    
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/doctools.js"></script>
-        <script src="../_static/language_data.js"></script>
-    
-
-  
-
-  <script type="text/javascript" src="../_static/js/theme.js"></script>
-
-  <script type="text/javascript">
+  <script>
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
