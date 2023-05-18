@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Getting Started &mdash; SimpleSSD 2.0.12 documentation</title>
+  <title>How to Get Started &mdash; SimpleSSD 2.0.12 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/color.css" type="text/css" />
@@ -44,19 +44,19 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">User Documentation</span></p>
 <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Getting Started</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#simplessd-fullsystem">SimpleSSD-FullSystem</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#prerequisite">Prerequisite</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#download-source-code">Download source code</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#build">Build</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#prepare-full-system-files">Prepare full system files</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#arm-specific-stuff">ARM specific stuff</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">How to Get Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#setting-up-simplessd-fullsystem">Setting Up SimpleSSD-FullSystem</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#preparatory-steps">Preparatory Steps</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#downloading-the-source-code">Downloading the Source Code</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#building-simplessd-fullsystem">Building SimpleSSD-FullSystem</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#preparing-full-system-files">Preparing Full System Files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#arm-specific-preparations">ARM-Specific Preparations</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#simplessd-standalone">SimpleSSD-Standalone</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id1">Prerequisite</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id2">Download source code</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id3">Build</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#setting-up-simplessd-standalone">Setting Up SimpleSSD-Standalone</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#prerequisite-steps">Prerequisite Steps</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id1">Downloading the Source Code</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#building-simplessd-standalone">Building SimpleSSD-Standalone</a></li>
 </ul>
 </li>
 </ul>
@@ -139,7 +139,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">Getting Started</li>
+      <li class="breadcrumb-item active">How to Get Started</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -148,55 +148,58 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="section" id="getting-started">
-<h1>Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this headline"></a></h1>
-<p>In this page, we will explain how to prepare SimpleSSD in step by step.</p>
-<div class="section" id="simplessd-fullsystem">
-<span id="start-fullsystem"></span><h2>SimpleSSD-FullSystem<a class="headerlink" href="#simplessd-fullsystem" title="Permalink to this headline"></a></h2>
-<div class="section" id="prerequisite">
-<h3>Prerequisite<a class="headerlink" href="#prerequisite" title="Permalink to this headline"></a></h3>
-<p>Before downloading SimpleSSD-FullSystem, you should install dependencies.
-As gem5 only supports Linux system, SimpleSSD-FullSystem does not supports other operating systems such as Windows or Mac OS.</p>
-<p>If you use RHEL 8/CentOS 8, you may need to install <code class="docutils literal notranslate"><span class="pre">scons</span></code> with <code class="docutils literal notranslate"><span class="pre">pip2</span></code>.
-We highly recommend to use <code class="docutils literal notranslate"><span class="pre">virtualenv</span></code> instead of installing packages in root directory.</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="c1"># For Debian based Linux</span>
+  <div class="section" id="how-to-get-started">
+<h1>How to Get Started<a class="headerlink" href="#how-to-get-started" title="Permalink to this headline"></a></h1>
+<p>On this page, we’ll guide you through the process of setting up SimpleSSD, step by step.</p>
+<div class="section" id="setting-up-simplessd-fullsystem">
+<span id="start-fullsystem"></span><h2>Setting Up SimpleSSD-FullSystem<a class="headerlink" href="#setting-up-simplessd-fullsystem" title="Permalink to this headline"></a></h2>
+<div class="section" id="preparatory-steps">
+<h3>Preparatory Steps<a class="headerlink" href="#preparatory-steps" title="Permalink to this headline"></a></h3>
+<p>Before you proceed with downloading SimpleSSD-FullSystem, there are certain prerequisite dependencies you need to install.
+Please note that gem5, which is integrated with SimpleSSD-FullSystem, only supports the Linux operating system.
+Therefore, unfortunately, SimpleSSD-FullSystem is not compatible with other operating systems, such as Windows or macOS.</p>
+<p>For those utilizing Red Hat Enterprise Linux (RHEL) 8 or CentOS 8, you might need to install <code class="docutils literal notranslate"><span class="pre">scons</span></code> using <code class="docutils literal notranslate"><span class="pre">pip2</span></code>.
+We strongly suggest using <code class="docutils literal notranslate"><span class="pre">virtualenv</span></code> to manage your Python environments to avoid installing packages directly into the root directory.
+This approach not only maintains a clean root directory but also helps in avoiding any potential package conflicts.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="c1"># For Debian/Ubuntu based Linux</span>
 apt install build-essential
 apt install scons python-dev zlib1g-dev m4 cmake
 apt install libprotobuf-dev protobuf-compiler
 apt install libgoogle-perftools-dev
 
-<span class="c1"># For Red Hat based Linux</span>
+<span class="c1"># For RHEL 7 or before based Linux</span>
 yum groupinstall <span class="s2">&quot;Development Tools&quot;</span>
 yum install epel-release
 yum install scons python2-devel zlib-devel cmake
 yum install protobuf-devel google-perftools-devel
 
-<span class="c1"># For RHEL 8 based Linux</span>
+<span class="c1"># For RHEL 8 or later based Linux</span>
 <span class="c1">## Run as root</span>
 dnf group install <span class="s2">&quot;Development Tools&quot;</span>
-dnf install python2-virtualenv cmake zlib-devel python2-six python2-devel
+dnf install python3-virtualenv cmake zlib-devel python3-pip python3-devel
 <span class="c1">## Run as non-root</span>
-virtualenv -p python2 &lt;your virtual env name&gt;
+virtualenv -p python3 &lt;your virtual env name&gt;
 . &lt;your virtual env name&gt;/bin/activate
-pip install scons six
+pip install <span class="nv">scons</span><span class="o">==</span><span class="m">3</span>.1.2
 </pre></div>
 </div>
 </div>
-<div class="section" id="download-source-code">
-<h3>Download source code<a class="headerlink" href="#download-source-code" title="Permalink to this headline"></a></h3>
-<p>After installing libraries, clone GitHub repository and configure submodules.
-If you want to use specific version, checkout using <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">checkout</span> <span class="pre">&lt;version&gt;</span></code> before initializing submodules.</p>
+<div class="section" id="downloading-the-source-code">
+<h3>Downloading the Source Code<a class="headerlink" href="#downloading-the-source-code" title="Permalink to this headline"></a></h3>
+<p>Once the required libraries are successfully installed, the next step involves cloning the GitHub repository and configuring its submodules.
+If you wish to use a specific version of SimpleSSD, make sure to use the <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">checkout</span> <span class="pre">&lt;version&gt;</span></code> command before initializing the submodules.
+This will ensure that the correct version is selected and prepared for further actions.</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git clone git@github.com:simplessd/simplessd-fullsystem
 <span class="nb">cd</span> simplessd-fullsystem
 git submodule update --init --recursive
 </pre></div>
 </div>
 </div>
-<div class="section" id="build">
-<h3>Build<a class="headerlink" href="#build" title="Permalink to this headline"></a></h3>
-<p>Build SimpleSSD-FullSystem using <code class="docutils literal notranslate"><span class="pre">scons</span></code>.
-SimpleSSD only supports <code class="docutils literal notranslate"><span class="pre">ARM</span></code> and <code class="docutils literal notranslate"><span class="pre">X86</span></code> architectures.</p>
-<p>For more details on command line, check <a class="reference external" href="http://www.gem5.org/documentation/general_docs/building">gem5 build instruction</a>.</p>
+<div class="section" id="building-simplessd-fullsystem">
+<h3>Building SimpleSSD-FullSystem<a class="headerlink" href="#building-simplessd-fullsystem" title="Permalink to this headline"></a></h3>
+<p>After downloading and configuring the source code, proceed to build SimpleSSD-FullSystem using <code class="docutils literal notranslate"><span class="pre">scons</span></code>.
+Please note that SimpleSSD only supports <code class="docutils literal notranslate"><span class="pre">ARM</span></code> and <code class="docutils literal notranslate"><span class="pre">X86</span></code> architectures.
+If you need more specific details on using the command line during this process, you can refer to the <a class="reference external" href="http://www.gem5.org/documentation/general_docs/building">gem5 build instruction</a>, which provides a comprehensive guide on the subject.</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="c1"># For ARM architecture</span>
 scons build/ARM/gem5.opt -j <span class="m">8</span> --ignore-style
 
@@ -205,13 +208,17 @@ scons build/X86/gem5.opt -j <span class="m">8</span> --ignore-style
 </pre></div>
 </div>
 </div>
-<div class="section" id="prepare-full-system-files">
-<h3>Prepare full system files<a class="headerlink" href="#prepare-full-system-files" title="Permalink to this headline"></a></h3>
-<p>As we will boot gem5 in full system simulation mode, we need full system files such as Linux Kernel image and disk image.
-If you want to download original gem5-provided full system files, visit <a class="reference external" href="http://www.gem5.org/documentation/general_docs/fullsystem/guest_binaries">gem5 download page</a>.
-We recommend to download files from <a class="reference external" href="https://drive.google.com/drive/folders/14b-kJmGXOhltX9Aqr8XV9i48KkZk4Lzs?usp=sharing">here</a>, because the files from gem5 does not support NVMe.
-You don’t need to download <code class="docutils literal notranslate"><span class="pre">kernel_configs</span></code> directory if you are not plan to build Linux Kernel on your own.</p>
-<p>Create directory to store downloaded files and set <code class="docutils literal notranslate"><span class="pre">M5_PATH</span></code> environment variable points that directory.</p>
+<div class="section" id="preparing-full-system-files">
+<h3>Preparing Full System Files<a class="headerlink" href="#preparing-full-system-files" title="Permalink to this headline"></a></h3>
+<p>Given that gem5 will be booted in full system simulation mode, full system files such as the Linux Kernel image and disk image are necessary.
+If you want to use the original gem5-provided full system files, you can find them on the <a class="reference external" href="http://www.gem5.org/documentation/general_docs/fullsystem/guest_binaries">gem5 download page</a>.
+However, we recommend downloading files from the <a class="reference external" href="https://drive.google.com/drive/folders/14b-kJmGXOhltX9Aqr8XV9i48KkZk4Lzs?usp=sharing">provided link</a>, as the files directly from gem5 do not support NVMe.
+Unless you’re planning on building the Linux Kernel independently, there’s no need to download the <code class="docutils literal notranslate"><span class="pre">kernel_configs</span></code> directory.</p>
+<p>Start by creating a dedicated directory to store these downloaded files.
+Then, set your <code class="docutils literal notranslate"><span class="pre">M5_PATH</span></code> environment variable to point to this directory.
+This will ensure that the system knows where to find the necessary files during the simulation process.
+Once you’ve downloaded the files from the link provided, your directory tree should resemble the structure described in the next section if you’ve only used the files we’ve provided.
+This structure is important for the successful operation of the system.</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>mkdir <span class="nv">$HOME</span>/m5
 <span class="nb">export</span> <span class="nv">M5_PATH</span><span class="o">=</span><span class="nv">$HOME</span>/m5
 </pre></div>
@@ -231,11 +238,12 @@ If you only downloaded files we provided, a directory tree should looks like:</p
 </pre></div>
 </div>
 </div>
-<div class="section" id="arm-specific-stuff">
-<h3>ARM specific stuff<a class="headerlink" href="#arm-specific-stuff" title="Permalink to this headline"></a></h3>
-<p>We need to compile <code class="docutils literal notranslate"><span class="pre">dts</span></code> files to create <code class="docutils literal notranslate"><span class="pre">dtb</span></code> files.
-These file define hardware components (and its information) exist on current system.</p>
-<p>Install a DeviceTree Compiler.</p>
+<div class="section" id="arm-specific-preparations">
+<h3>ARM-Specific Preparations<a class="headerlink" href="#arm-specific-preparations" title="Permalink to this headline"></a></h3>
+<p>Before you can successfully run SimpleSSD-FullSystem, there are a few ARM-specific tasks to complete.
+One of these tasks involves compiling <code class="docutils literal notranslate"><span class="pre">.dts</span></code> (Device Tree Source) files to create <code class="docutils literal notranslate"><span class="pre">.dtb</span></code> (Device Tree Binary) files.
+These <code class="docutils literal notranslate"><span class="pre">.dtb</span></code> files are crucial as they define the various hardware components, as well as relevant information about them, existing in the current system.
+To accomplish this, you will need to install a DeviceTree Compiler.</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="c1"># For Debian based Linux</span>
 apt install device-tree-compiler
 
@@ -246,53 +254,60 @@ yum install dtc
 dnf --enablerepo<span class="o">=</span>PowerTools install dtc
 </pre></div>
 </div>
-<p>You can find <code class="docutils literal notranslate"><span class="pre">dts</span></code> files in <code class="docutils literal notranslate"><span class="pre">system/arm/dt</span></code> of SimpleSSD-FullSystem repository.</p>
+<p>You can locate the necessary <code class="docutils literal notranslate"><span class="pre">.dts</span></code> files within the ‘<code class="docutils literal notranslate"><span class="pre">system/arm/dt</span></code>’ directory of the SimpleSSD-FullSystem repository.</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> system/arm/dt
 make
 </pre></div>
 </div>
-<p><code class="docutils literal notranslate"><span class="pre">make</span></code> will generates <code class="docutils literal notranslate"><span class="pre">dtb</span></code> files for <code class="docutils literal notranslate"><span class="pre">VExpress_GEM5_V1</span></code> system of gem5.
-Each file defines architecture (<code class="docutils literal notranslate"><span class="pre">armv7</span></code> or <code class="docutils literal notranslate"><span class="pre">armv8</span></code>) and the number of CPU in the system (1, 2, 4. 8 or 16).
-Copy or move produced <code class="docutils literal notranslate"><span class="pre">dtb</span></code> to <code class="docutils literal notranslate"><span class="pre">$M5_PATH/binaries</span></code>.</p>
+<p>By using the ‘<code class="docutils literal notranslate"><span class="pre">make</span></code>’ command, these files can be compiled into .dtb files, each tailored for the VExpress_GEM5_V1 system of gem5.
+These <code class="docutils literal notranslate"><span class="pre">.dtb</span></code> files will define specific system architectures (<code class="docutils literal notranslate"><span class="pre">armv7</span></code> or <code class="docutils literal notranslate"><span class="pre">armv8</span></code>) and the number of CPUs present in the system (options include 1, 2, 4, 8, or 16).
+Once the <code class="docutils literal notranslate"><span class="pre">.dtb</span></code> files are generated, copy or move them to the ‘<code class="docutils literal notranslate"><span class="pre">$M5_PATH/binaries</span></code>’ directory.
+This step ensures that the system can locate the <code class="docutils literal notranslate"><span class="pre">.dtb</span></code> files when running the simulation.</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>mv *.dtb <span class="nv">$M5_PATH</span>/binaries
 </pre></div>
 </div>
-<p>Now you are ready to execute SimpleSSD-FullSystem.
-See <a class="reference internal" href="run.html#tutorial-basic-fullsystem"><span class="std std-ref">Execution of SimpleSSD-FullSystem</span></a> for running instructions.</p>
+<p>Now, you’re all set to run SimpleSSD-FullSystem. For instructions on how to execute it, please refer to the <a class="reference internal" href="run.html#tutorial-basic-fullsystem"><span class="std std-ref">Execution of SimpleSSD-FullSystem</span></a> section.</p>
 </div>
 </div>
-<div class="section" id="simplessd-standalone">
-<span id="start-standalone"></span><h2>SimpleSSD-Standalone<a class="headerlink" href="#simplessd-standalone" title="Permalink to this headline"></a></h2>
+<div class="section" id="setting-up-simplessd-standalone">
+<span id="start-standalone"></span><h2>Setting Up SimpleSSD-Standalone<a class="headerlink" href="#setting-up-simplessd-standalone" title="Permalink to this headline"></a></h2>
+<div class="section" id="prerequisite-steps">
+<h3>Prerequisite Steps<a class="headerlink" href="#prerequisite-steps" title="Permalink to this headline"></a></h3>
+<p>Before initiating the download of SimpleSSD-Standalone, ensure that you have a C/C++ compiler installed, which supports both C++11 and the ‘<code class="docutils literal notranslate"><span class="pre">&lt;regex&gt;</span></code>’ library.
+For Windows users, Microsoft Visual C++ 2015 (MSVC 2015) or a more recent version will suffice.
+If you are using a Linux system, you should have gcc/g++ version 4.9 or newer installed.</p>
+<p>SimpleSSD-Standalone employs ‘<code class="docutils literal notranslate"><span class="pre">cmake</span></code>’ as its build system.
+If you prefer to use LLVM as your compiler, it’s important to note that you might need to make modifications to the ‘CMakeList.txt’ file to ensure compatibility.
+Please install ‘<code class="docutils literal notranslate"><span class="pre">cmake</span></code>’ version 3.10 or newer before proceeding.</p>
+</div>
 <div class="section" id="id1">
-<h3>Prerequisite<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h3>
-<p>Before downloading SimpleSSD-Standalone, you need C/C++ compiler which supports C++11 and <code class="docutils literal notranslate"><span class="pre">&lt;regex&gt;</span></code>.
-If you are on Windows, <code class="docutils literal notranslate"><span class="pre">MSVC</span> <span class="pre">2015</span></code> or newer will work.
-If you are on Linux system, <code class="docutils literal notranslate"><span class="pre">gcc/g++</span> <span class="pre">4.9</span></code> or newer will work.</p>
-<p>SimpleSSD-Standalone uses <code class="docutils literal notranslate"><span class="pre">cmake</span></code> for build system.
-If you prefer to use <code class="docutils literal notranslate"><span class="pre">LLVM</span></code> you may need to modify <code class="docutils literal notranslate"><span class="pre">CMakeList.txt</span></code> file.</p>
-<p>Install <code class="docutils literal notranslate"><span class="pre">cmake</span> <span class="pre">3.10</span></code> or newer.</p>
-</div>
-<div class="section" id="id2">
-<h3>Download source code<a class="headerlink" href="#id2" title="Permalink to this headline"></a></h3>
-<p>After installing <code class="docutils literal notranslate"><span class="pre">cmake</span></code>, clone GitHub repository and configure submodules.
-If you want to use specific version, checkout using <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">checkout</span> <span class="pre">&lt;version&gt;</span></code> before initializing submodules.</p>
+<h3>Downloading the Source Code<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h3>
+<p>Once ‘<code class="docutils literal notranslate"><span class="pre">cmake</span></code>’ is properly installed, clone the SimpleSSD-Standalone repository from GitHub.
+Like the FullSystem version, you should also configure the submodules.
+Should you wish to use a specific version of SimpleSSD-Standalone, remember to execute the ‘<code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">checkout</span> <span class="pre">&lt;version&gt;</span></code>’ command before initializing the submodules.
+This allows you to select the correct version for your needs.</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git clone git@github.com:simplessd/simplessd-standalone
 <span class="nb">cd</span> simplessd-standalone
 git submodule update --init --recursive
 </pre></div>
 </div>
 </div>
-<div class="section" id="id3">
-<h3>Build<a class="headerlink" href="#id3" title="Permalink to this headline"></a></h3>
-<p>Build SimpleSSD-Standalone using following command line.</p>
+<div class="section" id="building-simplessd-standalone">
+<h3>Building SimpleSSD-Standalone<a class="headerlink" href="#building-simplessd-standalone" title="Permalink to this headline"></a></h3>
+<p>With the necessary prerequisites installed and the source code downloaded, it’s time to build SimpleSSD-Standalone. Use the following commands in your terminal or command prompt:</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>cmake -DDEBUG_BUILD<span class="o">=</span>off .
 make -j <span class="m">8</span>
 </pre></div>
 </div>
-<p>To build SimpleSSD-Standalone in debug mode, use <code class="docutils literal notranslate"><span class="pre">-DDEBUG_BUILD=on</span></code>.
-After successful build, you can find <code class="docutils literal notranslate"><span class="pre">simplessd-standalone</span></code> executable on current working directory.</p>
-<p>Now you are ready to execute SimpleSSD-Standalone.
-See <a class="reference internal" href="run.html#tutorial-basic-standalone"><span class="std std-ref">Execution of SimpleSSD-Standalone</span></a> for running instructions.</p>
+<p>The first line initiates the building process using ‘<code class="docutils literal notranslate"><span class="pre">cmake</span></code>’, with the debug build option turned off.
+The second line runs the ‘<code class="docutils literal notranslate"><span class="pre">make</span></code>’ command, using 8 cores (as specified by ‘-j 8’) for the build process.
+If you wish to build SimpleSSD-Standalone in debug mode, replace ‘off’ with ‘on’ in the ‘cmake’ command line:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>cmake -DDEBUG_BUILD<span class="o">=</span>on .
+</pre></div>
+</div>
+<p>Upon a successful build, the ‘<code class="docutils literal notranslate"><span class="pre">simplessd-standalone</span></code>’ executable will be available in your current working directory.
+With these steps completed, you are now prepared to run SimpleSSD-Standalone.
+For detailed instructions on how to execute the simulator, please refer to the <a class="reference internal" href="run.html#tutorial-basic-standalone"><span class="std std-ref">Execution of SimpleSSD-Standalone</span></a> section.</p>
 </div>
 </div>
 </div>

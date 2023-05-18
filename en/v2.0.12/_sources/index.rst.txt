@@ -5,7 +5,7 @@ SimpleSSD
 *********
 
 
-Open-Source Licensed Full-system SSD Simulator
+SimpleSSD: Open-Source Licensed Full-System SSD Simulator
 ==============================================
 
 .. figure:: ../../images/index/logo.jpg
@@ -13,15 +13,17 @@ Open-Source Licensed Full-system SSD Simulator
     :align: right
     :figclass: align-center
 
-Welcome to the SimpleSSD website.
-SimpleSSD is a high-fidelity simulator that models all detailed characteristics of hardware and software, to build up a complete storage stack from scratch and simplify the nondescript features of storage internals.
-In contrast to existing SSD simulators, it can accommodate a complete storage stack and evaluate the performance of SSDs along with diverse memory technologies and micro-architectures by integrating into publicly-available full system simulator (:xref:`gem5`).
-Consequently, it allows system designers and architects to explore the full design space at different levels of system abstraction.
-The SimpleSSD simulation model has been validated with a real devices.
-
-You can download SimpleSSD from :doc:`./download`.
-If you'd like to use the SimpleSSD simulator in your research, please cite our paper.
-For convenience, here is the :doc:`./ack`.
+Welcome to the official SimpleSSD website, your go-to source for our advanced full-system Solid-State Drive (SSD) simulator.
+As an open-source licensed platform, SimpleSSD strives to empower developers and system architects with an intricate tool that models both hardware and software attributes, enhancing their understanding and streamlining the complexities of storage internals.
+Unlike other SSD simulators, SimpleSSD is designed to incorporate a full storage stack.
+This allows for a comprehensive evaluation of SSDs' performance in conjunction with a variety of memory technologies and micro-architectures.
+Our platform integrates seamlessly with the publicly-available full-system simulator, (:xref:`gem5`), offering you the opportunity to explore a wide array of design spaces at different system abstraction levels.
+The accuracy of the SimpleSSD simulation model is top-notch, having been validated against real devices to ensure its reliability and efficacy.
+To get started with SimpleSSD, please head over to our ':doc:`./download`' section where you'll find the latest version available for download.
+If you're considering employing SimpleSSD in your research, we kindly ask that you acknowledge our work by citing our paper, which you can conveniently find in our ':doc:`./ack`' section.
+If you're interested in seeing SimpleSSD in action, we have a demonstration video available for viewing.
+This video was initially showcased during our presentation at the 51st International Symposium on Microarchitecture (MICRO 51), and includes a demo of both NVMe and Open-Channel SSD interfaces.
+We believe this video will provide a clearer understanding of how SimpleSSD functions and the advantages it can bring to your projects.
 
 
 Demo Video
